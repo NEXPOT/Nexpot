@@ -7,7 +7,7 @@ from .models import Youtube, Places
 from django_filters.rest_framework import DjangoFilterBackend
 
 # Create your views here.
-class YoutubeListAPIView(generics.LISTAPIView):
+class YoutubeListAPIView(generics.ListAPIView):
     queryset = Youtube.objects.all()
     serializer_class = YoutubesSerializer
     filter_backends = [DjangoFilterBackend]

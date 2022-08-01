@@ -4,7 +4,7 @@ from django.db import models
 
 class Places(models.Model):
     idx = models.IntegerField()
-    videoid = models.ForeignKey('Youtube', models.DO_NOTHING, db_column='videoID')
+    videoid = models.ForeignKey('Youtube', models.DO_NOTHING, related_name='places', db_column='videoID')
     placeid = models.CharField(db_column='placeID', primary_key=True, max_length=12)
     pname = models.CharField(max_length=20)
     paddress = models.CharField(max_length=50)

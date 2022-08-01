@@ -5,8 +5,7 @@ class YoutubesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Youtube
         fields = ('videoid', 'thumbnail', 'channelname', 'title', 'youtime', 'views')
-
-
+        
 
 class PlaceSerializer(serializers.ModelSerializer):
     class Meta:

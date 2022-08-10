@@ -6,8 +6,8 @@ import { Search, ArrowRepeat } from 'akar-icons';
 const SearchHeader = () => {
 	return (
 		<>
-			<div className='bg-zinc-900 w-full h-10 py-2 '>
-				<div className='w-1000 h-6 mx-10 align-middle flex justify-between'>
+			<div className="bg-[#120D0B] shadow-[3px_6px_16px_-4px_rgba(185,185,196,0.2)] w-full h-13">
+				<div className='mx-10 py-3 flex justify-between self-center'>
 					<span className="text-white">NEXPOT</span>
 					<div>
 					<button className="mx-2 px-4 py-1 inline-flex rounded-lg border border-stone-400 text-stone-400 text-xs font-medium">

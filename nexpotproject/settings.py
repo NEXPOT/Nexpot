@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from .my_settings import mySECRET_KEY, myDATABASES
+
+SECRET_KEY = mySECRET_KEY
+
+DATABASES = myDATABASES
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,8 +24,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7xxz$!)6xo(-h3*akh72m67og9f(3^)opq626=45u6ir)c4nqx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,16 +81,6 @@ WSGI_APPLICATION = 'nexpotproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME' : 'Nexpot',
-        'USER' : 'admin',
-        'PASSWORD' : 'qwertyuiop123',
-        'HOST' : 'nexpot.c43ypw0liaa2.ap-northeast-2.rds.amazonaws.com' ,
-        'PORT' : '3306'
-    }
-}
 
 
 # Password validation

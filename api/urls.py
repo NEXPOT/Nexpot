@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import YoutubeListAPIView, YoutubeRetrieveAPIView
+from .views import YoutubeListAPIView, YoutubeRetrieveAPIView, YoutubeSearchAPIView
 
 urlpatterns = [
-    path('youtube/', YoutubeListAPIView.as_view()), # /api?region=seoul
-    path('youtube/<str:video_id>', YoutubeRetrieveAPIView.as_view())
+    path('youtube/', YoutubeListAPIView.as_view()), # api/youtube/?region=seoul
+    path('youtube/<str:video_id>', YoutubeRetrieveAPIView.as_view()),
+    path('youtube/search/', YoutubeSearchAPIView.as_view()), # api/youtube/search/?search=서울
 ]

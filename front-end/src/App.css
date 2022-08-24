@@ -21,3 +21,14 @@ body::after {
     background: linear-gradient(269.93deg, #120D0B 0.09%, rgba(18, 13, 11, 0.8) 101.91%);
     z-index: -1;
 }
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.contentWrapper {
+    padding-bottom: 14rem;
+    flex: 1;
+}

@@ -7,12 +7,16 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 export default function App() {
   return (
     <BrowserRouter>
-      <SearchHeader />
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/detail" element={<Detail />} />
-      </Routes>
-      <Footer/>
+      <div className="wrapper">
+        <div className="contentWrapper">
+          <SearchHeader />
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/detail" element={<Detail />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
     </BrowserRouter>
 
   );

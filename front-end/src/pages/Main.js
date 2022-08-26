@@ -1,5 +1,15 @@
 import React from 'react'
 import VideoList from '../components/video_list'
+import { Detail } from './';
+
+// 썸네일 클릭시 해당 영상의 상세 정보 페이지로 이동합니다. 
+const onClickHandler = (video_id) => {
+	return(
+		<>
+		{Detail(video_id)}
+		</>
+	)
+}
 
 export default function Main() {
 	const mainRegion = ["서울", "부산", "인천"];

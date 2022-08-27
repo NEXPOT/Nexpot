@@ -11,8 +11,8 @@ export default function App() {
         <div className="contentWrapper">
           <SearchHeader />
           <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/detail" element={<Detail />} />
+            <Route exact path="/" element={<Main />} />
+            <Route path="/detail/:videoid" element={<Detail />} />      
           </Routes>
         </div>
         <Footer />

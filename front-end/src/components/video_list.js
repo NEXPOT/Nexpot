@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 const VideoList = ({ regionName }) => {
@@ -16,20 +17,22 @@ const VideoList = ({ regionName }) => {
 	const region = {
 		"서울": "seoul",
 		"부산": "busan",
-		"인천": "incheon"
+		"인천": "incheon",
 	}
 
 	useEffect(() => {
 		const getData = async () => {
 			try {
-				const res = await axios.get("http://127.0.0.1:8000/api/youtube", {
+				const res = await axios.get("http://13.209.16.143:3306/api/youtube", {
 					params: {
 						region: region[regionName],
 					},
 				});
 				const _video = await res.data.map(item => ({
+					videoid: item.videoid,
 					title: item.title,
-					thumbnail: item.thumbnail
+					thumbnail: item.thumbnail,
+					channelname: item.channelname,
 				}))
 				setVideo(video.concat(_video))
 			} catch (e) {
@@ -40,7 +43,7 @@ const VideoList = ({ regionName }) => {
 	}, [])
 
 	//console.log(video);
-
+	
 	return (
 		<>
 			<div className="mx-10 mt-8 text-white">
@@ -51,11 +54,15 @@ const VideoList = ({ regionName }) => {
 				
 				<div className='flex overflow-scroll'>
 
-				{video.map((item, idx) =>
-				 
+				{video.map((item, idx) =>				 
 					<div className="inline mr-6" key={idx}>
+						<Link to={`/detail/${item.videoid}`} state={{ thumbnail: item.thumbnail.replace('mqdefault.jpg', 'maxresdefault.jpg'),
+						channelname: item.channelname,
+						region: regionName,
+						title: item.title}}>
 						<img alt="thumbnail" src={item.thumbnail} />
 						<p className='text-sm w-80'>{item.title}</p>
+						</Link>
 					</div>
 				
 				)}

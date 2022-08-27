@@ -29,6 +29,5 @@ body::after {
 }
 
 .contentWrapper {
-    padding-bottom: 14rem;
     flex: 1;
 }

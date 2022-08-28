@@ -30,9 +30,10 @@ const SearchHeader = () => {
 	const onSubmitSearch = (e) => {
 		if (e.key === "Enter") {
 			navigate('/result', { state: { keyword: e.target.value}});
+			window.location.reload();
+			setSearchBtn(true);
 		}
 	};
-
 
 	return (
 		<>

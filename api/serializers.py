@@ -4,9 +4,8 @@ from rest_framework import serializers
 class YoutubesSerializer(serializers.ModelSerializer):      
     class Meta:
         model = Youtube
-        fields = ('videoid', 'thumbnail', 'channelname', 'title', 'youtime', 'views')
+        fields = ['videoid', 'thumbnail', 'region', 'channelname', 'title', 'youtime', 'views']
         
-
 class PlaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Places
@@ -17,4 +16,4 @@ class YoutubeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Youtube
-        fields = ['videoid', 'channelname', 'region', 'title', 'youtime', 'views', 'places']
+        fields = ['videoid', 'channelname', 'title', 'youtime', 'views', 'places']

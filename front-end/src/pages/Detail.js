@@ -4,7 +4,7 @@ import { useLocation, useParams } from 'react-router-dom'
 export default function Detail() {
 	let { videoid } = useParams();
 	const location = useLocation();
-	console.log("videoid: " + videoid);
+	//console.log("videoid: " + videoid);
 	console.log(location);
 
 	return (

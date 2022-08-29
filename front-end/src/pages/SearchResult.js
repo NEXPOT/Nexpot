@@ -15,46 +15,52 @@ export default function SearchResult() {
 						search: location.state.keyword,
 					},
 				});
+				//console.log(res.data);
 				const _video = await res.data.map(item => ({
-					videoid: item.videoid,
-					title: item.title,
-					thumbnail: item.thumbnail,
 					channelname: item.channelname,
-					date: item.youtime,
+					region: item.region,
+					thumbnail: item.thumbnail,
+					title: item.title,
+					videoid: item.videoid,
 					views: item.views,
-				}))
+					date: item.youtime,
+				}));
 				setVideo(video.concat(_video));
 			} catch (e) {
 				console.error(e.message);
 			}
 		}
 		getData();
-	}, [location.state.keyword]);
+	}, []);
+
 
 	return (
 		<>
 			<div className="mx-10 mt-20 text-white">
 				<span className="mb-5 text-5xl font-bold">‘{location.state.keyword}’</span>
+				<span className='font-medium text-[#c4c4c4] text-3xl'>의 검색 결과입니다.</span>
 				{video.length
-					? <div className='inline'><span className='font-medium text-[#c4c4c4] text-3xl'>의 검색 결과입니다.</span>
-
-						<div className='flex flex-wrap'>
-							{video.map((item, idx) =>
-								<div className="mx-2 mt-16" key={idx}>
-									<Link to={`/detail/${item.videoid}`} state={{
-										thumbnail: item.thumbnail.replace('mqdefault.jpg', 'maxresdefault.jpg'),
-										channelname: item.channelname,
-										title: item.title
-									}}>
-										<img alt="thumbnail" src={item.thumbnail} />
-										<p className='my-3 text-base font-bold'>{item.channelname}</p>
-										<p className='text-sm w-80'>{item.title}</p>
-									</Link>
-								</div>
-							)}
-						</div>
+					? <div className='flex flex-wrap'>
+						{video.map((item, idx) =>
+							<div className="mx-2 mt-16" key={idx}>
+								<Link to={`/detail/${item.videoid}`} state={{
+									thumbnail: item.thumbnail.replace('mqdefault.jpg', 'maxresdefault.jpg'),
+									channelname: item.channelname,
+									title: item.title
+								}}>
+									<p className='my-3 text-base font-bold'>{item.region}</p>
+									<img alt="thumbnail" src={item.thumbnail} />
+									<p className='my-3 text-base font-bold'>{item.channelname}</p>
+									<p className='text-sm w-80'>{item.title}</p>
+								</Link>
+							</div>
+						)}
 					</div>
-					: <span className='font-medium text-[#c4c4c4] text-3xl'>의 검색 결과가 없어요! 🧐</span>}
+
+					: <div>
+						<p className='mt-20 text-4xl font-medium text-center text-white'>검색 결과가 없어요.</p>
+						<p className='mt-3 text-4xl font-medium text-center text-white'>다른 키워드로 검색해보세요.🕵🏻</p>
+					</div>}
 			</div>
 		</>
 	);

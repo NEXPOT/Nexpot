@@ -17,9 +17,11 @@ class Places(models.Model):
 
 
 class Youtube(models.Model):
-    videoid = models.CharField(db_column='videoID', primary_key=True, max_length=11) 
+    videoid = models.CharField(db_column='videoID', primary_key=True, max_length=11)
     channelname = models.CharField(max_length=15)
     region = models.CharField(max_length=10, blank=True, null=True)
+    region1 = models.CharField(max_length=10, blank=True, null=True)
+    region2 = models.CharField(max_length=10, blank=True, null=True)
     title = models.CharField(max_length=100)
     thumbnail = models.CharField(max_length=48, blank=True, null=True)
     youtime = models.DateField()

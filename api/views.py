@@ -12,8 +12,8 @@ class YoutubeListAPIView(generics.ListAPIView):
     queryset = Youtube.objects.all()
     serializer_class = YoutubesSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['region']
-    
+    filterset_fields = ['region2']
+
 class YoutubeRetrieveAPIView(APIView):
     def get(self, request, video_id):
         youtube = get_object_or_404(Youtube, videoid=video_id)
@@ -24,4 +24,4 @@ class YoutubeSearchAPIView(generics.ListAPIView):
     queryset = Youtube.objects.all()
     serializer_class = YoutubesSerializer
     filter_backends = [SearchFilter]
-    search_fields = ('title', 'region', 'channelname')
+    search_fields = ('title', 'region', 'region1', 'region2', 'channelname')

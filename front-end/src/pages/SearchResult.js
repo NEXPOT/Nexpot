@@ -43,12 +43,17 @@ export default function SearchResult() {
 					? <div className='flex flex-wrap'>
 						{video.map((item, idx) =>
 							<div className="mx-2 mt-16" key={idx}>
+								<button className='hover:cursor-default mb-2 px-4 py-0.5 border-[#0D6EFD] border-[1px] rounded-2xl text-sm font-semibold text-[#0D6EFD]'>
+										{item.region.length > 2 
+										? item.region.substr(3,2)
+										: item.region
+										}
+										</button>
 								<Link to={`/detail/${item.videoid}`} state={{
 									thumbnail: item.thumbnail.replace('mqdefault.jpg', 'maxresdefault.jpg'),
 									channelname: item.channelname,
 									title: item.title
 								}}>
-									<p className='my-3 text-base font-bold'>{item.region}</p>
 									<img alt="thumbnail" src={item.thumbnail} />
 									<p className='my-3 text-base font-bold'>{item.channelname}</p>
 									<p className='text-sm w-80'>{item.title}</p>

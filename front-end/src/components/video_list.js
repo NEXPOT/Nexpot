@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import { ChevronRight } from 'akar-icons';
 
 const VideoList = ({ regionName }) => {
 	const [video, setVideo] = useState([]);
@@ -52,33 +52,93 @@ const VideoList = ({ regionName }) => {
 
 	//console.log(video);
 
+	/** 가로 스크롤 타겟  */
+	let focusTarget = useRef();
+	/** 스크롤 화살표 */
+	let scrollArrowTail = useRef();
+	let scrollArrowHead = useRef();
+
+	const handleScroll = () => {
+		let scrollLeft = focusTarget.current.scrollLeft;
+		let clientWidth = focusTarget.current.clientWidth;
+		let scrollWidth = focusTarget.current.scrollWidth;
+		let per = scrollLeft / scrollWidth;
+		scrollArrowTail.current.style.width = `${per * clientWidth}px`;
+		scrollArrowTail.current.style.maxWidth = `${clientWidth}px`;
+		scrollArrowHead.current.style.display = "block";
+		// 스크롤 시 arrow head visible
+		if (scrollArrowTail.current.style.width === "0px") {
+			scrollArrowHead.current.style.display = "none";
+		} else {
+			scrollArrowHead.current.style.display = "block";
+		}
+	}
+
 	return (
 		<>
-			<div className="mx-10 mt-8 text-white">
-				<p className="mb-5 text-2xl font-bold">{regionName}
-					<span className="text-[#c4c4c4]">{regionTitle}
+			<div className="mx-10 mt-8 text-[#ffffff]">
+				<div className='flex justify-between'>
+					<span className="text-2xl font-bold">{regionName}
+						<span className="text-[#c4c4c4]">{regionTitle}
+						</span>
 					</span>
-				</p>
+					<button className="mb-1 text-[#fffff] text-lg font-medium">전체보기</button>
+				</div>
+			</div>
 
-				<div className='flex overflow-scroll'>
+			{/* scroll arrow */}
+			<div id='arrowContainer' className='flex h-2 mx-10 mt-2 mb-3'>
+				<div
+					id='arrowTail'
+					ref={scrollArrowTail}
+					style={{ width: "0px" }}
+					className="h-0.5 bg-white"
+				>
+				</div>
+				<div
+					id='arrowHead'
+					ref={scrollArrowHead}
+					style={{ transform: "rotate(45deg)", top: "-4px", right: "10px", width: "10px", height: "10px", display: "none"}}
+					className='relative border-t-2 border-r-2 border-t-white border-r-white'
+				>
+				</div>
+			</div>
 
+			<div className='flex justify-between'>
+				<div
+					ref={focusTarget}
+					className='snap-x flex ml-10 w-[1440px] overflow-scroll text-[#ffffff]'
+					onScroll={handleScroll}
+				>
 					{video.map((item, idx) =>
-						<div className="inline mr-6" key={idx}>
+						<div className="inline mr-4" key={idx}>
 							<Link to={`/detail/${item.videoid}`} state={{
 								thumbnail: item.thumbnail.replace('mqdefault.jpg', 'maxresdefault.jpg'),
 								channelname: item.channelname,
 								region: regionName,
 								title: item.title
 							}}>
-								<img alt="thumbnail" src={item.thumbnail} />
+								<img className="snap-start" alt="thumbnail" src={item.thumbnail} />
 								<p className='my-3 text-base font-bold'>{item.channelname}</p>
 								<p className='text-sm w-80'>{item.title}</p>
 							</Link>
 						</div>
-
 					)}
 				</div>
-
+				<ChevronRight
+					className='mt-20 ml-2 hover:cursor-pointer'
+					color='#656565'
+					strokeWidth={2}
+					size={36}
+					onClick={() => {
+						let currentScrollValue = focusTarget.current.scrollLeft;
+						let currentWidth = focusTarget.current.clientWidth;
+						let maxScrollWidth = focusTarget.current.scrollWidth;
+						focusTarget.current.scrollTo({ top: 0, left: currentScrollValue + currentWidth, behavior: 'smooth' });
+						if (currentScrollValue === maxScrollWidth - currentWidth) {
+							focusTarget.current.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+						}
+					}} />
 			</div>
 		</>
 	);

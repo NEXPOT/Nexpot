@@ -43,12 +43,12 @@ export default function SearchResult() {
 					? <div className='flex flex-wrap'>
 						{video.map((item, idx) =>
 							<div className="mx-2 mt-16" key={idx}>
-								<button className='hover:cursor-default mb-2 px-4 py-0.5 border-[#0D6EFD] border-[1px] rounded-2xl text-sm font-semibold text-[#0D6EFD]'>
-										{item.region.length > 2 
-										? item.region.substr(3,2)
+								<button className='hover:cursor-default mb-2 px-4 py-0.5 border-[#737A7A] border-[1px] rounded-2xl text-sm font-semibold text-[#737A7A]'>
+									{item.region.length > 2
+										? item.region.substr(3, 2)
 										: item.region
-										}
-										</button>
+									}
+								</button>
 								<Link to={`/detail/${item.videoid}`} state={{
 									thumbnail: item.thumbnail.replace('mqdefault.jpg', 'maxresdefault.jpg'),
 									channelname: item.channelname,

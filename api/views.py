@@ -12,7 +12,7 @@ class YoutubeListAPIView(generics.ListAPIView):
     queryset = Youtube.objects.all()
     serializer_class = YoutubesSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['region2']
+    filterset_fields = ['region1', 'region2']
 
 class YoutubeRetrieveAPIView(APIView):
     def get(self, request, video_id):

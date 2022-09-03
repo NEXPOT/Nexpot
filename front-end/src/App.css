@@ -11,7 +11,7 @@ body {
     background-attachment: fixed;
 }
 
-body::after {
+body::before {
     content: "";
     position: fixed;
     top: 0;
@@ -22,6 +22,22 @@ body::after {
     z-index: -1;
 }
 
+.scrollIndicator::-webkit-scrollbar { 
+    height: 4px;  /* 스크롤바의 너비 */
+    background: none;
+}
+
+.scrollIndicator::-webkit-scrollbar-thumb {
+    width: 10vw; /* 스크롤바의 길이 */
+    background: #217af4; /* 스크롤바의 색상 */
+    
+    border-radius: 10px;
+}
+ 
+.scrollIndicator::-webkit-scrollbar-corner{
+    display: none;
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -30,4 +46,18 @@ body::after {
 
 .contentWrapper {
     flex: 1;
+} 
+
+.videoWrapper img{ 
+    width: 100%;
+    height: auto;
+}
+
+.img-gr{
+    /* background: radial-gradient(80% 72% at 50% 28%, rgba(24, 20, 22, 0) 0%, #130E0B 99.5%);    */
+    background: linear-gradient(rgba(24, 20, 22, 0) 0%, #130E0B 99.5%);     
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    pointer-events: none;
 }

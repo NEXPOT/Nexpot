@@ -1,27 +1,84 @@
-import React from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useLocation, useParams } from "react-router-dom";
+import { ChevronRight } from 'akar-icons'; 
+import Map from "../components/map";
 
-export default function Detail() {
-	let { videoid } = useParams();
-	const location = useLocation();
-	//console.log("videoid: " + videoid);
-	console.log(location);
+export default function Detail() { 
+  const location = useLocation();
+  let { videoid } = useParams();
+  const [place, setPlaces] = useState([]);
+  const [detail, setDetail] = useState([]); 
+  const [markerPositions, setMarkerPositions] = useState([]); 
+  // 첫 렌더링에 videoid로 상세 정보를 가져옵니다.
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await axios.get(
+          "http://13.209.16.143:3306/api/youtube/" + videoid
+        );
+        const _detail = [
+          {
+            videoid: res.data.videoid,
+            title: res.data.title,
+            channelname: res.data.channelname,
+            views: res.data.views,
+          },
+        ];
+        setDetail(_detail);
+        setPlaces(res.data.places);
+        setMarkerPositions([res.data.places[0].py,res.data.places[0].px]);
+      } catch (e) {
+        console.error(e.message);
+      }
+    };
+    getData();
+  }, []);
+  
+  const setPlaceItem = () => {
+    return place.map((item, idx) =>
+    (
+        <button
+          key={idx}
+          onClick={()=>setMarkerPositions([item.py, item.px])}
+          className="transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline grid grid-flow-col place-items-center mt-6 text-xs font-normal text-[#737A7A]"
+        >
+          {item.pname}
+          <ChevronRight  
+					color='#656565'
+					strokeWidth={2}
+					size={16} />
+        </button> 
+    ));
+  };
 
-	return (
-		<div className='mx-10'>
-			<img className='m-auto' alt="thumbnail" src={location.state.thumbnail} />
-			{/* TODO: 썸네일 그라디언트 */}
-
-			<div className='mx-10 text-white'>
-				<p className='mt-24 text-5xl font-bold truncate'>{location.state.title}</p>
-				<p className='mt-6 text-sm font-bold'>{location.state.channelname}</p>
-			</div>
-			<div className='text-white'>
-				<p className='mx-5 text-base font-bold mt-28'>관광코스</p>
-				<p className='mt-6 text-sm text-[#808080] font-bold'>해동용궁사 스카이라인 루지 코스를 적어봅시다. 코스A 코스B 스테이크 요리 </p>
-				<p className='mx-5 mt-6 text-base font-bold'>여행지 정보</p>
-				<p className='mx-5 mt-6 text-base font-bold'>상세 정보</p>
-			</div>
-		</div>
-	)
+  return (
+    <div className="mx-56 text-white">
+      <div className="relative overflow-hidden">
+      <div className="absolute w-1/2 p-10 bottom-0 inset-x-0 z-10">
+        <p className="channel mt-6 text-xl font-bold">
+          {location.state.channelname}
+        </p>
+        <p className="title mt-2 text-sm font-normal">{location.state.title}</p>
+        <button className="mt-4 px-10 py-2 text-sm font-medium rounded-lg bg-slate-50 text-slate-800">
+          영상 재생
+        </button>
+      </div>
+        <div className="img-gr"></div>
+        <img
+          className="videoImg m-auto"
+          alt="thumbnail"
+          src={location.state.thumbnail}
+        />
+      </div>
+      {/** To-Do 이미지 위 텍스트 오버레이  */}
+      <div>
+        <p className="mx-10 text-base font-bold mt-16">관광코스</p>
+        <div className="grid grid-flow-col">{place && setPlaceItem()}</div>
+        <Map markerPositions={markerPositions} />
+        <p className="mx-10 mt-6 text-base font-bold">여행지 정보</p>
+        <p className="mx-10 mt-6 text-base font-bold">상세 정보</p>
+      </div>
+    </div>
+  );
 }

@@ -8,28 +8,28 @@ export default function footer() {
 			</div>
 			<div className='flex'>
 				<div className='flex-none pl-10 font-normal pt-7'>
-					<span className='block text-sm'>PM</span>
+					<span className='block text-[#525959] text-xs'>PM</span>
 					<span className='text-base'>Eun Lee</span>
 				</div>
 				<div className='flex-none pl-10 font-normal pt-7'>
-					<span className='block text-sm'>Marketing</span>
+					<span className='block text-[#525959] text-xs'>Marketing</span>
 					<span className='text-base'>Seoyun Oh</span>
 				</div>
 				<div className='flex-none pl-10 font-normal pt-7'>
-					<span className='block text-sm'>DB/NLP</span>
+					<span className='block text-[#525959] text-xs'>DB/NLP</span>
 					<span className='text-base'>Jiseok Kim</span>
 				</div>
 				<div className='flex-none pl-10 font-normal pt-7'>
-					<span className='block text-sm'>Backend</span>
+					<span className='block text-[#525959] text-xs'>Backend</span>
 					<span className='text-base'>JiHoo Kim</span>
 				</div>
 				<div className='flex-none pl-10 font-normal pt-7'>
-					<span className='block text-sm'>Frontend</span>
+					<span className='block text-[#525959] text-xs'>Frontend</span>
 					<span className='text-base'>Eun Lee</span><br />
 					<span className='text-base'>Ahhyun Kim</span>
 				</div>
 				<div className='flex-none pl-10 font-normal pt-7'>
-					<span className='block text-sm'>Design</span>
+					<span className='block text-[#525959] text-xs'>Design</span>
 					<span className='text-base'>Ahhyun Kim</span>
 				</div>
 

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { ChevronRight } from 'akar-icons';
+import { ChevronRight } from 'akar-icons'; 
 
 const VideoList = ({ regionName }) => {
-	const [video, setVideo] = useState([]);
-
+  const [video, setVideo] = useState([]);
+ 
 	/** ~로 떠나볼까요? */
 	let roRegion = ["서울", "대구", "광주", "제주", "원주", "속초", "대부도", "파주", "청주", "충주", "부여", "전주", "여수", "목포", "경주", "울릉도", "진주", "거제", "남해"]
 
@@ -60,9 +60,10 @@ const VideoList = ({ regionName }) => {
 
 	const handleScroll = () => {
 		let scrollLeft = focusTarget.current.scrollLeft;
-		let clientWidth = focusTarget.current.clientWidth;
 		let scrollWidth = focusTarget.current.scrollWidth;
-		let per = scrollLeft / scrollWidth;
+		let clientWidth = focusTarget.current.clientWidth; 
+		let per = scrollLeft / (scrollWidth - clientWidth);    
+    
 		scrollArrowTail.current.style.width = `${per * clientWidth}px`;
 		scrollArrowTail.current.style.maxWidth = `${clientWidth}px`;
 		scrollArrowHead.current.style.display = "block";
@@ -129,7 +130,7 @@ const VideoList = ({ regionName }) => {
 					className='mt-20 ml-2 hover:cursor-pointer'
 					color='#656565'
 					strokeWidth={2}
-					size={36}
+					size={24}
 					onClick={() => {
 						let currentScrollValue = focusTarget.current.scrollLeft;
 						let currentWidth = focusTarget.current.clientWidth;

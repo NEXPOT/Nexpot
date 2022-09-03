@@ -19,9 +19,9 @@ class YoutubeRetrieveAPIView(APIView):
         youtube = get_object_or_404(Youtube, videoid=video_id)
         serializer = YoutubeSerializer(youtube, many=False)
         return Response(serializer.data, status=status.HTTP_200_OK)
-    
+
 class YoutubeSearchAPIView(generics.ListAPIView):
     queryset = Youtube.objects.all()
     serializer_class = YoutubesSerializer
     filter_backends = [SearchFilter]
-    search_fields = ('title', 'region', 'region1', 'region2', 'channelname')
+    search_fields = ('title', 'region', 'region1', 'region2', 'channelname', 'thumbnail')

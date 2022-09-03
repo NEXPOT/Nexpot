@@ -3,13 +3,12 @@ import axios from "axios";
 import { useLocation, useParams } from "react-router-dom";
 import Map from "../components/map";
 
-export default function Detail() {
+export default function Detail() { 
   const location = useLocation();
   let { videoid } = useParams();
   const [place, setPlaces] = useState([]);
   const [detail, setDetail] = useState([]); 
-  const [markerPositions, setMarkerPositions] = useState([]);
-
+  const [markerPositions, setMarkerPositions] = useState([]); 
   // 첫 렌더링에 videoid로 상세 정보를 가져옵니다.
   useEffect(() => {
     const getData = async () => {

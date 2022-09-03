@@ -9,17 +9,33 @@ const Map = ({markerPositions}) => {
   const [markers, setMarkers] = useState([]);
   const container = useRef();
   const pos = new kakao.maps.LatLng(markerPositions[0], markerPositions[1]);
-  console.log('일반실행');
+  
   // 지도 컨테이너를 생성합니다
   useEffect(() => {  
-    const options = {
-      center: pos,
-      level: 3,
-    };
-    const map = new kakao.maps.Map(container.current, options);
-    setKakaoMap(map);
+    window.kakao.maps.load(()=>{
+      const options = {
+        center: pos,
+        level: 3,
+      };
+      const map = new kakao.maps.Map(container.current, options);
+      setKakaoMap(map);
+      console.log('container effect');
+    });
   }, [container]); 
   
+  // kakaomap rendering
+  useEffect(() => {
+    if (kakaoMap === null) {
+      return;
+    }
+    // save center position
+    const center = kakaoMap.getCenter();
+    // relayout and...
+    kakaoMap.relayout();
+    // restore
+    kakaoMap.setCenter(center);
+  }, [kakaoMap]);
+
   // click 지역에 따른 마커 표시
   useEffect(() => {
     if (kakaoMap === null) {

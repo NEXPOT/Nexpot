@@ -46,11 +46,6 @@ body::before {
 
 .contentWrapper {
     flex: 1;
-}
-
-.videoWrapper{
-    position: relative;
-    width: 100%;
 } 
 
 .videoWrapper img{ 
@@ -65,10 +60,4 @@ body::before {
     width: 100%;
     position: absolute;
     pointer-events: none;
-}
-
-.overlay{
-    position: relative;
-    width: 20vw;
-    word-break: break-all;
 }

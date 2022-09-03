@@ -60,9 +60,10 @@ const VideoList = ({ regionName }) => {
 
 	const handleScroll = () => {
 		let scrollLeft = focusTarget.current.scrollLeft;
-		let clientWidth = focusTarget.current.clientWidth;
 		let scrollWidth = focusTarget.current.scrollWidth;
-		let per = scrollLeft / scrollWidth;
+		let clientWidth = focusTarget.current.clientWidth; 
+		let per = scrollLeft / (scrollWidth - clientWidth);    
+    
 		scrollArrowTail.current.style.width = `${per * clientWidth}px`;
 		scrollArrowTail.current.style.maxWidth = `${clientWidth}px`;
 		scrollArrowHead.current.style.display = "block";
@@ -129,7 +130,7 @@ const VideoList = ({ regionName }) => {
 					className='mt-20 ml-2 hover:cursor-pointer'
 					color='#656565'
 					strokeWidth={2}
-					size={36}
+					size={24}
 					onClick={() => {
 						let currentScrollValue = focusTarget.current.scrollLeft;
 						let currentWidth = focusTarget.current.clientWidth;

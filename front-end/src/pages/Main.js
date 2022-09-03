@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import VideoList from '../components/video_list'
 
 export default function Main() {
@@ -20,7 +21,7 @@ export default function Main() {
 		mainRegion.push(pickRegion);
 	}
 	
-	// 	광역시 = ['서울','부산','대구','인천','광주','대전','울산','세종','제주']
+	// 광역시 = ['서울','부산','대구','인천','광주','대전','울산','세종','제주']
 	// 강원 = ['강릉','원주','속초','평창','양양']
 	// 경기 = ['수원','용인','고양','가평','양평','대부도','파주','포천']
 	// 충북 = ['청주','충주','제천','단양']
@@ -32,11 +33,14 @@ export default function Main() {
 
 	return (
 		<>
-			<div className="mx-10 mt-20">
-				<p className="mb-5 text-5xl font-bold text-white">넥스팟</p>
-				<p className="mb-5 text-5xl font-bold text-white">카피 문구 카피문구</p>
-				<p className="text-base font-medium text-white mb-28">넥스팟 카피 문구 카피문구 넥스팟 카피 문구 카피문구를<br /> 생각해서 넣어보면 어떠할런지요 삶은 달걀이다 삶은 여행<br />이다 라이프 이즈 트레블
+			<div className="mx-10 mt-20 text-white mb-36">
+				<p className="mb-5 text-5xl font-bol">넥스팟</p>
+				<p className="mb-5 text-5xl font-bold">카피 문구 카피문구</p>
+				<p className="text-base font-medium">넥스팟 카피 문구 카피문구 넥스팟 카피 문구 카피문구를<br /> 생각해서 넣어보면 어떠할런지요 삶은 달걀이다 삶은 여행<br />이다 라이프 이즈 트레블도시 여행지입니다. 넥스팟에서 <br /> 준비한 한국의 대표 관광지 다섯곳 부터 둘러보세요.
 				</p>
+				<Link to='/allregion'>
+				<button className='font-medium py-1 border-2 border-[#DFDFDF] px-14 mt-11 text-[#0D6EFD] bg-[#ffffff] rounded-2xl hover:border-[#0D6EFD] hover:font-semibold'>전국 지역 둘러보기</button>
+				</Link>
 			</div>
 			{mainRegion.map((regionName, idx) =>
 				<div key={idx}>

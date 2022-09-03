@@ -17,7 +17,7 @@ const VideoList = ({ regionName }) => {
 	}
 
 	const region = {
-		"서울": "seoul", "부산": "busan", "대구": "Daegu", "인천": "Incheon", "광주": "Gwangju", "대전": "Daejeon", "울산": "Ulsan", "세종": "Sejong", "제주": "Jeju",
+		"서울": "seoul", "부산": "busan", "대구": "Daegu", "인천": "Incheon", "광주": "Gwangju", "대전": "Daejeon", "울산": "Ulsan", "제주": "Jeju",
 		"강릉": "Gangneung", "원주": "Wonju", "속초": "Sokcho", "평창": "Pyeongchang", "양양": "Yangyang",
 		"수원": "Suwon", "용인": "Yongin", "고양": "Goyang", "가평": "Gapyeong", "양평": "Yangpyeong", "대부도": "Daebudo", "파주": "Paju", "포천": "Pocheon",
 		"청주": "cheongju", "충주": "Chungju", "제천": "Jecheon", "단양": "Danyang",
@@ -41,7 +41,7 @@ const VideoList = ({ regionName }) => {
 					title: item.title,
 					thumbnail: item.thumbnail,
 					channelname: item.channelname,
-				}))
+				}));
 				setVideo(video.concat(_video));
 			} catch (e) {
 				console.error(e.message);

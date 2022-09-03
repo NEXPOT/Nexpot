@@ -27,12 +27,18 @@ export default function Detail() {
         ];
         setDetail(_detail);
         setPlaces(res.data.places);
+        setMarkerPositions([res.data.places[0].py,res.data.places[0].px]);
       } catch (e) {
         console.error(e.message);
       }
     };
     getData();
   }, []);
+
+
+  const onClickPlace = (e) => {
+    
+  }
 
   
   const setPlaceItem = () => {
@@ -41,7 +47,7 @@ export default function Detail() {
         <button
           key={idx}
           onClick={()=>setMarkerPositions([item.py, item.px])}
-          className="mx-10 mt-6 text-xs font-normal"
+          className="mx-10 mt-6 text-xs font-normal text-[#737A7A]"
         >
           {item.pname}
         </button> 
@@ -70,9 +76,9 @@ export default function Detail() {
       </div>
       <div>
         <p className="mx-10 text-base font-bold mt-28">관광코스</p>
-        <p className="mx-10 mt-6 text-base font-bold">여행지 정보</p>
-        <div className="flex col-auto">{place && setPlaceItem()}</div>
+        <div className="grid grid-flow-col">{place && setPlaceItem()}</div>
         <Map markerPositions={markerPositions} />
+        <p className="mx-10 mt-6 text-base font-bold">여행지 정보</p>
         <p className="mx-10 mt-6 text-base font-bold">상세 정보</p>
       </div>
     </div>

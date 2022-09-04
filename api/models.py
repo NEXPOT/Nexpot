@@ -1,4 +1,5 @@
 from pickle import TRUE
+from tkinter import CASCADE
 from unittest.util import _MAX_LENGTH
 from django.db import models
 
@@ -30,3 +31,16 @@ class Youtube(models.Model):
     class Meta:
         managed = True
         db_table = 'youtube'
+        
+class Score(models.Model):
+    placeid = models.ForeignKey('Places', db_column='placeID', related_name='score', on_delete=models.CASCADE, primary_key=True)
+    lenreview = models.IntegerField()
+    service = models.DecimalField(max_digits=3, decimal_places=2)
+    atmosphere = models.DecimalField(max_digits=3, decimal_places=2)
+    cost = models.DecimalField(max_digits=3, decimal_places=2)
+    visit = models.DecimalField(max_digits=3, decimal_places=2)
+    taste = models.DecimalField(max_digits=3, decimal_places=2)
+    
+    class Meta:
+        managed = True
+        db_table = 'score'

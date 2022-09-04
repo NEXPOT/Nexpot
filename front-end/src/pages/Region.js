@@ -94,18 +94,22 @@ export default function Region() {
   };
 
   const onClickToggle = (e) => {
-    if (e.target !== e.currentTarget) return; //child 클릭방지
+    let target = e.target;
+    if (target !== e.currentTarget) {
+      // return; //child 클릭방지
+      target = e.currentTarget;
+    }
     setToggle((isOpen) => !isOpen);
     if (!isOpen) {
-      e.target.classList.add("transition");
-      e.target.classList.add("ease-in-out");
-      e.target.classList.add("delay-100");
-      e.target.classList.remove("rotate-180");
-      e.target.classList.add("rotate-180");
+      target.classList.add("transition");
+      target.classList.add("ease-in-out");
+      target.classList.add("delay-100");
+      target.classList.remove("rotate-180");
+      target.classList.add("rotate-180");
     } else {
       //제자리 rotation
-      e.target.classList.add("rotate-180");
-      e.target.classList.remove("rotate-180");
+      target.classList.add("rotate-180");
+      target.classList.remove("rotate-180");
     }
   };
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useLocation, useParams } from "react-router-dom";
 import { ChevronRight } from "akar-icons";
+import { ArrowRight } from "akar-icons";
 import Map from "../components/map";
 
 export default function Detail() {
@@ -112,7 +113,7 @@ export default function Detail() {
         </div>
         <div className="img-gr"></div>
         <img
-          className="m-auto videoImg min-w-[360px]"
+          className="m-auto videoImg w-full min-w-[360px]"
           alt="thumbnail"
           ref={thumbnail}
           src={imgSrc}
@@ -125,6 +126,16 @@ export default function Detail() {
         <div className="grid grid-flow-col">{place && setPlaceItem()}</div>
         <Map markerPositions={markerPositions} />
         <p className="mx-10 mt-6 text-base font-bold">여행지 정보</p>
+        <div className="mx-10 grid grid-flow-col auto-cols-max gap-2">
+          <button className="grid items-stretch border-white border-[0.5px] py-2 pl-2 pr-10">
+            카카오지도에서 정보를 찾아보세요
+            <ArrowRight strokeWidth={1.5} size={20} />
+          </button>
+          <button className="border-white border-[0.5px] py-2 pl-2 pr-10">
+            대한민국 구석구석에서 정보를 찾아보세요
+            <ArrowRight strokeWidth={1.5} size={20} />
+          </button>
+        </div>
         <p className="mx-10 mt-6 text-base font-bold">상세 정보</p>
       </div>
     </div>

@@ -22,20 +22,22 @@ body::before {
     z-index: -1;
 }
 
-.scrollIndicator::-webkit-scrollbar { 
-    height: 4px;  /* 스크롤바의 너비 */
-    background: none;
-}
-
-.scrollIndicator::-webkit-scrollbar-thumb {
-    width: 10vw; /* 스크롤바의 길이 */
-    background: #217af4; /* 스크롤바의 색상 */
-    
-    border-radius: 10px;
+.scrollbar::-webkit-scrollbar { 
+   display: none;
 }
  
-.scrollIndicator::-webkit-scrollbar-corner{
+.scrollbar::-webkit-scrollbar-corner{
     display: none;
+}
+
+.show{  
+    opacity: 100%;
+}
+.hide{
+    position: absolute;
+    display: none;
+    width: 0px; 
+    opacity: 0;
 }
 
 .wrapper {

@@ -1,6 +1,3 @@
-from pickle import TRUE
-from tkinter import CASCADE
-from unittest.util import _MAX_LENGTH
 from django.db import models
 
 class Places(models.Model):

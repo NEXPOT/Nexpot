@@ -10,7 +10,7 @@ export default function SearchResult() {
 	useEffect(() => {
 		const getData = async () => {
 			try {
-				const res = await axios.get("http://13.209.16.143:3306/api/youtube/search/", {
+				const res = await axios.get("http://13.209.13.176/api/youtube/search/", {
 					params: {
 						search: location.state.keyword,
 					},

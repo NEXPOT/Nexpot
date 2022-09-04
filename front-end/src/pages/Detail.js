@@ -48,10 +48,15 @@ export default function Detail() {
       <button
         key={idx}
         onClick={() => setMarkerPositions([item.py, item.px])}
-        className="transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline grid grid-flow-col place-items-center mt-6 text-xs font-normal text-[#737A7A]"
+        className="transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline grid grid-flow-col place-items-center mt-6 text-sm font-normal text-[#737A7A]"
       >
         {item.pname}
-        <ChevronRight color="#656565" strokeWidth={2} size={16} />
+        <ChevronRight
+          className="chevronR"
+          color="#656565"
+          strokeWidth={2}
+          size={16}
+        />
       </button>
     ));
   };
@@ -76,8 +81,6 @@ export default function Detail() {
       setImgSrc(
         location.state.thumbnail.replace("maxresdefault.jpg", "mqdefault.jpg")
       );
-      //e.target.classList.add("h-full");
-
       e.target.classList.add("w-full");
     }
     console.log(thumbnail);
@@ -123,20 +126,36 @@ export default function Detail() {
       {/** To-Do 이미지 위 텍스트 오버레이  */}
       <div>
         <p className="mx-10 mt-16 text-base font-bold">관광코스</p>
-        <div className="grid grid-flow-col">{place && setPlaceItem()}</div>
+        <div id="placeList" className="grid grid-flow-col">
+          {place && setPlaceItem()}
+        </div>
         <Map markerPositions={markerPositions} />
-        <p className="mx-10 mt-6 text-base font-bold">여행지 정보</p>
-        <div className="mx-10 grid grid-flow-col auto-cols-max gap-2">
-          <button className="grid items-stretch border-white border-[0.5px] py-2 pl-2 pr-10">
+        <p className="mx-10 mt-10 text-base font-bold">여행지 정보</p>
+        <div className="mt-4 mx-10 grid grid-flow-col auto-cols-max gap-4">
+          <button className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4">
             카카오지도에서 정보를 찾아보세요
             <ArrowRight strokeWidth={1.5} size={20} />
           </button>
-          <button className="border-white border-[0.5px] py-2 pl-2 pr-10">
+          <button className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4">
             대한민국 구석구석에서 정보를 찾아보세요
             <ArrowRight strokeWidth={1.5} size={20} />
           </button>
         </div>
-        <p className="mx-10 mt-6 text-base font-bold">상세 정보</p>
+        <div
+          id="placeContent"
+          className="mt-8 px-10 text-sm leading-6 break-all"
+        >
+          2017년9월17일 개장. 미포에서 출발해 송정까지 이어지는 동해남부선
+          폐선부지의 중간 쯤에 자리한 청사포 다릿돌전망대는 해수면으로 부터
+          2017년9월17일 개장. 미포에서 출발해 송정까지 이어지는 동해남부선
+          폐선부지의 중간 쯤에 자리한 청사포 다릿돌전망대는 해수면으로 부터
+          미포에서 출발해 송정까지 이어지는 동해남부선 폐선부지의 중간 쯤에
+          자리한 청사포 다릿돌전망대는 해수면으로 부터...
+        </div>
+        <button className="mt-4 px-10 underline underline-offset-4 text-sm font-normal text-[#737A7A]">
+          더보기
+        </button>
+        <p className="mx-10 mt-8 text-base font-bold">상세 정보</p>
       </div>
     </div>
   );

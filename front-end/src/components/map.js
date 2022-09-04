@@ -24,7 +24,7 @@ const Map = ({ markerPositions }) => {
       setKakaoMap(map);
       console.log("container effect");
     });
-  }, []);
+  }, [container]);
 
   // kakaomap rendering
   useEffect(() => {

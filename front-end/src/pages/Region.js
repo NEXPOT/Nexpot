@@ -96,7 +96,6 @@ export default function Region() {
   const onClickToggle = (e) => {
     let target = e.target;
     if (target !== e.currentTarget) {
-      // return; //child 클릭방지
       target = e.currentTarget;
     }
     setToggle((isOpen) => !isOpen);

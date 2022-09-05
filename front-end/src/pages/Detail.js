@@ -83,10 +83,6 @@ export default function Detail() {
       );
       e.target.classList.add("w-full");
     }
-    console.log(thumbnail);
-    console.log(thumbnail.current);
-    console.log(thumbnail.current.width);
-    console.log(thumbnail.current.height);
   };
 
   return (
@@ -103,14 +99,14 @@ export default function Detail() {
             영상 재생
           </button>
         </div>
-        <div className="absolute w-1/2 p-10 bottom-0 inset-x-0 z-10">
-          <p className="channel mt-6 text-xl font-bold">
+        <div className="absolute inset-x-0 bottom-0 z-10 w-1/2 p-10">
+          <p className="mt-6 text-xl font-bold channel">
             {location.state.channelname}
           </p>
-          <p className="title mt-2 text-sm font-normal">
+          <p className="mt-2 text-sm font-normal title">
             {location.state.title}
           </p>
-          <button className="mt-4 px-10 py-2 text-sm font-medium rounded-lg bg-slate-50 text-slate-800">
+          <button className="px-10 py-2 mt-4 text-sm font-medium rounded-lg bg-slate-50 text-slate-800">
             영상 재생
           </button>
         </div>
@@ -131,7 +127,7 @@ export default function Detail() {
         </div>
         <Map markerPositions={markerPositions} />
         <p className="mx-10 mt-10 text-base font-bold">여행지 정보</p>
-        <div className="mt-4 mx-10 grid grid-flow-col auto-cols-max gap-4">
+        <div className="grid grid-flow-col gap-4 mx-10 mt-4 auto-cols-max">
           <button className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4">
             카카오지도에서 정보를 찾아보세요
             <ArrowRight strokeWidth={1.5} size={20} />
@@ -143,7 +139,7 @@ export default function Detail() {
         </div>
         <div
           id="placeContent"
-          className="mt-8 px-10 text-sm leading-6 break-all"
+          className="px-10 mt-8 text-sm leading-6 break-all"
         >
           2017년9월17일 개장. 미포에서 출발해 송정까지 이어지는 동해남부선
           폐선부지의 중간 쯤에 자리한 청사포 다릿돌전망대는 해수면으로 부터

@@ -4,11 +4,19 @@ module.exports = {
   theme: {
     extend: {},
     screens: {
-      'labtop': '1440px',
+      'xs': "475px",
+      // => @media (min-width: 475px) { ... }
+      'sm': '576px',
+      // => @media (min-width: 576px) { ... }
+      'md': '960px',
+      // => @media (min-width: 960px) { ... }
+      'lg': '1440px',
+      // => @media (min-width: 1440px) { ... }
+      labtop: "1440px",
       // => @media (min-width: 1024px) { ... }
-      'desktop': '1920px'
-       // => @media (min-width: 1280px) { ... }
-    }
+      desktop: "1920px",
+      // => @media (min-width: 1280px) { ... }
+    },
   },
   plugins: [],
-}
+};

@@ -136,20 +136,20 @@ const VideoList = ({ regionName }) => {
 
   return (
     <>
-      <div className="mx-10 mt-8 text-[#ffffff]">
+      <div className="mx-4 sm:mx-10 mt-8 text-[#ffffff]">
         <div className="flex justify-between">
           <span className="text-2xl font-bold">
             {regionName}
             <span className="text-[#c4c4c4]">{regionTitle}</span>
           </span>
-          <button className="mb-1 text-[#fffff] text-lg font-medium">
+          <button className="text-[#fffff] text-sm self-center font-medium sm:mt-0.5 sm:text-lg">
             전체보기
           </button>
         </div>
       </div>
 
       {/* scroll arrow */}
-      <div id="arrowContainer" className="flex h-2 mx-10 mt-2 mb-3">
+      <div id="arrowContainer" className="flex h-2 ml-4 sm:mx-10 mt-2 mb-3">
         <div
           id="arrowTail"
           ref={scrollArrowTail}
@@ -171,10 +171,10 @@ const VideoList = ({ regionName }) => {
         ></div>
       </div>
 
-      <div className="flex justify-between">
+      <div className="flex justify-between ml-4 sm:mx-10">
         <div
           ref={focusTarget}
-          className="scrollbar snap-x flex ml-10 w-full overflow-scroll text-[#ffffff]"
+          className="scrollbar snap-x flex w-full overflow-scroll text-[#ffffff]"
           onScroll={handleScroll}
         >
           {video.map((item, idx) => (
@@ -196,14 +196,14 @@ const VideoList = ({ regionName }) => {
                   alt="thumbnail"
                   src={item.thumbnail}
                 />
-                <p className="my-3 text-base font-bold">{item.channelname}</p>
+                <p className="mt-4 mb-1 text-base font-bold">{item.channelname}</p>
                 <p className="text-sm w-80">{item.title}</p>
               </Link>
             </div>
           ))}
         </div>
         <ChevronRight
-          className="mt-20 ml-2 mr-10 hover:cursor-pointer"
+          className="mt-20 mx-2 hover:cursor-pointer"
           color="#656565"
           strokeWidth={2}
           size={24}

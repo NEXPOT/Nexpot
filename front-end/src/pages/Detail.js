@@ -77,10 +77,9 @@ export default function Detail() {
   const [imgSrc, setImgSrc] = useState(location.state.thumbnail);
 
   const handleImgError = (e) => {
-    if (thumbnail.current.width <= 360) {
-      setImgSrc(
-        location.state.thumbnail.replace("maxresdefault.jpg", "mqdefault.jpg")
-      );
+    if (thumbnail.current.width <= 360){
+      setImgSrc(location.state.thumbnail.replace("maxresdefault.jpg", "mqdefault.jpg"));
+
       e.target.classList.add("w-full");
     }
   };
@@ -112,7 +111,7 @@ export default function Detail() {
         </div>
         <div className="img-gr"></div>
         <img
-          className="m-auto videoImg w-full min-w-[360px]"
+          className="m-auto videoImg min-w-[360px]"
           alt="thumbnail"
           ref={thumbnail}
           src={imgSrc}

@@ -113,18 +113,18 @@ export default function Region() {
   };
 
   return (
-    <div className="mx-10 mt-20 text-white">
-      <div className="flex mb-9">
+    <div className="mx-4 mt-8 sm:mx-10 sm:mt-20 text-white">
+      <div className="flex mb-4 sm:mb-8">
         <TriangleUp
           className="self-center hover:cursor-pointer"
           color="#ffffff"
-          size={40}
+          size={32}
           onClick={onClickToggle}
           fill="#ffffff"
         ></TriangleUp>
-        <span className="text-6xl font-medium">
+        <span className="text-2xl sm:text-6xl font-medium">
           {region2Name === "전체" ? "여행" : region2Name}
-          <span className="text-[#c4c4c4] text-6xl font-normal">
+          <span className="text-[#c4c4c4] text-2xl sm:text-6xl font-normal">
             {regionTitle}
           </span>
         </span>
@@ -136,7 +136,7 @@ export default function Region() {
             : "hide transition ease-in-out delay-100 h-32 bg-[#120D0B] rounded-lg"
         }
       >
-        <div className="text-[#525959] pt-3 px-6">
+        <div className="flex flex-wrap text-[#525959] w-full pt-2 px-4 sm:px-6">
           {region1.map((region, idx) => (
             <button
               key={idx}
@@ -147,11 +147,11 @@ export default function Region() {
             </button>
           ))}
         </div>
-        <div className="h-12 mt-2 mx-5 px-4 rounded-lg bg-[#1A1716] align-middle flex">
+        <div className="flex flex-wrap py-2 px-4 sm:mx-5 rounded-lg bg-[#1A1716] align-middle ">
           {region[region1Name].map((region, idx) => (
             <button
               key={idx}
-              className="hover:text-[#ffffff] color-[#0D6EF] hover:bg-[#0D6EFD] hover:border-[#0D6EFD] font-normal border-[#525959] border-[0.5px] rounded-xl my-3 px-5 mx-1 text-sm text-[#737A7A] transition ease-in-out delay-75"
+              className="color-[#0D6EF] font-normal border-[#525959] border-[0.5px] rounded-2xl px-4 py-1 mx-1 my-1 text-xs sm:px-6 sm:text-sm text-[#737A7A] hover:text-[#ffffff] hover:bg-[#0D6EFD] hover:border-[#0D6EFD] transition ease-in-out delay-75"
             >
               {region}
             </button>

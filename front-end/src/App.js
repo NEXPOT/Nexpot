@@ -9,7 +9,7 @@ export default function App() {
   return (
     <BrowserRouter>
     <ScrollToTop/>
-      <div className="wrapper">
+      <div className="wrapper h-full">
         <div className="contentWrapper">
           <SearchHeader />
           <Routes>

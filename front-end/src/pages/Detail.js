@@ -85,7 +85,7 @@ export default function Detail() {
   };
 
   return (
-    <div className="sm:mx-56 text-white">
+    <div className="mx-56 text-white">
       <div className="relative overflow-hidden">
         <div className="absolute inset-x-0 bottom-0 z-10 w-1/2 p-10">
           <p className="mt-6 text-xl font-bold channel">
@@ -110,27 +110,28 @@ export default function Detail() {
           </button>
         </div>
         <div className="img-gr"></div>
-        <img 
-          className="m-auto videoImg w-full min-w-[360px] min-h-[180px]" 
+        <img
+          className="m-auto videoImg min-w-[360px]"
           alt="thumbnail"
           ref={thumbnail}
           src={imgSrc}
           onLoad={handleImgError}
         />
-      </div> 
+      </div>
+      {/** To-Do 이미지 위 텍스트 오버레이  */}
       <div>
         <p className="mx-10 mt-16 text-base font-bold">관광코스</p>
-        <div id="placeList" className="mx-10 grid grid-flow-col">
+        <div id="placeList" className="grid grid-flow-col">
           {place && setPlaceItem()}
         </div>
         <Map markerPositions={markerPositions} />
         <p className="mx-10 mt-10 text-base font-bold">여행지 정보</p>
-        <div className="grid grid-flow-row sm:grid-flow-col gap-4 mx-10 mt-4 auto-cols-max">
-          <button className="grid grid-flow-col w-full sm:gap-2 text-sm justify-self-start sm:text-base sm:items-center border-white border-[0.5px] py-2 px-4">
+        <div className="grid grid-flow-col gap-4 mx-10 mt-4 auto-cols-max">
+          <button className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4">
             카카오지도에서 정보를 찾아보세요
-            <ArrowRight className="justify-self-end" strokeWidth={1.5} size={20} />
+            <ArrowRight strokeWidth={1.5} size={20} />
           </button>
-          <button className="grid grid-flow-col w-full sm:gap-2 text-sm sm:text-base items-center border-white border-[0.5px] py-2 px-4">
+          <button className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4">
             대한민국 구석구석에서 정보를 찾아보세요
             <ArrowRight strokeWidth={1.5} size={20} />
           </button>

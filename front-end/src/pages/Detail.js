@@ -43,6 +43,7 @@ export default function Detail() {
     getData();
     console.log("init get Data");
   }, []);
+ 
 
   const setPlaceItem = () => {
     return place.map((item, idx) => (
@@ -72,7 +73,6 @@ export default function Detail() {
       setImgSrc(
         location.state.thumbnail.replace("maxresdefault.jpg", "mqdefault.jpg")
       );
-
       e.target.classList.add("w-full");
     }
   };

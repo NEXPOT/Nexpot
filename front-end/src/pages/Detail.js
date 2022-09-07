@@ -3,7 +3,9 @@ import axios from "axios";
 import { useLocation, useParams } from "react-router-dom";
 import { ChevronRight } from "akar-icons";
 import { ArrowRight } from "akar-icons";
+import { Play } from "akar-icons";
 import Map from "../components/map";
+import KakaoMapScript from "../components/kakaoMapScripts";
 
 export default function Detail() {
   const location = useLocation();
@@ -13,7 +15,6 @@ export default function Detail() {
   const [markerPositions, setMarkerPositions] = useState([]);
   const thumbnail = useRef();
   // 첫 렌더링에 videoid로 상세 정보를 가져옵니다.
-  console.log("detail page render");
   useEffect(() => {
     const getData = async () => {
       try {
@@ -47,8 +48,12 @@ export default function Detail() {
     return place.map((item, idx) => (
       <button
         key={idx}
-        onClick={() => setMarkerPositions([item.py, item.px])}
-        className="transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline grid grid-flow-col place-items-center mt-6 text-sm font-normal text-[#737A7A]"
+        onClick={() => {
+          setMarkerPositions(item);
+          KakaoMapScript(item);
+          console.log(item);
+        }}
+        className="transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline flex flex-wrap gap-2 place-items-center mt-6 text-sm font-normal text-[#737A7A]"
       >
         {item.pname}
         <ChevronRight
@@ -61,43 +66,20 @@ export default function Detail() {
     ));
   };
 
-  const setPlaceInfo = () => {
-    return place.map((item, idx) => (
-      <button
-        key={idx}
-        onClick={() => setMarkerPositions([item.py, item.px])}
-        className="transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline grid grid-flow-col place-items-center mt-6 text-xs font-normal text-[#737A7A]"
-      >
-        {item.pname}
-        <ChevronRight color="#656565" strokeWidth={2} size={16} />
-      </button>
-    ));
-  };
-
   const [imgSrc, setImgSrc] = useState(location.state.thumbnail);
-
   const handleImgError = (e) => {
-    if (thumbnail.current.width <= 360){
-      setImgSrc(location.state.thumbnail.replace("maxresdefault.jpg", "mqdefault.jpg"));
+    if (thumbnail.current.width <= 360) {
+      setImgSrc(
+        location.state.thumbnail.replace("maxresdefault.jpg", "mqdefault.jpg")
+      );
 
       e.target.classList.add("w-full");
     }
   };
 
   return (
-    <div className="mx-4 sm:mx-56 text-white">
+    <div className="my-4 sm:my-0 mx-4 sm:mx-56 text-white">
       <div className="relative overflow-hidden">
-        <div className="absolute inset-x-0 bottom-0 z-10 sm:w-1/2 p-10">
-          <p className="sm:mt-6 text-xl font-bold channel">
-            {location.state.channelname}
-          </p>
-          <p className="sm:mt-2 text-sm font-normal title">
-            {location.state.title}
-          </p>
-          <button className="px-10 py-2 sm:mt-4 text-sm font-medium rounded-lg bg-slate-50 text-slate-800">
-            영상 재생
-          </button>
-        </div>
         <div className="img-gr"></div>
         <img
           className="m-auto videoImg min-w-[360px]"
@@ -106,13 +88,26 @@ export default function Detail() {
           src={imgSrc}
           onLoad={handleImgError}
         />
+        <div className="absolute inset-x-0 bottom-0 z-10 sm:w-1/2 p-2 sm:p-10">
+          <p className="sm:mt-6 text-base sm:text-xl font-bold channel">
+            {location.state.channelname}
+          </p>
+          <p className="sm:mt-2 text-xs sm:text-sm font-normal title">
+            {location.state.title}
+          </p>
+          <button className="w-full py-2 mt-3 flex flex-row place-content-center place-items-center gap-1 sm:mt-4 text-xs sm:text-sm font-medium rounded-lg bg-slate-50 text-slate-800">
+            <Play className="text-slate-800" size={16} />
+            영상 재생
+          </button>
+        </div>
       </div>
       {/** To-Do 이미지 위 텍스트 오버레이  */}
       <div>
         <p className="mt-16 text-base font-bold">관광코스</p>
-        <div id="placeList" className="grid grid-cols-4 sm:grid-flow-col">
+        <div id="placeList" className="flex flex-wrap gap-2 sm:flex-row">
           {place && setPlaceItem()}
         </div>
+        <div id='map'></div>
         {/* <Map markerPositions={markerPositions} /> */}
         <p className="mt-10 text-base font-bold">여행지 정보</p>
         <div className="grid grid-flow-row sm:grid-flow-col gap-4 mt-4 auto-cols-max">
@@ -125,10 +120,7 @@ export default function Detail() {
             <ArrowRight strokeWidth={1.5} size={20} />
           </button>
         </div>
-        <div
-          id="placeContent"
-          className="px-10 mt-8 text-sm leading-6 break-all"
-        >
+        <div id="placeContent" className="mt-8 text-sm leading-6 break-all">
           2017년9월17일 개장. 미포에서 출발해 송정까지 이어지는 동해남부선
           폐선부지의 중간 쯤에 자리한 청사포 다릿돌전망대는 해수면으로 부터
           2017년9월17일 개장. 미포에서 출발해 송정까지 이어지는 동해남부선
@@ -136,10 +128,10 @@ export default function Detail() {
           미포에서 출발해 송정까지 이어지는 동해남부선 폐선부지의 중간 쯤에
           자리한 청사포 다릿돌전망대는 해수면으로 부터...
         </div>
-        <button className="mt-4 px-10 underline underline-offset-4 text-sm font-normal text-[#737A7A]">
+        <button className="mt-4 underline underline-offset-4 text-sm font-normal text-[#737A7A]">
           더보기
         </button>
-        <p className="mx-10 mt-8 text-base font-bold">상세 정보</p>
+        <p className="mt-8 text-base font-bold">상세 정보</p>
       </div>
     </div>
   );

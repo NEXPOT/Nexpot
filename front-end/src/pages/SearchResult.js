@@ -38,7 +38,7 @@ export default function SearchResult() {
 
   return (
     <>
-      <div className="mx-10 mt-20 text-white">
+      <div className="mx-4 sm:mx-10 mt-20 text-white">
         <span className="mb-5 text-5xl font-bold">
           ‘{location.state.keyword}’
         </span>

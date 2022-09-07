@@ -85,27 +85,16 @@ export default function Detail() {
   };
 
   return (
-    <div className="mx-56 text-white">
+    <div className="mx-4 sm:mx-56 text-white">
       <div className="relative overflow-hidden">
-        <div className="absolute inset-x-0 bottom-0 z-10 w-1/2 p-10">
-          <p className="mt-6 text-xl font-bold channel">
+        <div className="absolute inset-x-0 bottom-0 z-10 sm:w-1/2 p-10">
+          <p className="sm:mt-6 text-xl font-bold channel">
             {location.state.channelname}
           </p>
-          <p className="mt-2 text-sm font-normal title">
+          <p className="sm:mt-2 text-sm font-normal title">
             {location.state.title}
           </p>
-          <button className="px-10 py-2 mt-4 text-sm font-medium rounded-lg bg-slate-50 text-slate-800">
-            영상 재생
-          </button>
-        </div>
-        <div className="absolute inset-x-0 bottom-0 z-10 w-1/2 p-10">
-          <p className="mt-6 text-xl font-bold channel">
-            {location.state.channelname}
-          </p>
-          <p className="mt-2 text-sm font-normal title">
-            {location.state.title}
-          </p>
-          <button className="px-10 py-2 mt-4 text-sm font-medium rounded-lg bg-slate-50 text-slate-800">
+          <button className="px-10 py-2 sm:mt-4 text-sm font-medium rounded-lg bg-slate-50 text-slate-800">
             영상 재생
           </button>
         </div>
@@ -120,13 +109,13 @@ export default function Detail() {
       </div>
       {/** To-Do 이미지 위 텍스트 오버레이  */}
       <div>
-        <p className="mx-10 mt-16 text-base font-bold">관광코스</p>
-        <div id="placeList" className="grid grid-flow-col">
+        <p className="mt-16 text-base font-bold">관광코스</p>
+        <div id="placeList" className="grid grid-cols-4 sm:grid-flow-col">
           {place && setPlaceItem()}
         </div>
-        <Map markerPositions={markerPositions} />
-        <p className="mx-10 mt-10 text-base font-bold">여행지 정보</p>
-        <div className="grid grid-flow-col gap-4 mx-10 mt-4 auto-cols-max">
+        {/* <Map markerPositions={markerPositions} /> */}
+        <p className="mt-10 text-base font-bold">여행지 정보</p>
+        <div className="grid grid-flow-row sm:grid-flow-col gap-4 mt-4 auto-cols-max">
           <button className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4">
             카카오지도에서 정보를 찾아보세요
             <ArrowRight strokeWidth={1.5} size={20} />

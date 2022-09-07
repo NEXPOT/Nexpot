@@ -136,7 +136,7 @@ const VideoList = ({ regionName }) => {
 
   return (
     <>
-      <div className="mx-4 sm:mx-10 mt-8 text-[#ffffff]">
+      <div className="mx-4 sm:mx-10 mt-10 sm:mt-16 md:mt-20 text-[#ffffff]">
         <div className="flex justify-between">
           <span className="text-2xl font-bold">
             {regionName}

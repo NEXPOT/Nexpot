@@ -16,8 +16,7 @@ export default function Main() {
     "인천",
     "광주",
     "대전",
-    "울산",
-    "세종",
+    "울산", 
     "제주",
     "강릉",
     "원주",
@@ -73,15 +72,15 @@ export default function Main() {
 
   return (
     <>
-      <div className="flex flex-col text-center text-white mb-36 mt-20 sm:text-start mx-auto px-4 sm:px-0 sm:w-1/3 sm:mx-10">
+      <div className="flex flex-col text-center text-white mb-36 mt-20 sm:text-start mx-auto max-w-full px-4 sm:px-0 sm:w-1/3 sm:mx-10">
         <p className="mb-5 text-5xl font-bold leading-tight">넥스팟 <br/> 카피 문구 카피문구</p>
-        <p className="text-base font-medium leading-normal mx-4 sm:mx-0">
+        <p className="text-base font-medium leading-normal sm:mx-0">
           넥스팟 카피 문구 카피문구 넥스팟 카피 문구 카피문구를 생각해서 넣어보면 어떠할런지요 삶은 달걀이다 삶은 여행 
           이다 라이프 이즈 트레블도시 여행지입니다. 넥스팟에서 준비한
           한국의 대표 관광지 다섯곳 부터 둘러보세요.
         </p>
         <Link to="/allregion">
-          <button className="sm:w-3/4 text-sm font-normal py-2 px-24 mt-11 text-[#FFFFFF] bg-[#0D6EFD] rounded-xl transition ease-in-out delay-150 hover:bg-[#FFFFFF] hover:text-[#0D6EFD] hover:-translate-y-0.2 hover:scale-105">
+          <button className="max-w-100 text-sm font-normal py-2 px-24 mt-11 text-[#FFFFFF] bg-[#0D6EFD] rounded-xl transition ease-in-out delay-150 hover:bg-[#FFFFFF] hover:text-[#0D6EFD] hover:-translate-y-0.2 hover:scale-105">
             <p>전국 지역 둘러보기</p>
           </button>
         </Link>

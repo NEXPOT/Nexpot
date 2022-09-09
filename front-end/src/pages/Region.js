@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { TriangleDown } from "akar-icons";
 import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
-export default function Region_box() {
-	
+export default function Region() {
 	let navigate = useNavigate();
+  let location = useLocation();
+  let param = location.pathname.replace("/list/","");
 
-	const region = {
+  const region = {
 		광역시: ["전체", "부산", "대구", "인천", "광주", "대전", "울산"],
 		서울: ["서울"],
 		강원: ["전체", "강릉", "원주", "속초", "평창", "양양"],
@@ -81,13 +82,34 @@ export default function Region_box() {
 		남해: "Namhae",
 	};
 
+  let region1box = useRef();
+  let region2box = useRef();
+  let regionKey = Object.keys(regionValue).find(key => regionValue[key] === param);
+
+	/** 처음 로드될 때 해당 region에 css styling */
+  useEffect(() => {
+    for (let i = 0; i < region1box.current.children.length; i++) {
+    if (region1box.current.children[i].innerHTML == regionKey) {
+      region1box.current.children[i].classList.toggle("clicked");
+      region1box.current.children[i].classList.toggle("text-[#0D6EFD]");
+      region1box.current.children[i].classList.toggle("underline");
+      region1box.current.children[i].classList.toggle("underline-offset-4");
+    }
+  }
+   // 0번째 region2를 클릭되어 있게 함
+		region2box.current.children[0].classList.add("clicked");
+		region2box.current.children[0].classList.add("text-[#ffffff]");		
+		region2box.current.children[0].classList.add("bg-[#0D6EFD]");
+  }, []);
+
+
 	const [region1Name, setRegion1Name] = useState("광역시");
 	const [region2Name, setRegion2Name] = useState("전체");
 
 	// 토글 리스트가 열려있는지 확인하는 state
 	const [isOpen, setToggle] = useState(true);
 
-	let region2box = useRef();
+	
 
 	/** ~로 떠나볼까요? */
 	let roRegion = ["서울", "대구", "광주", "제주", "원주", "속초", "대부도", "파주", "청주", "충주", "부여", "전주", "여수", "목포", "경주", "울릉도", "진주", "거제", "남해", "광역시", "경기"];
@@ -118,7 +140,7 @@ export default function Region_box() {
 		e.target.classList.toggle("underline");
 		e.target.classList.toggle("underline-offset-4");
 
-		// 맨 처음 region2를 클릭되어 있게 함
+		// 0번째 region2를 클릭되어 있게 함
 		region2box.current.children[0].classList.add("clicked");
 		region2box.current.children[0].classList.add("text-[#ffffff]");		
 		region2box.current.children[0].classList.add("bg-[#0D6EFD]");
@@ -190,7 +212,8 @@ export default function Region_box() {
 				}
 			>
 				<div>
-					<div className="flex flex-wrap text-[#525959] w-full pt-2 px-4 sm:px-6">
+					<div className="flex flex-wrap text-[#525959] w-full pt-2 px-4 sm:px-6"
+          ref={region1box}>
 						{region1.map((region, idx) => (
 							<button
 								key={idx}

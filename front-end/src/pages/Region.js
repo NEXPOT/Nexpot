@@ -281,6 +281,14 @@ export default function Region() {
             <div className="inline mb-20 mr-4" key={idx}>
               <Link
                 to={`/detail/${item.videoid}`}
+								state={{
+									thumbnail: item.thumbnail.replace(
+                    "mqdefault.jpg",
+                    "maxresdefault.jpg"
+                  ),
+                  channelname: item.channelname,
+                  title: item.title,
+                }}
               >
                 <img
                   className="snap-start"

@@ -12,7 +12,7 @@ export default function Detail() {
   let { videoid } = useParams();
   const [place, setPlaces] = useState([]);
   const [detail, setDetail] = useState([]);
-  const [markerPositions, setMarkerPositions] = useState([]);
+  const [markerPositions, setMarkerPositions] = useState();
   const thumbnail = useRef();
   // 첫 렌더링에 videoid로 상세 정보를 가져옵니다.
   useEffect(() => {
@@ -30,12 +30,10 @@ export default function Detail() {
             places: res.data.places,
           },
         ];
-        console.log(res);
-        console.log(_detail);
+        console.log(res.data.places);
+        KakaoMapScript(res.data.places);
         setDetail(_detail);
         setPlaces(res.data.places);
-        setMarkerPositions([res.data.places[0].py, res.data.places[0].px]);
-        console.log("async");
       } catch (e) {
         console.error(e.message);
       }
@@ -43,16 +41,20 @@ export default function Detail() {
     getData();
     console.log("init get Data");
   }, []);
- 
+
+  useEffect(() => {
+    if (markerPositions !== null || markerPositions !== undefined) {
+      console.log("markerPositions changed");
+      // KakaoMapScript(markerPositions);
+    }
+  }, [markerPositions]);
 
   const setPlaceItem = () => {
     return place.map((item, idx) => (
       <button
         key={idx}
         onClick={() => {
-          setMarkerPositions(item);
-          KakaoMapScript(item);
-          console.log(item);
+          // setMarkerPositions(item);
         }}
         className="transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline flex flex-wrap gap-2 place-items-center mt-6 text-sm font-normal text-[#737A7A]"
       >
@@ -107,7 +109,7 @@ export default function Detail() {
         <div id="placeList" className="flex flex-wrap gap-2 sm:flex-row">
           {place && setPlaceItem()}
         </div>
-        <div id='map'></div>
+        <div id="map" className="w-full h-56 z-10 rounded-lg"></div>
         {/* <Map markerPositions={markerPositions} /> */}
         <p className="mt-10 text-base font-bold">여행지 정보</p>
         <div className="grid grid-flow-row sm:grid-flow-col gap-4 mt-4 auto-cols-max">

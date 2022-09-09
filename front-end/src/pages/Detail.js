@@ -75,8 +75,8 @@ export default function Detail() {
       setImgSrc(
         location.state.thumbnail.replace("maxresdefault.jpg", "mqdefault.jpg")
       );
-      e.target.classList.add("w-full");
     }
+    e.target.classList.add("w-full");
   };
 
   return (

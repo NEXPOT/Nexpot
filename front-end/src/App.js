@@ -9,12 +9,12 @@ export default function App() {
   return (
     <BrowserRouter>
     <ScrollToTop/>
-      <div className="wrapper h-full">
+      <div className="h-full wrapper">
         <div className="contentWrapper">
           <SearchHeader />
           <Routes>
             <Route exact path="/" element={<Main />} />
-            <Route path="/allregion" element={<Region />} />
+            <Route path="/list/:regionName" element={<Region />} />
             <Route path="/detail/:videoid" element={<Detail />} />      
             <Route path="/result" element={<SearchResult />} />
           </Routes>

@@ -1,5 +1,4 @@
 //* global kakao */
-import React, { useEffect, useState, useRef } from "react";
 const { kakao } = window;
 
 const KakaoMapScript = (item) => {

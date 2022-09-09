@@ -102,14 +102,43 @@ export default function Region() {
 		region2box.current.children[0].classList.add("bg-[#0D6EFD]");
   }, []);
 
+	const [video, setVideo] = useState([]);
+	/** call ajax, 지역 영상 불러오기 */
+	useEffect(() => {
+		console.log(param);
+		console.log("get video")
+		let regionN;
+		if (region1.includes(regionKey)){
+			regionN = "region1"
+		} else {
+			regionN = "region2"
+		}
+    const getVideo = async () => {
+      try {
+        const res = await axios.get("http://13.209.13.176/api/youtube/", {
+          params: {
+            [regionN]: param
+        }
+			});
+        const _video = await res.data.map((item) => ({
+          videoid: item.videoid,
+          title: item.title,
+          thumbnail: item.thumbnail,
+          channelname: item.channelname,
+        }));
+        setVideo(_video);
+      } catch (e) {
+        console.error(e.message);
+      }
+    };
+    getVideo();
+  }, [param]);
 
 	const [region1Name, setRegion1Name] = useState("광역시");
 	const [region2Name, setRegion2Name] = useState("전체");
 
 	// 토글 리스트가 열려있는지 확인하는 state
 	const [isOpen, setToggle] = useState(true);
-
-	
 
 	/** ~로 떠나볼까요? */
 	let roRegion = ["서울", "대구", "광주", "제주", "원주", "속초", "대부도", "파주", "청주", "충주", "부여", "전주", "여수", "목포", "경주", "울릉도", "진주", "거제", "남해", "광역시", "경기"];
@@ -125,6 +154,7 @@ export default function Region() {
 
 	const onClickRegion1 = (e) => {
 		navigate(`/list/${regionValue[e.target.innerHTML]}`);
+		//window.location.reload();
 		setRegion1Name(e.target.innerHTML);
 		setRegion2Name(e.target.innerHTML);
 		let parents = e.target.parentElement;
@@ -151,10 +181,15 @@ export default function Region() {
 			region2box.current.children[i].classList.remove("text-[#ffffff]");
 			region2box.current.children[i].classList.remove("bg-[#0D6EFD]");
 		}
-	};
+	}
 
 	const onClickRegion2 = (e) => {
-		navigate(`/list/${regionValue[e.target.innerHTML]}`);
+		if (e.target.innerHTML === "전체"){
+			navigate(`/list/${regionValue[region1Name]}`)
+		} 
+		else {
+			navigate(`/list/${regionValue[e.target.innerHTML]}`);
+		}
 		setRegion2Name(e.target.innerHTML);
 		
 		let parents = e.target.parentElement;
@@ -167,8 +202,9 @@ export default function Region() {
 		e.target.classList.toggle("text-[#ffffff]");
 		e.target.classList.toggle("bg-[#0D6EFD]");
 
-	};
+		
 
+	};
 
 	const onClickToggle = (e) => {
 		let target = e.target;
@@ -183,7 +219,6 @@ export default function Region() {
 			target.classList.add("rotate-180");
 		}
 	};
-
 
 	return (
 		<div className="mx-4 mt-8 text-white sm:mx-10 sm:mt-20">
@@ -241,8 +276,22 @@ export default function Region() {
 				</div>
 			</div>
 
-			<div>
-
+			<div className="flex flex-wrap mt-20">
+			{video.map((item, idx) => (
+            <div className="inline mb-20 mr-4" key={idx}>
+              <Link
+                to={`/detail/${item.videoid}`}
+              >
+                <img
+                  className="snap-start"
+                  alt="thumbnail"
+                  src={item.thumbnail}
+                />
+                <p className="mt-4 mb-1 text-base font-bold">{item.channelname}</p>
+                <p className="text-sm w-80">{item.title}</p>
+              </Link>
+            </div>
+          ))}
 			</div>
 		</div>
 	);

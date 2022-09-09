@@ -142,14 +142,11 @@ const VideoList = ({ regionName }) => {
             {regionName}
             <span className="text-[#c4c4c4]">{regionTitle}</span>
           </span>
-          <button className="text-[#fffff] text-sm self-center font-medium sm:mt-0.5 sm:text-lg">
-            전체보기
-          </button>
         </div>
       </div>
 
       {/* scroll arrow */}
-      <div id="arrowContainer" className="flex h-2 ml-4 sm:mx-10 mt-2 mb-3">
+      <div id="arrowContainer" className="flex h-2 mt-2 mb-3 ml-4 sm:mx-10">
         <div
           id="arrowTail"
           ref={scrollArrowTail}
@@ -203,7 +200,7 @@ const VideoList = ({ regionName }) => {
           ))}
         </div>
         <ChevronRight
-          className="mt-20 mx-2 hover:cursor-pointer"
+          className="mx-2 mt-20 hover:cursor-pointer"
           color="#656565"
           strokeWidth={2}
           size={24}

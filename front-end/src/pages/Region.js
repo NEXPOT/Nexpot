@@ -105,8 +105,6 @@ export default function Region() {
 	const [video, setVideo] = useState([]);
 	/** call ajax, 지역 영상 불러오기 */
 	useEffect(() => {
-		console.log(param);
-		console.log("get video")
 		let regionN;
 		if (region1.includes(regionKey)){
 			regionN = "region1"

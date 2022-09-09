@@ -79,9 +79,8 @@ export default function Detail() {
   const handleImgError = (e) => {
     if (thumbnail.current.width <= 360){
       setImgSrc(location.state.thumbnail.replace("maxresdefault.jpg", "mqdefault.jpg"));
-
-      e.target.classList.add("w-full");
     }
+    e.target.classList.add("w-full");
   };
 
   return (

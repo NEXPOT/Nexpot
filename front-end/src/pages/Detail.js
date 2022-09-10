@@ -31,7 +31,7 @@ export default function Detail() {
           },
         ];
         console.log(res.data.places);
-        KakaoMapScript(res.data.places);
+        KakaoMapScript(res.data.places[0]);
         setDetail(_detail);
         setPlaces(res.data.places);
       } catch (e) {
@@ -43,7 +43,12 @@ export default function Detail() {
   }, []);
 
   useEffect(() => {
-    if (markerPositions !== null || markerPositions !== undefined) {
+    if (
+      typeof markerPositions === null ||
+      typeof markerPositions === undefined
+    ) {
+      return;
+    } else {
       console.log("markerPositions changed");
       // KakaoMapScript(markerPositions);
     }
@@ -55,6 +60,7 @@ export default function Detail() {
         key={idx}
         onClick={() => {
           // setMarkerPositions(item);
+          KakaoMapScript(item);
         }}
         className="transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline flex flex-wrap gap-2 place-items-center mt-6 text-sm font-normal text-[#737A7A]"
       >
@@ -109,7 +115,7 @@ export default function Detail() {
         <div id="placeList" className="flex flex-wrap gap-2 sm:flex-row">
           {place && setPlaceItem()}
         </div>
-        <div id="map" className="w-full h-56 z-10 rounded-lg"></div>
+        <div id="map" className="w-full h-80 z-10 rounded-lg mt-6"></div>
         {/* <Map markerPositions={markerPositions} /> */}
         <p className="mt-10 text-base font-bold">여행지 정보</p>
         <div className="grid grid-flow-row sm:grid-flow-col gap-4 mt-4 auto-cols-max">
@@ -133,7 +139,9 @@ export default function Detail() {
         <button className="mt-4 underline underline-offset-4 text-sm font-normal text-[#737A7A]">
           더보기
         </button>
-        <p className="mt-8 text-base font-bold">상세 정보</p>
+        <p id="detailInfo" className="mt-8 text-base font-bold">
+          상세 정보
+        </p>
       </div>
     </div>
   );

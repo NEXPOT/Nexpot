@@ -71,14 +71,12 @@ export default function Main() {
           넥스팟
           <br /> 다음은 어디 갈까?
         </p>
-        <p className="mx-4 text-base font-medium leading-normal sm:mx-0">
+        <p className="m-auto w-4/5 text-base font-medium leading-normal sm:mx-0">
           NEXPOT은 YouTube에서 본 여행지 정보를 한곳에 담은 Mash-up
           서비스입니다. 여행지를 생생하게 보여주는 영상과 함께 상세 정보, 여행
-          코스, 지도를 제공합니다.
-          <br />
-          수많은 리뷰를 시각화한 인포그래픽으로 여행지 리뷰를 한눈에 파악할 수
-          있어요. NEXPOT에서 영상에 나온 여행지를 바로바로 확인해보세요. >>>>>>>
-          2f4f49b3360b0c2f99a07b5c191214506110859f
+          코스, 지도를 제공합니다. 수많은 리뷰를 시각화한 인포그래픽으로 여행지
+          리뷰를 한눈에 파악할 수 있어요. NEXPOT에서 영상에 나온 여행지를
+          바로바로 확인해보세요.
         </p>
         <Link to="/list/metropolitan">
           <button className="sm:w-3/4 text-sm font-normal py-2 px-24 mt-11 text-[#FFFFFF] bg-[#0D6EFD] rounded-xl transition ease-in-out delay-150 hover:bg-[#FFFFFF] hover:text-[#0D6EFD] hover:-translate-y-0.2 hover:scale-105">

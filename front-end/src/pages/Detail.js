@@ -12,6 +12,7 @@ export default function Detail() {
   const [detail, setDetail] = useState([]);
   const [markerPositions, setMarkerPositions] = useState([]);
   const thumbnail = useRef();
+  
   // 첫 렌더링에 videoid로 상세 정보를 가져옵니다.
   console.log("detail page render");
   useEffect(() => {
@@ -29,18 +30,18 @@ export default function Detail() {
             places: res.data.places,
           },
         ];
-        console.log(res);
-        console.log(_detail);
+        //console.log(res);
+        //console.log(_detail);
         setDetail(_detail);
         setPlaces(res.data.places);
         setMarkerPositions([res.data.places[0].py, res.data.places[0].px]);
-        console.log("async");
+        //console.log("async");
       } catch (e) {
         console.error(e.message);
       }
     };
     getData();
-    console.log("init get Data");
+    //console.log("init get Data");
   }, []);
 
   const setPlaceItem = () => {
@@ -77,15 +78,52 @@ export default function Detail() {
   const [imgSrc, setImgSrc] = useState(location.state.thumbnail);
 
   const handleImgError = (e) => {
-    if (thumbnail.current.width <= 360){
+    if (thumbnail.current.width <= 360) {
       setImgSrc(location.state.thumbnail.replace("maxresdefault.jpg", "mqdefault.jpg"));
     }
     e.target.classList.add("w-full");
   };
 
+  const [info, setInfo] = useState([]);
+  const APP_KEY = process.env.REACT_APP_TOUR_API_KEY;
+  useEffect(() => {
+		const getData = async () => {
+			try {
+				const res = await axios.get('/api' + '/detailCommon', {
+					params: {
+						serviceKey: APP_KEY,
+						MobileOS: "ETC",
+						MobileApp: "NEXPOT",
+						_type: "json",
+						contentId: 126508,
+						defaultYN:"Y",
+						firstImageYN:"Y",
+						areacodeYN:"Y",
+						catcodeYN:"Y",
+						addrinfoYN:"Y",
+						mapinfoYN:"Y",
+						overviewYN:"Y",
+					}
+				});
+				const _info = await res.data.response.body.items.item[0].overview;
+        console.log("res.data test");
+				console.log(res.data.response.body.items.item[0].overview);
+				setInfo(_info)
+			} catch (e) {
+				console.log("error");
+				console.error(e.message);
+			}
+		};
+		getData();
+	}, []);
+
+  console.log("info test");
+  console.log(info);
+
   return (
     <div className="mx-56 text-white">
       <div className="relative overflow-hidden">
+
         <div className="absolute inset-x-0 bottom-0 z-10 w-1/2 p-10">
           <p className="mt-6 text-xl font-bold channel">
             {location.state.channelname}
@@ -97,6 +135,7 @@ export default function Detail() {
             영상 재생
           </button>
         </div>
+
         <div className="absolute inset-x-0 bottom-0 z-10 w-1/2 p-10">
           <p className="mt-6 text-xl font-bold channel">
             {location.state.channelname}
@@ -108,6 +147,7 @@ export default function Detail() {
             영상 재생
           </button>
         </div>
+
         <div className="img-gr"></div>
         <img
           className="m-auto videoImg min-w-[360px]"
@@ -117,7 +157,7 @@ export default function Detail() {
           onLoad={handleImgError}
         />
       </div>
-      {/** To-Do 이미지 위 텍스트 오버레이  */}
+
       <div>
         <p className="mx-10 mt-16 text-base font-bold">관광코스</p>
         <div id="placeList" className="grid grid-flow-col">
@@ -125,6 +165,7 @@ export default function Detail() {
         </div>
         <Map markerPositions={markerPositions} />
         <p className="mx-10 mt-10 text-base font-bold">여행지 정보</p>
+
         <div className="grid grid-flow-col gap-4 mx-10 mt-4 auto-cols-max">
           <button className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4">
             카카오지도에서 정보를 찾아보세요
@@ -135,21 +176,27 @@ export default function Detail() {
             <ArrowRight strokeWidth={1.5} size={20} />
           </button>
         </div>
+
         <div
           id="placeContent"
           className="px-10 mt-8 text-sm leading-6 break-all"
         >
-          2017년9월17일 개장. 미포에서 출발해 송정까지 이어지는 동해남부선
+          {info}
+          {/* 2017년9월17일 개장. 미포에서 출발해 송정까지 이어지는 동해남부선
           폐선부지의 중간 쯤에 자리한 청사포 다릿돌전망대는 해수면으로 부터
           2017년9월17일 개장. 미포에서 출발해 송정까지 이어지는 동해남부선
           폐선부지의 중간 쯤에 자리한 청사포 다릿돌전망대는 해수면으로 부터
           미포에서 출발해 송정까지 이어지는 동해남부선 폐선부지의 중간 쯤에
-          자리한 청사포 다릿돌전망대는 해수면으로 부터...
+          자리한 청사포 다릿돌전망대는 해수면으로 부터... */}
         </div>
+
         <button className="mt-4 px-10 underline underline-offset-4 text-sm font-normal text-[#737A7A]">
           더보기
         </button>
+
         <p className="mx-10 mt-8 text-base font-bold">상세 정보</p>
+        <div className="mx-10 mt-2">
+        </div>
       </div>
     </div>
   );

@@ -38,7 +38,7 @@ const Map = ({markerPositions}) => {
     if (kakaoMap === null) {
       return;
     } 
-    console.log('markerposition effect');
+    //console.log('markerposition effect');
     const newPos = new kakao.maps.LatLng(markerPositions[0], markerPositions[1]);
     setMarkers(()=> {  
       return new kakao.maps.Marker({ map: kakaoMap, position: newPos });

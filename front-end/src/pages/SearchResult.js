@@ -54,6 +54,8 @@ export default function SearchResult() {
                     ? item.region.substr(3, 2)
                     : item.region}
                 </button>
+                
+                <div onClick={() => {window.location.reload()}}>
                 <Link
                   to={`/detail/${item.videoid}`}
                   state={{
@@ -69,6 +71,7 @@ export default function SearchResult() {
                   <p className="my-3 text-base font-bold">{item.channelname}</p>
                   <p className="text-sm w-80">{item.title}</p>
                 </Link>
+                </div>
               </div>
             ))}
           </div>

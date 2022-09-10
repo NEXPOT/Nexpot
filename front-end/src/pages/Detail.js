@@ -62,19 +62,7 @@ export default function Detail() {
     ));
   };
 
-  const setPlaceInfo = () => {
-    return place.map((item, idx) => (
-      <button
-        key={idx}
-        onClick={() => setMarkerPositions([item.py, item.px])}
-        className="transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline grid grid-flow-col place-items-center mt-6 text-xs font-normal text-[#737A7A]"
-      >
-        {item.pname}
-        <ChevronRight color="#656565" strokeWidth={2} size={16} />
-      </button>
-    ));
-  };
-
+  /**썸네일 고해상도 없을 시 이미지 에러 처리 */
   const [imgSrc, setImgSrc] = useState(location.state.thumbnail);
 
   const handleImgError = (e) => {
@@ -84,57 +72,102 @@ export default function Detail() {
     e.target.classList.add("w-full");
   };
 
-  const [info, setInfo] = useState([]);
+  
+  /**상세 정보 - Tour API */
+
+  // 일단 place들을 하나씩 키워드로 검색 
+  // 키워드가 없으면 x 
+  // 키워드가 있으면 상세정보 검색
+
+  let placeName = [];
+  place.map((item) => {
+    placeName.push(item.pname);
+  })
+  
+  console.log(placeName);
+  console.log(placeName[0]);
+
+  let contentId = [];
+  //const [contentId, setContentId] = useState([]); // tour api에 데이터가 있는 장소들의 contentid
+  const [info, setInfo] = useState([]); // 장소 하나의 정보 저장
   const APP_KEY = process.env.REACT_APP_TOUR_API_KEY;
+
   useEffect(() => {
-		const getData = async () => {
+		const searchKeyword = async (keyword) => {
 			try {
-				const res = await axios.get('/api' + '/detailCommon', {
+				const res = await axios.get('/api' + '/searchKeyword', {
 					params: {
 						serviceKey: APP_KEY,
 						MobileOS: "ETC",
 						MobileApp: "NEXPOT",
 						_type: "json",
-						contentId: 126508,
-						defaultYN:"Y",
-						firstImageYN:"Y",
-						areacodeYN:"Y",
-						catcodeYN:"Y",
-						addrinfoYN:"Y",
-						mapinfoYN:"Y",
-						overviewYN:"Y",
-					}
+						listYN: "Y",
+            arrange: "A",
+            keyword: keyword
+					},
+          timeout: 3000
 				});
-				const _info = await res.data.response.body.items.item[0].overview;
-        console.log("res.data test");
-				console.log(res.data.response.body.items.item[0].overview);
-				setInfo(_info)
+        
+        console.log(res.data.response.body.items.item[0]);
+				const _contentId = await res.data.response.body.items.item[0].contentid;
+        console.log("************");
+        console.log(_contentId);
+        
+        contentId.push(_contentId);
+//				setContentId([...contentId, _contentId])
+        console.log(contentId);
 			} catch (e) {
-				console.log("error");
+        console.log("****************************************!!!!!!!!!!!!!!!!!");
+        console.log("에러1!!!!!!!!!!!!!!!!!!!!!1")
 				console.error(e.message);
-			}
+			} finally {
+        console.log("tour api searchKeyword 호출 완료");
+      }
 		};
-		getData();
+  
+//    searchKeyword(placeName[0]);
+
+    for(let i=0; i<placeName.length; i++){
+      searchKeyword(placeName[i]);
+    }
+    
 	}, []);
 
-  console.log("info test");
-  console.log(info);
+  // useEffect(() => {
+	// 	const detailCommon = async () => {
+	// 		try {
+	// 			const res = await axios.get('/api' + '/detailCommon', {
+	// 				params: {
+	// 					serviceKey: APP_KEY,
+	// 					MobileOS: "ETC",
+	// 					MobileApp: "NEXPOT",
+	// 					_type: "json",
+	// 					contentId: 126508,
+	// 					defaultYN:"Y",
+	// 					firstImageYN:"Y",
+	// 					areacodeYN:"Y",
+	// 					catcodeYN:"Y",
+	// 					addrinfoYN:"Y",
+	// 					mapinfoYN:"Y",
+	// 					overviewYN:"Y",
+	// 				},
+  //         timeout: 3000
+	// 			});
+	// 			const _info = await res.data.response.body.items.item[0].overview;
+  //       //console.log(_info);
+	// 			setInfo(_info)
+	// 		} catch (e) {
+	// 			console.error(e.message);
+	// 		} finally {
+  //       console.log("tour api 호출 완료");
+  //     }
+	// 	};
+	// 	//detailCommon();
+	// }, []);
 
   return (
     <div className="mx-56 text-white">
       <div className="relative overflow-hidden">
-
-        <div className="absolute inset-x-0 bottom-0 z-10 w-1/2 p-10">
-          <p className="mt-6 text-xl font-bold channel">
-            {location.state.channelname}
-          </p>
-          <p className="mt-2 text-sm font-normal title">
-            {location.state.title}
-          </p>
-          <button className="px-10 py-2 mt-4 text-sm font-medium rounded-lg bg-slate-50 text-slate-800">
-            영상 재생
-          </button>
-        </div>
 
         <div className="absolute inset-x-0 bottom-0 z-10 w-1/2 p-10">
           <p className="mt-6 text-xl font-bold channel">
@@ -179,15 +212,9 @@ export default function Detail() {
 
         <div
           id="placeContent"
-          className="px-10 mt-8 text-sm leading-6 break-all"
-        >
+          className="px-10 mt-8 text-sm leading-6 break-all">
           {info}
-          {/* 2017년9월17일 개장. 미포에서 출발해 송정까지 이어지는 동해남부선
-          폐선부지의 중간 쯤에 자리한 청사포 다릿돌전망대는 해수면으로 부터
-          2017년9월17일 개장. 미포에서 출발해 송정까지 이어지는 동해남부선
-          폐선부지의 중간 쯤에 자리한 청사포 다릿돌전망대는 해수면으로 부터
-          미포에서 출발해 송정까지 이어지는 동해남부선 폐선부지의 중간 쯤에
-          자리한 청사포 다릿돌전망대는 해수면으로 부터... */}
+          {contentId}
         </div>
 
         <button className="mt-4 px-10 underline underline-offset-4 text-sm font-normal text-[#737A7A]">
@@ -196,6 +223,7 @@ export default function Detail() {
 
         <p className="mx-10 mt-8 text-base font-bold">상세 정보</p>
         <div className="mx-10 mt-2">
+          
         </div>
       </div>
     </div>

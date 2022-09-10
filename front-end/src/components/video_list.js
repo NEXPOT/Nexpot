@@ -175,7 +175,7 @@ const VideoList = ({ regionName }) => {
           onScroll={handleScroll}
         >
           {video.map((item, idx) => (
-            <div className="inline mr-4" key={idx}>
+            <div className="inline mr-4" key={idx} onClick={() => {window.location.reload()}}>
               <Link
                 to={`/detail/${item.videoid}`}
                 state={{

@@ -3,9 +3,9 @@ import axios from "axios";
 import { useLocation, useParams } from "react-router-dom";
 import { ChevronRight } from "akar-icons";
 import { ArrowRight } from "akar-icons";
-import { Play } from "akar-icons";
-import Map from "../components/map";
+import { Play } from "akar-icons"; 
 import KakaoMapScript from "../components/kakaoMapScripts";
+import DetailInfoScripts from "../components/detailInfoScripts";
 
 export default function Detail() {
   const location = useLocation();
@@ -29,9 +29,9 @@ export default function Detail() {
             views: res.data.views,
             places: res.data.places,
           },
-        ];
-        console.log(res.data.places);
+        ]; 
         KakaoMapScript(res.data.places[0]);
+        DetailInfoScripts(res.data.places[0]);
         setDetail(_detail);
         setPlaces(res.data.places);
       } catch (e) {
@@ -42,17 +42,10 @@ export default function Detail() {
     console.log("init get Data");
   }, []);
 
-  useEffect(() => {
-    if (
-      typeof markerPositions === null ||
-      typeof markerPositions === undefined
-    ) {
-      return;
-    } else {
-      console.log("markerPositions changed");
-      // KakaoMapScript(markerPositions);
-    }
-  }, [markerPositions]);
+
+  const getDetailInfo = () => {
+    
+  }
 
   const setPlaceItem = () => {
     return place.map((item, idx) => (
@@ -61,6 +54,7 @@ export default function Detail() {
         onClick={() => {
           // setMarkerPositions(item);
           KakaoMapScript(item);
+          DetailInfoScripts(item);
         }}
         className="transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline flex flex-wrap gap-2 place-items-center mt-6 text-sm font-normal text-[#737A7A]"
       >
@@ -85,6 +79,13 @@ export default function Detail() {
     e.target.classList.add("w-full");
   };
 
+  const onClickExtend = () =>{
+    const target = document.getElementById('placeContent');
+    console.log(target);
+    target.classList.toggle("h-full");
+    target.classList.toggle("h-48");
+  }
+
   return (
     <div className="my-4 sm:my-0 mx-4 sm:mx-56 text-white">
       <div className="relative overflow-hidden">
@@ -108,14 +109,13 @@ export default function Detail() {
             영상 재생
           </button>
         </div>
-      </div>
-      {/** To-Do 이미지 위 텍스트 오버레이  */}
+      </div> 
       <div>
         <p className="mt-16 text-base font-bold">관광코스</p>
         <div id="placeList" className="flex flex-wrap gap-2 sm:flex-row">
           {place && setPlaceItem()}
         </div>
-        <div id="map" className="w-full h-80 z-10 rounded-lg mt-6"></div>
+        <div id="map" className="w-full h-[48rem] z-10 rounded-lg mt-6"></div>
         {/* <Map markerPositions={markerPositions} /> */}
         <p className="mt-10 text-base font-bold">여행지 정보</p>
         <div className="grid grid-flow-row sm:grid-flow-col gap-4 mt-4 auto-cols-max">
@@ -136,12 +136,14 @@ export default function Detail() {
           미포에서 출발해 송정까지 이어지는 동해남부선 폐선부지의 중간 쯤에
           자리한 청사포 다릿돌전망대는 해수면으로 부터...
         </div>
-        <button className="mt-4 underline underline-offset-4 text-sm font-normal text-[#737A7A]">
+        <button onClick={onClickExtend} className="mt-4 underline underline-offset-4 text-sm font-normal text-[#737A7A]">
           더보기
         </button>
-        <p id="detailInfo" className="mt-8 text-base font-bold">
+        <p className="mt-8 text-base font-bold">
           상세 정보
         </p>
+        <div className="mt-4" id="detailInfo">
+        </div>
       </div>
     </div>
   );

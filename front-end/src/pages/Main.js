@@ -66,7 +66,7 @@ export default function Main() {
 
   return (
     <>
-      <div className="flex flex-col px-4 mx-auto mt-20 text-center text-white mb-36 sm:text-start sm:px-0 sm:w-1/3 sm:mx-10">
+      <div className="flex flex-col px-4 mx-auto mt-20 text-center text-white mb-36 sm:text-start sm:px-0 lg:w-1/3 md:w-2/5 sm:mx-10">
         <p className="mb-5 text-5xl font-bold leading-tight">
           넥스팟
           <br /> 다음은 어디 갈까?

@@ -91,11 +91,16 @@ export default function Detail() {
     e.target.classList.add("w-full");
   };
 
-  const onClickExtend = () =>{
-    const target = document.getElementById('placeContent');
-    console.log(target);
-    target.classList.toggle("h-full");
-    target.classList.toggle("h-48");
+  const onClickExtend = (e) =>{
+    const target = document.getElementById('placeContent'); 
+    target.classList.toggle("truncate");
+    target.classList.toggle("max-h-full");
+    target.classList.toggle("h-6");
+    if(e.target.innerHTML === "더보기"){
+      e.target.innerHTML = "접기";
+    }else{
+      e.target.innerHTML = "더보기";
+    }
   }
 
   const onClickKakaoMapInfo = () => {
@@ -108,7 +113,7 @@ export default function Detail() {
     window.open(`https://korean.visitkorea.or.kr/search/search_list.do?keyword=${target}`, '_blank');
   }
     return (
-      <div className="mx-4 my-4 text-white sm:my-0 sm:mx-56">
+      <div className="mx-4 my-4 text-white sm:my-0 sm:mx-16 md:mx-56">
         <div className="relative overflow-hidden">
 
         <div className="absolute inset-x-0 bottom-0 z-10 w-1/2 p-10">
@@ -152,7 +157,7 @@ export default function Detail() {
             <ArrowRight strokeWidth={1.5} size={20} />
           </button>
         </div>
-        <div id="placeContent" className="mt-8 text-sm leading-6 break-all">
+        <div id="placeContent" className="mt-8 truncate text-sm leading-6 break-all h-6">
           2017년9월17일 개장. 미포에서 출발해 송정까지 이어지는 동해남부선
           폐선부지의 중간 쯤에 자리한 청사포 다릿돌전망대는 해수면으로 부터
           2017년9월17일 개장. 미포에서 출발해 송정까지 이어지는 동해남부선
@@ -160,7 +165,7 @@ export default function Detail() {
           미포에서 출발해 송정까지 이어지는 동해남부선 폐선부지의 중간 쯤에
           자리한 청사포 다릿돌전망대는 해수면으로 부터...
         </div>
-        <button onClick={onClickExtend} className="mt-4 underline underline-offset-4 text-sm font-normal text-[#737A7A]">
+        <button id="moreBtn" onClick={onClickExtend} className="mt-4 underline underline-offset-4 text-sm font-normal text-[#737A7A]">
           더보기
         </button>
         <p className="mt-8 text-base font-bold">

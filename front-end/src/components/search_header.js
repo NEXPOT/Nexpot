@@ -46,7 +46,7 @@ const SearchHeader = () => {
 					<div className="flex">
 						{searchBtn ? <button onClick={() => {
 							setSearchBtn(!searchBtn);
-						}} className="inline-flex px-2 sm:px-4 py-1 sm:mx-2 text-xs font-medium border rounded-lg flex-01 border-stone-400 text-stone-400">
+						}} className="inline-flex px-2 py-1 text-xs font-medium border rounded-lg sm:px-4 sm:mx-2 flex-01 border-stone-400 text-stone-400">
 
 							<Search strokeWidth={2} size={15} className="mr-2" />
 							검색
@@ -55,14 +55,14 @@ const SearchHeader = () => {
 							<input type="text"
 								name='todoItem'
 								placeholder='영상 제목, 채널명, 지역으로 검색합니다.'
-								className='py-1 text-xs font-medium bg-transparent border rounded-lg w-full sm:mx-2 sm:w-72 px-9 border-stone-400 text-stone-400'
+								className='w-full py-1 text-xs font-medium bg-transparent border rounded-lg sm:mx-2 sm:w-72 px-9 border-stone-400 text-stone-400'
 								onKeyPress={onSubmitSearch}
 							/>
 						</div>}
-						<button className="inline-flex px-2 sm:px-4 py-1 ml-2 sm:mx-2 text-xs font-medium text-blue-600 border border-blue-600 rounded-lg">
+						{/* <button className="inline-flex px-2 py-1 ml-2 text-xs font-medium text-blue-600 border border-blue-600 rounded-lg sm:px-4 sm:mx-2">
 							<ArrowRepeat strokeWidth={2} size={15} className="mr-2" />
 							번역
-						</button>
+						</button> */}
 
 					</div>
 				</div>

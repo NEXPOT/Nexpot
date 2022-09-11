@@ -34,13 +34,12 @@ export default function Detail() {
         KakaoMapScript(res.data.places[0]);
         DetailInfoScripts(res.data.places[0]);
         setDetail(_detail);
-        setPlaces(res.data.places);        
+        setPlaces(res.data.places);
       } catch (e) {
         console.error(e.message);
       }
     };
     getData();
-
   }, []);
 
   /** 처음 로드될 때 첫번재 장소 버튼이 클릭되어 있게 함 */
@@ -93,10 +92,16 @@ export default function Detail() {
     e.target.classList.add("w-full");
   };
 
-  const onClickExtend = () => {
+  const onClickExtend = (e) => {
     const target = document.getElementById('placeContent');
-    target.classList.toggle("h-full");
-    target.classList.toggle("h-48");
+    target.classList.toggle("truncate");
+    target.classList.toggle("max-h-full");
+    target.classList.toggle("h-6");
+    if (e.target.innerHTML === "더보기") {
+      e.target.innerHTML = "접기";
+    } else {
+      e.target.innerHTML = "더보기";
+    }
   }
 
   const onClickKakaoMapInfo = () => {
@@ -110,7 +115,7 @@ export default function Detail() {
   }
 
   return (
-    <div className="mx-4 my-4 text-white sm:my-0 sm:mx-56">
+    <div className="mx-4 my-4 text-white sm:my-0 sm:mx-16 md:mx-56">
       <div className="relative overflow-hidden">
 
         <div className="absolute inset-x-0 bottom-0 z-10 w-1/2 p-10">
@@ -140,9 +145,8 @@ export default function Detail() {
           {place && setPlaceItem()}
         </div>
         <div id="map" className="w-full h-[48rem] z-10 rounded-lg mt-6"></div>
-        {/* <Map markerPositions={markerPositions} /> */}
         <p className="mt-10 text-base font-bold">여행지 정보</p>
-        <div className="grid grid-flow-row gap-4 mt-4 sm:grid-flow-col auto-cols-max">
+        <div className="grid grid-flow-row gap-4 mt-4 text-sm sm:text-md sm:grid-flow-col sm:auto-cols-max">
           <button className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4"
             onClick={onClickKakaoMapInfo}>
             카카오지도에서 정보를 찾아보세요
@@ -154,15 +158,9 @@ export default function Detail() {
             <ArrowRight strokeWidth={1.5} size={20} />
           </button>
         </div>
-        <div id="placeContent" className="mt-8 text-sm leading-6 break-all">
-          2017년9월17일 개장. 미포에서 출발해 송정까지 이어지는 동해남부선
-          폐선부지의 중간 쯤에 자리한 청사포 다릿돌전망대는 해수면으로 부터
-          2017년9월17일 개장. 미포에서 출발해 송정까지 이어지는 동해남부선
-          폐선부지의 중간 쯤에 자리한 청사포 다릿돌전망대는 해수면으로 부터
-          미포에서 출발해 송정까지 이어지는 동해남부선 폐선부지의 중간 쯤에
-          자리한 청사포 다릿돌전망대는 해수면으로 부터...
+        <div id="placeContent" className="hidden h-6 mt-8 text-sm leading-6 break-all truncate">
         </div>
-        <button onClick={onClickExtend} className="mt-4 underline underline-offset-4 text-sm font-normal text-[#737A7A]">
+        <button id="moreBtn" onClick={onClickExtend} className="mt-4 underline underline-offset-4 text-sm font-normal text-[#737A7A]">
           더보기
         </button>
         <p className="mt-8 text-base font-bold">

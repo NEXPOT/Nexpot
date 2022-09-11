@@ -63,8 +63,9 @@ const KakaoMapScript = (item) => {
       var customOverWindow = document.getElementById("customOverlay");
       var qInfoText = document.createElement("div");
       questionInfo.addEventListener("mouseover", (event) => {
+        qInfoText.style.boxShadow = `0px 4px 4px rgba(0, 0, 0, 0.25)`;
         qInfoText.innerHTML =
-          '<div id="qInfoText" class="w-56 p-4 h-24 bg-white break-all text-ellipsis text-xs text-slate-800"><p class="break-all">각 점수는 서비스, 분위기, 가격, 방문, 맛에 해당하는 리뷰들을 자연어 처리 및 분류하여 긍정적, 부정적 리뷰의 비율을 표기한 점수입니다.</p></div>';
+          '<div id="qInfoText" class="w-56 p-4 h-24 bg-white text-xs text-slate-800"><p class="w-full break-all overflow-hidden">각 점수는 서비스, 분위기, 가격, 방문, 맛에 해당하는 리뷰들을 자연어 처리 및 분류하여 긍정적, 부정적 리뷰의 비율을 표기한 점수입니다.</p></div>';
         customOverWindow.parentNode.appendChild(qInfoText);
       });
       questionInfo.addEventListener("mouseout", (event) => {

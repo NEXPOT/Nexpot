@@ -46,7 +46,7 @@ export default function SearchResult() {
           의 검색 결과입니다.
         </span>
         {video.length ? (
-          <div className="grid grid-col sm:grid-cols-4">
+          <div className="flex flex-wrap">
             {video.map((item, idx) => (
               <div className="mx-auto mt-20 sm:mt-16" key={idx}>
                 <button className="hover:cursor-default mb-2 px-4 py-0.5 border-[#737A7A] border-[1px] rounded-2xl text-sm font-semibold text-[#737A7A]">

@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useLocation, useParams } from "react-router-dom";
-import { ChevronRight } from "akar-icons";
-import { ArrowRight } from "akar-icons";
-import { Play } from "akar-icons"; 
+import { ChevronRight, ArrowRight } from "akar-icons";
 import KakaoMapScript from "../components/kakaoMapScripts";
 import DetailInfoScripts from "../components/detailInfoScripts";
 
@@ -12,8 +10,8 @@ export default function Detail() {
   let { videoid } = useParams();
   const [place, setPlaces] = useState([]);
   const [detail, setDetail] = useState([]);
-  const [markerPositions, setMarkerPositions] = useState();
   const thumbnail = useRef();
+  const placeBtnList = useRef();
 
   // 첫 렌더링에 videoid로 상세 정보를 가져옵니다.
   useEffect(() => {
@@ -30,24 +28,28 @@ export default function Detail() {
             views: res.data.views,
             places: res.data.places,
           },
-        ]; 
+        ];
+
+        res.data.places.sort((a, b) => a.idx - b.idx); // idx순으로 place 정렬
         KakaoMapScript(res.data.places[0]);
         DetailInfoScripts(res.data.places[0]);
         setDetail(_detail);
-        setPlaces(res.data.places);
+        setPlaces(res.data.places);        
       } catch (e) {
         console.error(e.message);
       }
     };
     getData();
-    //console.log("init get Data");
+
   }, []);
 
-
-  const getDetailInfo = () => {
-    
+  /** 처음 로드될 때 첫번재 장소 버튼이 클릭되어 있게 함 */
+  window.onload = () => {
+    placeBtnList.current.children[0].classList.toggle("clicked");
+    placeBtnList.current.children[0].classList.toggle("text-[#0D6EFD]");
+    placeBtnList.current.children[0].classList.toggle("font-semibold");
   }
-  
+
   const setPlaceItem = () => {
     return place.map((item, idx) => (
       <button
@@ -57,9 +59,9 @@ export default function Detail() {
           // setMarkerPositions(item);
           KakaoMapScript(item);
           DetailInfoScripts(item);
-          
+
           const parents = e.target.parentElement;
-          for(const child of parents.children){
+          for (const child of parents.children) {
             child.classList.remove("clicked");
             child.classList.remove("text-[#0D6EFD]");
             child.classList.remove("font-semibold");
@@ -91,9 +93,8 @@ export default function Detail() {
     e.target.classList.add("w-full");
   };
 
-  const onClickExtend = () =>{
+  const onClickExtend = () => {
     const target = document.getElementById('placeContent');
-    console.log(target);
     target.classList.toggle("h-full");
     target.classList.toggle("h-48");
   }
@@ -107,9 +108,10 @@ export default function Detail() {
     const target = document.getElementsByClassName('clicked')[0].innerText;
     window.open(`https://korean.visitkorea.or.kr/search/search_list.do?keyword=${target}`, '_blank');
   }
-    return (
-      <div className="mx-4 my-4 text-white sm:my-0 sm:mx-56">
-        <div className="relative overflow-hidden">
+
+  return (
+    <div className="mx-4 my-4 text-white sm:my-0 sm:mx-56">
+      <div className="relative overflow-hidden">
 
         <div className="absolute inset-x-0 bottom-0 z-10 w-1/2 p-10">
           <p className="mt-6 text-xl font-bold channel">
@@ -119,7 +121,7 @@ export default function Detail() {
             {location.state.title}
           </p>
           <button className="px-10 py-2 mt-4 text-sm font-medium rounded-lg bg-slate-50 text-slate-800"
-          onClick={() => window.open(`https://youtu.be/${videoid}`, '_blank')}>
+            onClick={() => window.open(`https://youtu.be/${videoid}`, '_blank')}>
             영상 재생
           </button>
         </div>
@@ -134,7 +136,7 @@ export default function Detail() {
       </div>
       <div>
         <p className="mt-16 text-base font-bold">관광코스</p>
-        <div id="placeList" className="flex flex-wrap gap-2 sm:flex-row">
+        <div id="placeList" className="flex flex-wrap gap-2 sm:flex-row" ref={placeBtnList}>
           {place && setPlaceItem()}
         </div>
         <div id="map" className="w-full h-[48rem] z-10 rounded-lg mt-6"></div>
@@ -142,12 +144,12 @@ export default function Detail() {
         <p className="mt-10 text-base font-bold">여행지 정보</p>
         <div className="grid grid-flow-row gap-4 mt-4 sm:grid-flow-col auto-cols-max">
           <button className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4"
-          onClick={onClickKakaoMapInfo}>
+            onClick={onClickKakaoMapInfo}>
             카카오지도에서 정보를 찾아보세요
             <ArrowRight strokeWidth={1.5} size={20} />
           </button>
           <button className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4"
-          onClick={onClickTourInfo}>
+            onClick={onClickTourInfo}>
             대한민국 구석구석에서 정보를 찾아보세요
             <ArrowRight strokeWidth={1.5} size={20} />
           </button>

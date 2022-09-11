@@ -52,10 +52,19 @@ export default function Detail() {
     return place.map((item, idx) => (
       <button
         key={idx}
-        onClick={() => {
+        onClick={(e) => {
           // setMarkerPositions(item);
           KakaoMapScript(item);
           DetailInfoScripts(item);
+          
+          const parents = e.target.parentElement;
+          for(const child of parents.children){
+            child.classList.remove("text-[#0D6EFD]");
+            child.classList.remove("font-semibold");
+          }
+          e.target.classList.toggle("text-[#0D6EFD]");
+          e.target.classList.toggle("font-semibold");
+
         }}
         className="transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline flex flex-wrap gap-2 place-items-center mt-6 text-sm font-normal text-[#737A7A]"
       >
@@ -87,7 +96,7 @@ export default function Detail() {
   }
 
     return (
-      <div className="my-4 sm:my-0 mx-4 sm:mx-56 text-white">
+      <div className="mx-4 my-4 text-white sm:my-0 sm:mx-56">
         <div className="relative overflow-hidden">
 
         <div className="absolute inset-x-0 bottom-0 z-10 w-1/2 p-10">
@@ -119,7 +128,7 @@ export default function Detail() {
         <div id="map" className="w-full h-[48rem] z-10 rounded-lg mt-6"></div>
         {/* <Map markerPositions={markerPositions} /> */}
         <p className="mt-10 text-base font-bold">여행지 정보</p>
-        <div className="grid grid-flow-row sm:grid-flow-col gap-4 mt-4 auto-cols-max">
+        <div className="grid grid-flow-row gap-4 mt-4 sm:grid-flow-col auto-cols-max">
           <button className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4">
             카카오지도에서 정보를 찾아보세요
             <ArrowRight strokeWidth={1.5} size={20} />

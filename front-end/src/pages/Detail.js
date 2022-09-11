@@ -12,7 +12,7 @@ export default function Detail() {
   const [detail, setDetail] = useState([]);
   const [markerPositions, setMarkerPositions] = useState([]);
   const thumbnail = useRef();
-  
+
   // 첫 렌더링에 videoid로 상세 정보를 가져옵니다.
   console.log("detail page render");
   useEffect(() => {
@@ -72,100 +72,10 @@ export default function Detail() {
     e.target.classList.add("w-full");
   };
 
-  
+
   /**상세 정보 - Tour API */
 
-  // 일단 place들을 하나씩 키워드로 검색 
-  // 키워드가 없으면 x 
-  // 키워드가 있으면 상세정보 검색
-
-  let placeName = [];
-  place.map((item) => {
-    placeName.push(item.pname);
-  })
-  
-  console.log(placeName);
-  console.log(placeName[0]);
-
-  let contentId = [];
-  //const [contentId, setContentId] = useState([]); // tour api에 데이터가 있는 장소들의 contentid
-  const [info, setInfo] = useState([]); // 장소 하나의 정보 저장
-  const APP_KEY = process.env.REACT_APP_TOUR_API_KEY;
-
-  useEffect(() => {
-		const searchKeyword = async (keyword) => {
-			try {
-				const res = await axios.get('/api' + '/searchKeyword', {
-					params: {
-						serviceKey: APP_KEY,
-						MobileOS: "ETC",
-						MobileApp: "NEXPOT",
-						_type: "json",
-						listYN: "Y",
-            arrange: "A",
-            keyword: keyword
-					},
-          timeout: 3000
-				});
-        
-        console.log(res.data.response.body.items.item[0]);
-				const _contentId = await res.data.response.body.items.item[0].contentid;
-        console.log("************");
-        console.log(_contentId);
-        
-        contentId.push(_contentId);
-//				setContentId([...contentId, _contentId])
-        console.log(contentId);
-			} catch (e) {
-        console.log("****************************************!!!!!!!!!!!!!!!!!");
-        console.log("에러1!!!!!!!!!!!!!!!!!!!!!1")
-				console.error(e.message);
-			} finally {
-        console.log("tour api searchKeyword 호출 완료");
-      }
-		};
-  
-//    searchKeyword(placeName[0]);
-
-    for(let i=0; i<placeName.length; i++){
-      searchKeyword(placeName[i]);
-    }
-    
-	}, []);
-
-  // useEffect(() => {
-	// 	const detailCommon = async () => {
-	// 		try {
-	// 			const res = await axios.get('/api' + '/detailCommon', {
-	// 				params: {
-	// 					serviceKey: APP_KEY,
-	// 					MobileOS: "ETC",
-	// 					MobileApp: "NEXPOT",
-	// 					_type: "json",
-	// 					contentId: 126508,
-	// 					defaultYN:"Y",
-	// 					firstImageYN:"Y",
-	// 					areacodeYN:"Y",
-	// 					catcodeYN:"Y",
-	// 					addrinfoYN:"Y",
-	// 					mapinfoYN:"Y",
-	// 					overviewYN:"Y",
-	// 				},
-  //         timeout: 3000
-	// 			});
-	// 			const _info = await res.data.response.body.items.item[0].overview;
-  //       //console.log(_info);
-	// 			setInfo(_info)
-	// 		} catch (e) {
-	// 			console.error(e.message);
-	// 		} finally {
-  //       console.log("tour api 호출 완료");
-  //     }
-	// 	};
-	// 	//detailCommon();
-	// }, []);
-
-  return (
+    return (
     <div className="mx-56 text-white">
       <div className="relative overflow-hidden">
 
@@ -176,7 +86,8 @@ export default function Detail() {
           <p className="mt-2 text-sm font-normal title">
             {location.state.title}
           </p>
-          <button className="px-10 py-2 mt-4 text-sm font-medium rounded-lg bg-slate-50 text-slate-800">
+          <button className="px-10 py-2 mt-4 text-sm font-medium rounded-lg bg-slate-50 text-slate-800"
+          onClick={() => window.open(`https://youtu.be/${videoid}`, '_blank')}>
             영상 재생
           </button>
         </div>
@@ -213,8 +124,7 @@ export default function Detail() {
         <div
           id="placeContent"
           className="px-10 mt-8 text-sm leading-6 break-all">
-          {info}
-          {contentId}
+          
         </div>
 
         <button className="mt-4 px-10 underline underline-offset-4 text-sm font-normal text-[#737A7A]">
@@ -223,7 +133,7 @@ export default function Detail() {
 
         <p className="mx-10 mt-8 text-base font-bold">상세 정보</p>
         <div className="mx-10 mt-2">
-          
+
         </div>
       </div>
     </div>

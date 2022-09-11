@@ -47,10 +47,11 @@ export default function Detail() {
   const getDetailInfo = () => {
     
   }
-
+  
   const setPlaceItem = () => {
     return place.map((item, idx) => (
       <button
+        id={item.tourapi[0].placeid}
         key={idx}
         onClick={(e) => {
           // setMarkerPositions(item);
@@ -59,9 +60,11 @@ export default function Detail() {
           
           const parents = e.target.parentElement;
           for(const child of parents.children){
+            child.classList.remove("clicked");
             child.classList.remove("text-[#0D6EFD]");
             child.classList.remove("font-semibold");
           }
+          e.target.classList.toggle("clicked");
           e.target.classList.toggle("text-[#0D6EFD]");
           e.target.classList.toggle("font-semibold");
 
@@ -95,6 +98,15 @@ export default function Detail() {
     target.classList.toggle("h-48");
   }
 
+  const onClickKakaoMapInfo = () => {
+    const target = document.getElementsByClassName('clicked')[0].id;
+    window.open(`https://place.map.kakao.com/${target}`, '_blank');
+  }
+
+  const onClickTourInfo = () => {
+    const target = document.getElementsByClassName('clicked')[0].innerText;
+    window.open(`https://korean.visitkorea.or.kr/search/search_list.do?keyword=${target}`, '_blank');
+  }
     return (
       <div className="mx-4 my-4 text-white sm:my-0 sm:mx-56">
         <div className="relative overflow-hidden">
@@ -129,11 +141,13 @@ export default function Detail() {
         {/* <Map markerPositions={markerPositions} /> */}
         <p className="mt-10 text-base font-bold">여행지 정보</p>
         <div className="grid grid-flow-row gap-4 mt-4 sm:grid-flow-col auto-cols-max">
-          <button className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4">
+          <button className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4"
+          onClick={onClickKakaoMapInfo}>
             카카오지도에서 정보를 찾아보세요
             <ArrowRight strokeWidth={1.5} size={20} />
           </button>
-          <button className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4">
+          <button className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4"
+          onClick={onClickTourInfo}>
             대한민국 구석구석에서 정보를 찾아보세요
             <ArrowRight strokeWidth={1.5} size={20} />
           </button>

@@ -39,8 +39,7 @@ export default function Detail() {
         console.error(e.message);
       }
     };
-    getData();
-    //console.log("init get Data");
+    getData(); 
   }, []);
 
 
@@ -143,9 +142,8 @@ export default function Detail() {
           {place && setPlaceItem()}
         </div>
         <div id="map" className="w-full h-[48rem] z-10 rounded-lg mt-6"></div>
-        {/* <Map markerPositions={markerPositions} /> */}
         <p className="mt-10 text-base font-bold">여행지 정보</p>
-        <div className="grid grid-flow-row gap-4 mt-4 sm:grid-flow-col auto-cols-max">
+        <div className="grid grid-flow-row gap-4 mt-4 text-sm sm:text-md sm:grid-flow-col sm:auto-cols-max">
           <button className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4"
           onClick={onClickKakaoMapInfo}>
             카카오지도에서 정보를 찾아보세요
@@ -157,13 +155,7 @@ export default function Detail() {
             <ArrowRight strokeWidth={1.5} size={20} />
           </button>
         </div>
-        <div id="placeContent" className="mt-8 truncate text-sm leading-6 break-all h-6">
-          2017년9월17일 개장. 미포에서 출발해 송정까지 이어지는 동해남부선
-          폐선부지의 중간 쯤에 자리한 청사포 다릿돌전망대는 해수면으로 부터
-          2017년9월17일 개장. 미포에서 출발해 송정까지 이어지는 동해남부선
-          폐선부지의 중간 쯤에 자리한 청사포 다릿돌전망대는 해수면으로 부터
-          미포에서 출발해 송정까지 이어지는 동해남부선 폐선부지의 중간 쯤에
-          자리한 청사포 다릿돌전망대는 해수면으로 부터...
+        <div id="placeContent" className="mt-8 truncate text-sm leading-6 break-all h-6 hidden"> 
         </div>
         <button id="moreBtn" onClick={onClickExtend} className="mt-4 underline underline-offset-4 text-sm font-normal text-[#737A7A]">
           더보기

@@ -38,17 +38,17 @@ export default function SearchResult() {
 
   return (
     <>
-      <div className="mx-10 mt-20 text-white">
-        <span className="mb-5 text-5xl font-bold">
+      <div className="mx-4 sm:mx-10 mt-20 text-white">
+        <span className="mb-5 text-4xl sm:text-5xl font-bold">
           ‘{location.state.keyword}’
         </span>
-        <span className="font-medium text-[#c4c4c4] text-3xl">
+        <span className="font-medium text-[#c4c4c4] text-2xl sm:text-3xl">
           의 검색 결과입니다.
         </span>
         {video.length ? (
-          <div className="flex flex-wrap">
+          <div className="grid grid-col sm:grid-cols-4">
             {video.map((item, idx) => (
-              <div className="mx-2 mt-16" key={idx}>
+              <div className="mx-auto mt-20 sm:mt-16" key={idx}>
                 <button className="hover:cursor-default mb-2 px-4 py-0.5 border-[#737A7A] border-[1px] rounded-2xl text-sm font-semibold text-[#737A7A]">
                   {item.region.length > 2
                     ? item.region.substr(3, 2)
@@ -77,10 +77,10 @@ export default function SearchResult() {
           </div>
         ) : (
           <div>
-            <p className="mt-20 text-4xl font-medium text-center text-white">
+            <p className="mt-20 text-xl sm:text-4xl font-medium text-center text-white">
               검색 결과가 없어요.
             </p>
-            <p className="mt-3 text-4xl font-medium text-center text-white">
+            <p className="mt-3 text-xl sm:text-4xl font-medium text-center text-white">
               다른 키워드로 검색해보세요.🕵🏻
             </p>
           </div>

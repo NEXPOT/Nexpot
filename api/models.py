@@ -41,3 +41,23 @@ class Score(models.Model):
     class Meta:
         managed = True
         db_table = 'score'
+        
+class Tourapi(models.Model):
+    placeid = models.ForeignKey('Places', db_column='placeID', related_name='tourapi', primary_key=True, on_delete=models.CASCADE)
+    exist = models.IntegerField(null=False, default=0)
+    contentid = models.CharField(db_column='contentID', max_length=12)
+    title = models.CharField(max_length=20)
+    addr = models.CharField(max_length=50)
+    tel = models.CharField(max_length=20)
+    overview = models.TextField()
+    infocenter = models.CharField(max_length=300)
+    restdate = models.CharField(max_length=100)
+    usetime = models.CharField(max_length=300)
+    parking = models.CharField(max_length=10)
+    chkbabycarriage = models.CharField(max_length=10)
+    chkpet = models.CharField(max_length=10)
+    chkcreditcard = models.CharField(max_length=10)
+    
+    class Meta:
+        managed = True
+        db_table = 'tour'

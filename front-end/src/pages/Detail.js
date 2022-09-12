@@ -42,13 +42,6 @@ export default function Detail() {
     getData();
   }, []);
 
-  /** 처음 로드될 때 첫번재 장소 버튼이 클릭되어 있게 함 */
-  window.onload = () => {
-    placeBtnList.current.children[0].classList.toggle("clicked");
-    placeBtnList.current.children[0].classList.toggle("text-[#0D6EFD]");
-    placeBtnList.current.children[0].classList.toggle("font-semibold");
-  }
-
   const setPlaceItem = () => {
     return place.map((item, idx) => (
       <button
@@ -60,17 +53,22 @@ export default function Detail() {
           DetailInfoScripts(item);
 
           const parents = e.target.parentElement;
+          
           for (const child of parents.children) {
             child.classList.remove("clicked");
             child.classList.remove("text-[#0D6EFD]");
+            child.classList.add("text-[#737A7A]");
             child.classList.remove("font-semibold");
           }
           e.target.classList.toggle("clicked");
-          e.target.classList.toggle("text-[#0D6EFD]");
-          e.target.classList.toggle("font-semibold");
-
+          e.target.classList.add("text-[#0D6EFD]");
+          e.target.classList.add("font-semibold");
         }}
-        className="transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline flex flex-wrap gap-2 place-items-center mt-6 text-sm font-normal text-[#737A7A]"
+        
+        // 페이지 로드시 첫번째 place 버튼은 클릭되어 있도록 함.
+        className={idx == 0 
+          ? "clicked text-[#0D6EFD] font-semibold transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline flex flex-wrap gap-2 place-items-center mt-6 text-sm" 
+          : "text-[#737A7A] font-normal transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline flex flex-wrap gap-2 place-items-center mt-6 text-sm" }
       >
         {item.pname}
         <ChevronRight

@@ -31,8 +31,8 @@ export default function Detail() {
         ];
 
         res.data.places.sort((a, b) => a.idx - b.idx); // idx순으로 place 정렬
-        KakaoMapScript(res.data.places[0]);
         DetailInfoScripts(res.data.places[0]);
+        KakaoMapScript(res.data.places[0]);
         setDetail(_detail);
         setPlaces(res.data.places);
       } catch (e) {
@@ -53,7 +53,7 @@ export default function Detail() {
           DetailInfoScripts(item);
 
           const parents = e.target.parentElement;
-          
+
           for (const child of parents.children) {
             child.classList.remove("clicked");
             child.classList.remove("text-[#0D6EFD]");
@@ -64,11 +64,12 @@ export default function Detail() {
           e.target.classList.add("text-[#0D6EFD]");
           e.target.classList.add("font-semibold");
         }}
-        
         // 페이지 로드시 첫번째 place 버튼은 클릭되어 있도록 함.
-        className={idx == 0 
-          ? "clicked text-[#0D6EFD] font-semibold transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline flex flex-wrap gap-2 place-items-center mt-6 text-sm" 
-          : "text-[#737A7A] font-normal transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline flex flex-wrap gap-2 place-items-center mt-6 text-sm" }
+        className={
+          idx == 0
+            ? "clicked text-[#0D6EFD] font-semibold transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline flex flex-wrap gap-2 place-items-center mt-6 text-sm"
+            : "text-[#737A7A] font-normal transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline flex flex-wrap gap-2 place-items-center mt-6 text-sm"
+        }
       >
         {item.pname}
         <ChevronRight
@@ -85,13 +86,15 @@ export default function Detail() {
   const [imgSrc, setImgSrc] = useState(location.state.thumbnail);
   const handleImgError = (e) => {
     if (thumbnail.current.width <= 360) {
-      setImgSrc(location.state.thumbnail.replace("maxresdefault.jpg", "mqdefault.jpg"));
+      setImgSrc(
+        location.state.thumbnail.replace("maxresdefault.jpg", "mqdefault.jpg")
+      );
     }
     e.target.classList.add("w-full");
   };
 
   const onClickExtend = (e) => {
-    const target = document.getElementById('placeContent');
+    const target = document.getElementById("placeContent");
     target.classList.toggle("truncate");
     target.classList.toggle("max-h-full");
     target.classList.toggle("h-6");
@@ -100,22 +103,24 @@ export default function Detail() {
     } else {
       e.target.innerHTML = "더보기";
     }
-  }
+  };
 
   const onClickKakaoMapInfo = () => {
-    const target = document.getElementsByClassName('clicked')[0].id;
-    window.open(`https://place.map.kakao.com/${target}`, '_blank');
-  }
+    const target = document.getElementsByClassName("clicked")[0].id;
+    window.open(`https://place.map.kakao.com/${target}`, "_blank");
+  };
 
   const onClickTourInfo = () => {
-    const target = document.getElementsByClassName('clicked')[0].innerText;
-    window.open(`https://korean.visitkorea.or.kr/search/search_list.do?keyword=${target}`, '_blank');
-  }
+    const target = document.getElementsByClassName("clicked")[0].innerText;
+    window.open(
+      `https://korean.visitkorea.or.kr/search/search_list.do?keyword=${target}`,
+      "_blank"
+    );
+  };
 
   return (
     <div className="mx-4 my-4 text-white sm:my-0 sm:mx-16 md:mx-56">
       <div className="relative overflow-hidden">
-
         <div className="absolute inset-x-0 bottom-0 z-10 w-1/2 p-10">
           <p className="mt-6 text-xl font-bold channel">
             {location.state.channelname}
@@ -123,8 +128,10 @@ export default function Detail() {
           <p className="mt-2 text-sm font-normal title">
             {location.state.title}
           </p>
-          <button className="px-10 py-2 mt-4 text-sm font-medium rounded-lg bg-slate-50 text-slate-800"
-            onClick={() => window.open(`https://youtu.be/${videoid}`, '_blank')}>
+          <button
+            className="px-10 py-2 mt-4 text-sm font-medium rounded-lg bg-slate-50 text-slate-800"
+            onClick={() => window.open(`https://youtu.be/${videoid}`, "_blank")}
+          >
             영상 재생
           </button>
         </div>
@@ -139,33 +146,47 @@ export default function Detail() {
       </div>
       <div>
         <p className="mt-16 text-base font-bold">관광코스</p>
-        <div id="placeList" className="flex flex-wrap gap-2 sm:flex-row" ref={placeBtnList}>
+        <div
+          id="placeList"
+          className="flex flex-wrap gap-2 sm:flex-row"
+          ref={placeBtnList}
+        >
           {place && setPlaceItem()}
         </div>
-        <div id="map" className="w-full h-[48rem] z-10 rounded-lg mt-6"></div>
+        <div
+          id="map"
+          className="w-full h-[24rem] sm:h-[48rem] z-10 rounded-lg mt-6"
+        ></div>
         <p className="mt-10 text-base font-bold">여행지 정보</p>
         <div className="grid grid-flow-row gap-4 mt-4 text-sm sm:text-md sm:grid-flow-col sm:auto-cols-max">
-          <button className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4"
-            onClick={onClickKakaoMapInfo}>
+          <button
+            className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4"
+            onClick={onClickKakaoMapInfo}
+          >
             카카오지도에서 정보를 찾아보세요
             <ArrowRight strokeWidth={1.5} size={20} />
           </button>
-          <button className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4"
-            onClick={onClickTourInfo}>
+          <button
+            className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4"
+            onClick={onClickTourInfo}
+          >
             대한민국 구석구석에서 정보를 찾아보세요
             <ArrowRight strokeWidth={1.5} size={20} />
           </button>
         </div>
-        <div id="placeContent" className="hidden h-6 mt-8 text-sm leading-6 break-all truncate">
-        </div>
-        <button id="moreBtn" onClick={onClickExtend} className="mt-4 underline underline-offset-4 text-sm font-normal text-[#737A7A]">
+        <div
+          id="placeContent"
+          className="hidden h-6 mt-8 text-sm leading-6 break-all truncate"
+        ></div>
+        <button
+          id="moreBtn"
+          onClick={onClickExtend}
+          className="mt-4 underline underline-offset-4 text-sm font-normal text-[#737A7A]"
+        >
           더보기
         </button>
-        <p className="mt-8 text-base font-bold">
-          상세 정보
-        </p>
-        <div className="mt-4" id="detailInfo">
-        </div>
+        <p className="mt-8 text-base font-bold">상세 정보</p>
+        <div className="mt-4 flex flex-row gap-16" id="detailInfo"></div>
       </div>
     </div>
   );

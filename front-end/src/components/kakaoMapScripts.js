@@ -4,7 +4,7 @@ import { QuestionFill } from "akar-icons";
 
 const { kakao } = window;
 
-const KakaoMapScript = (item) => { 
+const KakaoMapScript = (item) => {
   var container = document.getElementById("map");
   if (container.hasChildNodes() === true) {
     // 이미 지도가 만들어져있다면 지우고 새로 생성합니다.
@@ -30,9 +30,9 @@ const KakaoMapScript = (item) => {
   var customOverlay = new kakao.maps.CustomOverlay({
     clickable: true, // 커스텀 오버레이 클릭 시 지도에 이벤트를 전파하지 않도록 설정한다
     content:
-      '<div id="customOverlay" class="flex flex-row gap-6 bg-white text-slate-800 p-6 rounded-xl">' +
+      '<div id="customOverlay" class="flex flex-col gap-6 bg-white text-slate-800 p-6 rounded-xl shadow-md">' +
       '<div class="pd-4 flex flex-col">' +
-      '<div class="text-xs">' +
+      '<div id="pname" class="text-xs">' +
       item.pname +
       "</div>" +
       '<div class="text-xs">' +
@@ -43,14 +43,9 @@ const KakaoMapScript = (item) => {
       "</div>",
     position: pos, // 커스텀 오버레이를 표시할 좌표
     xAnchor: 0.5, // 컨텐츠의 x 위치
-    yAnchor: 1.2, // 컨텐츠의 y 위치
+    yAnchor: 1.6, // 컨텐츠의 y 위치
   });
 
-  if (item.score.length !== 0) {
-    var scoreInfo = item.score[0];
-    console.log("score = ", scoreInfo);
-  } 
-  
   // 마커에 마우스를 호버했을 경우, 커스텀 오버레이를 표시합니다.
   // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
   // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
@@ -58,14 +53,23 @@ const KakaoMapScript = (item) => {
     // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다
     kakao.maps.event.addListener(marker, "mouseover", function () {
       customOverlay.setMap(map);
+      // detail info
+      if (item.score.length !== 0 && customOverlay !== null) {
+        var scoreInfo = document.getElementById("scoreInfoList");
+        var clone = scoreInfo.cloneNode(true);
+        console.log(clone);
+        var overlay = document.getElementById("customOverlay");
+        console.log(overlay);
+        overlay.appendChild(clone);
+      }
+
       // question mark mousevoer action을 추가합니다
       var questionInfo = document.getElementById("question");
       var customOverWindow = document.getElementById("customOverlay");
       var qInfoText = document.createElement("div");
       questionInfo.addEventListener("mouseover", (event) => {
-        qInfoText.style.boxShadow = `0px 4px 4px rgba(0, 0, 0, 0.25)`;
         qInfoText.innerHTML =
-          '<div id="qInfoText" class="w-56 p-4 h-24 bg-white text-xs text-slate-800"><p class="w-full break-all overflow-hidden">각 점수는 서비스, 분위기, 가격, 방문, 맛에 해당하는 리뷰들을 자연어 처리 및 분류하여 긍정적, 부정적 리뷰의 비율을 표기한 점수입니다.</p></div>';
+          '<div id="qInfoText" class="whitespace-normal rounded-lg w-56 p-4 h-24 shadow-lg bg-white text-[0.5rem] text-slate-800"><p>각 점수는 서비스, 분위기, 가격, 방문, 맛에 해당하는 리뷰들을 자연어 처리 및 분류하여 긍정적, 부정적 리뷰의 비율을 표기한 점수입니다.</p></div>';
         customOverWindow.parentNode.appendChild(qInfoText);
       });
       questionInfo.addEventListener("mouseout", (event) => {
@@ -73,13 +77,36 @@ const KakaoMapScript = (item) => {
         qInfoText.remove();
       });
     });
-
+    // mobile touch에 대응하기 위한 "mousedown" action function입니다.
+    kakao.maps.event.addListener(marker, "mousedown", function () {
+      customOverlay.setMap(map);
+      // detial info
+      // if (item.score.length !== 0) {
+      //   var scoreInfo = document.getElementById("scoreInfoList");
+      //   console.log(scoreInfo);
+      //   var customOverlay = document.getElementById("customOverlay");
+      //   console.log(customOverlay);
+      //   // customOverlay.appendChild(scoreInfo);
+      // }
+      // question mark mousevoer action을 추가합니다
+      var questionInfo = document.getElementById("question");
+      var customOverWindow = document.getElementById("customOverlay");
+      var qInfoText = document.createElement("div");
+      questionInfo.addEventListener("mouseover", (event) => {
+        qInfoText.innerHTML =
+          '<div id="qInfoText" class="whitespace-normal rounded-lg p-4 shadow-lg bg-white text-[0.5rem] text-slate-800"><p>각 점수는 서비스, 분위기, 가격, 방문, 맛에 해당하는 리뷰들을 자연어 처리 및 분류하여 긍정적, 부정적 리뷰의 비율을 표기한 점수입니다.</p></div>';
+        customOverWindow.parentNode.appendChild(qInfoText);
+      });
+      questionInfo.addEventListener("mouseout", (event) => {
+        qInfoText.textContent = "";
+        qInfoText.remove();
+      });
+    });
     // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
-    kakao.maps.event.addListener(customOverlay, "mouseout", function () {
+    kakao.maps.event.addListener(map, "mousedown", function () {
       customOverlay.setMap(null);
     });
   })(marker, customOverlay);
-
 };
 
 export default KakaoMapScript;

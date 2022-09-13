@@ -26,23 +26,75 @@ const DetailInfoScripts = (item) => {
   tourInfo.innerHTML = "";
 
   // 장소마다 tourapi 정보가 null인 칸이 있거나 없기 때문에 각각의 if문으로 value를 확인하고 element를 추가합니다.
-  // tel check
-  if (
+  /**[주소] addr check */
+  if (item.tourapi[0].addr !== null){
+    console.log("addr 정보 있음");
+    tourInfo.innerHTML +=
+      `<div class="flex flex-flow-row gap-2"><span class="text-[#837E7E]">주소 : </span><span class="text-[#D7CBCB]">` +
+      item.tourapi[0].addr +
+      `</span></div>`;
+  }
+
+  /**[문의 및 안내] tel & infocenter check */
+  if ( // infoCenter 정보가 있는 경우 -> infoCenter
+    item.tourapi[0].infocenter !== null &&
+    item.tourapi[0].infocenter !== undefined &&
+    item.tourapi[0].infocenter !== ""
+    ){
+    console.log("infoCenter 정보 있음");
+    tourInfo.innerHTML +=
+      `<div class="flex flex-flow-row gap-2"><span class="text-[#837E7E]">문의 및 안내 : </span><span class="text-[#D7CBCB]">` +
+      item.tourapi[0].infocenter +
+      `</span></div>`;
+  } else if ( // tel 정보가 있는 경우 -> tel
     item.tourapi[0].tel !== null &&
-    item.tourapi[0].tel !== "" &&
-    item.tourapi[0].tel !== "있음" &&
-    item.tourapi[0].tel !== undefined
-  ) {
+    item.tourapi[0].tel !== undefined &&
+    item.tourapi[0].tel !== ""
+    ){
     console.log("tel 정보 있음");
     tourInfo.innerHTML +=
-      `<div class="flex flex-flow-row gap-2"><span class="text-[#837E7E]">문의 및 안내</span><span class="text-[#D7CBCB]">` +
+      `<div class="flex flex-flow-row gap-2"><span class="text-[#837E7E]">문의 및 안내 : </span><span class="text-[#D7CBCB]">` +
       item.tourapi[0].tel +
       `</span></div>`;
   } else {
-    console.log("tel api 정보 없음");
+    console.log("infoCenter && tel api 정보 없음");
     tourInfo.remove();
   }
-  // parking check
+
+  /**[운영 시간] usetime check */
+  if (
+    item.tourapi[0].usetime !== null &&
+    item.tourapi[0].usetime !== "" &&
+    item.tourapi[0].usetime !== undefined
+  ) {
+    console.log("usetime 정보 있음");
+    tourInfo.innerHTML +=
+      `<div class="flex flex-flow-row gap-2"><span class="text-[#837E7E]">운영 시간 : </span><span class="text-[#D7CBCB]">` +
+      item.tourapi[0].usetime +
+      `</span></div>`;
+  } else {
+    console.log("usetime api 정보 없음");
+    tourInfo.remove();
+  }
+
+  /**[쉬는 날] restdate check */
+  if (
+    item.tourapi[0].restdate !== null &&
+    item.tourapi[0].restdate !== "" &&
+    item.tourapi[0].restdate !== undefined
+  ) {
+    console.log("usetime 정보 있음");
+    tourInfo.innerHTML +=
+      `<div class="flex flex-flow-row gap-2"><span class="text-[#837E7E]">쉬는 날 : </span><span class="text-[#D7CBCB]">` +
+      item.tourapi[0].restdate +
+      `</span></div>`;
+  } else {
+    console.log("restdate api 정보 없음");
+    tourInfo.remove();
+  }
+
+
+  /**[주차장 여부] parking check */
   if (
     item.tourapi[0].parking !== null &&
     item.tourapi[0].parking !== "" &&
@@ -50,46 +102,46 @@ const DetailInfoScripts = (item) => {
   ) {
     console.log("parking 정보 있음");
     tourInfo.innerHTML +=
-      `<div class="flex flex-flow-row gap-2"><span class="text-[#837E7E]">주차장 여부</span><span class="text-[#D7CBCB]">` +
+      `<div class="flex flex-flow-row gap-2"><span class="text-[#837E7E]">주차 여부 : </span><span class="text-[#D7CBCB]">` +
       item.tourapi[0].parking +
       `</span></div>`;
   } else {
     console.log("park api 정보 없음");
     tourInfo.remove();
   }
-  // chkpet check
+  /**[애완동물 동반 가능 여부] chkpet check */
   if (item.tourapi[0].chkpet !== null && item.tourapi[0].chkpet !== "") {
     console.log("chkpet 정보 있음");
     tourInfo.innerHTML +=
-      `<div class="flex flex-flow-row gap-2"><span class="text-[#837E7E]">애완동물 동반 가능 여부</span><span class="text-[#D7CBCB]">` +
+      `<div class="flex flex-flow-row gap-2"><span class="text-[#837E7E]">애완동물 동반 가능 여부 : </span><span class="text-[#D7CBCB]">` +
       item.tourapi[0].chkpet +
       `</span></div>`;
   } else {
     console.log("chkpet api 정보 없음");
     tourInfo.remove();
   }
-  // chkpet check
+  /**[유모차 대여 여부] chkbabycarriage check */
   if (
     item.tourapi[0].chkbabycarriage !== null &&
     item.tourapi[0].chkbabycarriage !== ""
   ) {
     console.log("chkbabycarriage 정보 있음");
     tourInfo.innerHTML +=
-      `<div class="flex flex-flow-row gap-2"><span class="text-[#837E7E]">유모차 대여 여부</span><span class="text-[#D7CBCB]">` +
+      `<div class="flex flex-flow-row gap-2"><span class="text-[#837E7E]">유모차 대여 여부 : </span><span class="text-[#D7CBCB]">` +
       item.tourapi[0].chkbabycarriage +
       `</span></div>`;
   } else {
     console.log("chkbabycarriage api 정보 없음");
     tourInfo.remove();
   }
-  // chkcreditcard check
+  /**[신용카드 가능 여부] chkcreditcard check */
   if (
     item.tourapi[0].chkcreditcard !== null &&
     item.tourapi[0].chkcreditcard !== ""
   ) {
     console.log("chkcreditcard 정보 있음");
     tourInfo.innerHTML +=
-      `<div class="flex flex-flow-row gap-2"><span class="text-[#837E7E]">신용카드 가능 여부</span><span class="text-[#D7CBCB]">` +
+      `<div class="flex flex-flow-row gap-2"><span class="text-[#837E7E]">신용카드 가능 여부 : </span><span class="text-[#D7CBCB]">` +
       item.tourapi[0].chkcreditcard +
       `</span></div>`;
   } else {
@@ -97,6 +149,7 @@ const DetailInfoScripts = (item) => {
     tourInfo.remove();
   }
   detailInfo.appendChild(tourInfo);
+
 
   /** 여기부터 score 점수 렌더링 부분 */
   if (item.score.length !== 0) {

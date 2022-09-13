@@ -81,7 +81,7 @@ export default function Detail() {
       </button>
     ));
   };
-
+  
   /**썸네일 고해상도 없을 시 이미지 에러 처리 */
   const [imgSrc, setImgSrc] = useState(location.state.thumbnail);
   const handleImgError = (e) => {
@@ -95,9 +95,9 @@ export default function Detail() {
 
   const onClickExtend = (e) => {
     const target = document.getElementById("placeContent");
-    target.classList.toggle("truncate");
+    target.classList.toggle("line-clamp-2");
     target.classList.toggle("max-h-full");
-    target.classList.toggle("h-6");
+    
     if (e.target.innerHTML === "더보기") {
       e.target.innerHTML = "접기";
     } else {
@@ -176,7 +176,7 @@ export default function Detail() {
         </div>
         <div
           id="placeContent"
-          className="hidden h-6 mt-8 text-sm leading-6 break-all truncate"
+          className="mt-8 text-sm leading-6 break-all line-clamp-2"
         ></div>
         <button
           id="moreBtn"
@@ -186,7 +186,7 @@ export default function Detail() {
           더보기
         </button>
         <p className="mt-8 text-base font-bold">상세 정보</p>
-        <div className="mt-4 flex flex-row gap-16" id="detailInfo"></div>
+        <div className="flex flex-row gap-16 mt-4" id="detailInfo"></div>
       </div>
     </div>
   );

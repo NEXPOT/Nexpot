@@ -6,11 +6,9 @@ const DetailInfoScripts = (item) => {
   //overview 정보 렌더링
   if (item.tourapi[0].overview !== null) {
     placeContent.innerHTML = item.tourapi[0].overview;
-    // placeContent.classList.add("text-ellipsis");
     if (placeContent.innerHTML.length > 50) {
       btn.style.display = "block";
     }
-    placeContent.style.display = "block";
   } else {
     console.log("overview api 정보 없음");
     btn.style.display = "none";

@@ -121,11 +121,11 @@ export default function Detail() {
   return (
     <div className="mx-4 my-4 text-white sm:my-0 sm:mx-16 md:mx-56">
       <div className="relative flex justify-start overflow-hidden">
-        <div className="absolute flex flex-col gap-2 inset-x-0 bottom-0 z-10 w-10/12 sm:w-1/2 p-2 sm:p-6 md:p-10">
-          <p className="text-lg sm:text-xl font-bold channel">
+        <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col w-10/12 gap-2 p-2 sm:w-1/2 sm:p-6 md:p-10">
+          <p className="text-lg font-bold sm:text-xl channel">
             {location.state.channelname}
           </p>
-          <p className="text-xs sm:text-sm font-normal title">
+          <p className="text-xs font-normal sm:text-sm title">
             {location.state.title}
           </p>
           <button
@@ -176,7 +176,7 @@ export default function Detail() {
         </div>
         <div
           id="placeContent"
-          className="mt-8 text-sm leading-6 break-all line-clamp-2"
+          className="mt-8 text-sm leading-6 break-all show line-clamp-2"
         ></div>
         <button
           id="moreBtn"
@@ -186,7 +186,7 @@ export default function Detail() {
           더보기
         </button>
         <p className="mt-8 text-base font-bold">상세 정보</p> 
-        <div className="mt-4 flex flex-col gap-8 sm:flex-row sm:gap-16" id="detailInfo"></div> 
+        <div className="flex flex-col gap-8 mt-4 sm:flex-row sm:gap-16" id="detailInfo"></div> 
       </div>
     </div>
   );

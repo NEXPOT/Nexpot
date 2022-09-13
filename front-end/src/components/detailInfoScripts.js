@@ -9,7 +9,7 @@ const DetailInfoScripts = (item) => {
     console.log("overview api 정보 있음");
     console.log(placeContent.innerHTML);
 
-    //placeContent.style.display = "block";
+    placeContent.style.display = "";
 
     if (placeContent.innerHTML.length > 50) {
       btn.style.display = "block";

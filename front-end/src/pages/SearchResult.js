@@ -45,10 +45,11 @@ export default function SearchResult() {
         <span className="font-medium text-[#c4c4c4] text-2xl sm:text-3xl">
           의 검색 결과입니다.
         </span>
+        <div className="">
         {video.length ? (
-          <div className="flex flex-wrap gap-4 justify-center xs:justify-start">
+          <div className="flex flex-wrap gap-4">
             {video.map((item, idx) => (
-              <div className="mx-auto inline mb-4 mt-12" key={idx}>
+              <div className="content- start mx-auto inline mb-4 mt-12" key={idx}>
                 <button className="hover:cursor-default mb-2 px-4 py-0.5 border-[#737A7A] border-[1px] rounded-2xl text-sm font-semibold text-[#737A7A]">
                   {item.region.length > 2
                     ? item.region.substr(3, 2)
@@ -85,6 +86,7 @@ export default function SearchResult() {
             </p>
           </div>
         )}
+        </div>
       </div>
     </>
   );

@@ -175,7 +175,13 @@ const VideoList = ({ regionName }) => {
           onScroll={handleScroll}
         >
           {video.map((item, idx) => (
-            <div className="inline mr-4" key={idx} onClick={() => {window.location.reload()}}>
+            <div
+              className="inline mr-4"
+              key={idx}
+              onClick={() => {
+                window.location.reload();
+              }}
+            >
               <Link
                 to={`/detail/${item.videoid}`}
                 state={{
@@ -193,7 +199,9 @@ const VideoList = ({ regionName }) => {
                   alt="thumbnail"
                   src={item.thumbnail}
                 />
-                <p className="mt-4 mb-1 text-base font-bold">{item.channelname}</p>
+                <p className="mt-4 mb-1 text-base font-bold">
+                  {item.channelname}
+                </p>
                 <p className="text-sm w-80">{item.title}</p>
               </Link>
             </div>
@@ -204,7 +212,7 @@ const VideoList = ({ regionName }) => {
           color="#656565"
           strokeWidth={2}
           size={24}
-          onClick={() => {
+          onClick={(e) => { 
             let currentScrollValue = focusTarget.current.scrollLeft;
             let currentWidth = focusTarget.current.clientWidth;
             let maxScrollWidth = focusTarget.current.scrollWidth;

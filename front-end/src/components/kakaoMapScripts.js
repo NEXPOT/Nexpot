@@ -30,16 +30,18 @@ const KakaoMapScript = (item) => {
   var customOverlay = new kakao.maps.CustomOverlay({
     clickable: true, // 커스텀 오버레이 클릭 시 지도에 이벤트를 전파하지 않도록 설정한다
     content:
-      '<div id="customOverlay" class="flex flex-col gap-6 bg-white text-slate-800 p-6 rounded-xl shadow-md">' +
+      '<div id="customOverlay" class="flex flex-col gap-2 bg-white text-slate-800 p-6 rounded-xl shadow-md">' +
+      '<div class="flex flex-row place-content-between">'+
       '<div class="pd-4 flex flex-col">' +
-      '<div id="pname" class="text-xs">' +
+      '<div id="pname" class="text-xs font-semibold">' +
       item.pname +
       "</div>" +
       '<div class="text-xs">' +
       item.tourapi[0].addr +
       "</div>" +
       "</div>" +
-      '<button id="question" class="self-start">?</button>' +
+      '<button id="question" class="text-[#0D6EFD] self-start">?</button>' +
+      "</div>"+
       "</div>",
     position: pos, // 커스텀 오버레이를 표시할 좌표
     xAnchor: 0.5, // 컨텐츠의 x 위치
@@ -57,9 +59,8 @@ const KakaoMapScript = (item) => {
       if (item.score.length !== 0 && customOverlay !== null) {
         var scoreInfo = document.getElementById("scoreInfoList");
         var clone = scoreInfo.cloneNode(true);
-        console.log(clone);
+        clone.setAttribute("id", "clonedScore");
         var overlay = document.getElementById("customOverlay");
-        console.log(overlay);
         overlay.appendChild(clone);
       }
 
@@ -77,17 +78,10 @@ const KakaoMapScript = (item) => {
         qInfoText.remove();
       });
     });
+
     // mobile touch에 대응하기 위한 "mousedown" action function입니다.
     kakao.maps.event.addListener(marker, "mousedown", function () {
       customOverlay.setMap(map);
-      // detial info
-      // if (item.score.length !== 0) {
-      //   var scoreInfo = document.getElementById("scoreInfoList");
-      //   console.log(scoreInfo);
-      //   var customOverlay = document.getElementById("customOverlay");
-      //   console.log(customOverlay);
-      //   // customOverlay.appendChild(scoreInfo);
-      // }
       // question mark mousevoer action을 추가합니다
       var questionInfo = document.getElementById("question");
       var customOverWindow = document.getElementById("customOverlay");
@@ -103,10 +97,17 @@ const KakaoMapScript = (item) => {
       });
     });
     // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
-    kakao.maps.event.addListener(map, "mousedown", function () {
+    kakao.maps.event.addListener(map, "mousedown", function () { 
+      if (item.score.length !== 0 && customOverlay !== null ) {
+        var clonedInfo = document.getElementById("clonedScore"); 
+        if(clonedInfo !== null){
+          clonedInfo.textContent = "";
+          clonedInfo.remove();
+        }
+      }
       customOverlay.setMap(null);
     });
-  })(marker, customOverlay);
+  })(marker, customOverlay); 
 };
 
 export default KakaoMapScript;

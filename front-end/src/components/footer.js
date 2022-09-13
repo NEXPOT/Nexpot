@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function footer() {
 	return (
-		<div className='text-[#737A7A] w-full mt-40 sm:pb-24 h-56 bg-[#120D0B]'>
+		<div className='text-[#737A7A] w-full mt-40 sm:pb-24 min-h-min bg-[#120D0B]'>
 			<div className='px-10 text-base font-medium pt-11 md:text-lg'>
 				Project Members
 			</div>

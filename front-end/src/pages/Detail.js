@@ -66,7 +66,7 @@ export default function Detail() {
         }}
         // 페이지 로드시 첫번째 place 버튼은 클릭되어 있도록 함.
         className={
-          idx == 0
+          idx === 0
             ? "clicked text-[#0D6EFD] font-semibold transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline flex flex-wrap gap-2 place-items-center mt-6 text-sm"
             : "text-[#737A7A] font-normal transition ease-in-out delay-100 hover:text-[#0D6EFD] hover:underline flex flex-wrap gap-2 place-items-center mt-6 text-sm"
         }
@@ -120,16 +120,16 @@ export default function Detail() {
 
   return (
     <div className="mx-4 my-4 text-white sm:my-0 sm:mx-16 md:mx-56">
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-x-0 bottom-0 z-10 w-1/2 p-10">
-          <p className="mt-6 text-xl font-bold channel">
+      <div className="relative flex justify-start overflow-hidden">
+        <div className="absolute flex flex-col gap-2 inset-x-0 bottom-0 z-10 w-10/12 sm:w-1/2 p-2 sm:p-6 md:p-10">
+          <p className="text-lg sm:text-xl font-bold channel">
             {location.state.channelname}
           </p>
-          <p className="mt-2 text-sm font-normal title">
+          <p className="text-xs sm:text-sm font-normal title">
             {location.state.title}
           </p>
           <button
-            className="px-10 py-2 mt-4 text-sm font-medium rounded-lg bg-slate-50 text-slate-800"
+            className="w-full py-2 mt-2 text-sm font-medium rounded-lg bg-slate-50 text-slate-800"
             onClick={() => window.open(`https://youtu.be/${videoid}`, "_blank")}
           >
             영상 재생
@@ -155,23 +155,23 @@ export default function Detail() {
         </div>
         <div
           id="map"
-          className="w-full h-[24rem] sm:h-[48rem] z-10 rounded-lg mt-6"
+          className="w-full h-[24rem] sm:h-96 z-10 rounded-lg mt-6"
         ></div>
         <p className="mt-10 text-base font-bold">여행지 정보</p>
         <div className="grid grid-flow-row gap-4 mt-4 text-sm sm:text-md sm:grid-flow-col sm:auto-cols-max">
           <button
-            className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4"
+            className="grid grid-flow-col gap-2 text-start border-white border-[0.5px] py-2 px-4"
             onClick={onClickKakaoMapInfo}
           >
             카카오지도에서 정보를 찾아보세요
-            <ArrowRight strokeWidth={1.5} size={20} />
+            <ArrowRight className="justify-self-end" strokeWidth={1.5} size={20} />
           </button>
           <button
-            className="grid grid-flow-col gap-2 items-center border-white border-[0.5px] py-2 px-4"
+            className="grid grid-flow-col gap-2 text-start border-white border-[0.5px] py-2 px-4"
             onClick={onClickTourInfo}
           >
             대한민국 구석구석에서 정보를 찾아보세요
-            <ArrowRight strokeWidth={1.5} size={20} />
+            <ArrowRight className="justify-self-end" strokeWidth={1.5} size={20} />
           </button>
         </div>
         <div
@@ -185,8 +185,8 @@ export default function Detail() {
         >
           더보기
         </button>
-        <p className="mt-8 text-base font-bold">상세 정보</p>
-        <div className="flex flex-row gap-16 mt-4" id="detailInfo"></div>
+        <p className="mt-8 text-base font-bold">상세 정보</p> 
+        <div className="mt-4 flex flex-col gap-8 sm:flex-row sm:gap-16" id="detailInfo"></div> 
       </div>
     </div>
   );

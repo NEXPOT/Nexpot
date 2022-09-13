@@ -156,7 +156,7 @@ const DetailInfoScripts = (item) => {
     var scoreInfo = item.score[0];
     var scoreInfo = document.createElement("div");
     scoreInfo.setAttribute("id", "scoreInfoList");
-    scoreInfo.setAttribute("class", "grid grid-col-2 text-sm");
+    scoreInfo.setAttribute("class", "flex flex-col text-sm");
     scoreInfo.innerHTML = "";
     // 장소마다 score 정보가 null인 칸이 있거나 없기 때문에 각각의 if문으로 value를 확인하고 element를 추가합니다.
     // atmosphere check
@@ -167,10 +167,10 @@ const DetailInfoScripts = (item) => {
     ) {
       console.log("atmosphere 정보 있음");
       scoreInfo.innerHTML +=
-        `<div class="flex flex-flow-row place-items-center gap-x-2"><span class="text-[#837E7E]">분위기</span><span class="text-[#D7CBCB]">` +
+        `<div class="flex flex-flow-row place-items-center gap-2"><span class="text-[#837E7E]">분위기</span><span class="text-[#D7CBCB]">` +
         (item.score[0].atmosphere * 100).toFixed(0) +
         `</span>` +
-        `<div class="w-24 h-2 bg-slate-400 overflow-hidden">` +
+        `<div class="w-24 h-2 bg-slate-400 overflow-hidden rounded-lg">` +
         `<div style="width:` +
         item.score[0].atmosphere * 100 +
         `%" class="bg-[#0D6EFD] h-2">` +
@@ -189,10 +189,10 @@ const DetailInfoScripts = (item) => {
     ) {
       console.log("cost 정보 있음");
       scoreInfo.innerHTML +=
-        `<div class="flex flex-flow-row place-items-center gap-x-2"><span class="text-[#837E7E]">가성비</span><span class="text-[#D7CBCB]">` +
+        `<div class="flex flex-flow-row place-items-center gap-2"><span class="text-[#837E7E]">가성비</span><span class="text-[#D7CBCB]">` +
         (item.score[0].cost * 100).toFixed(0) +
         `</span>` +
-        `<div class="w-24 h-2 bg-slate-400 overflow-hidden">` +
+        `<div class="w-24 h-2 bg-slate-400 overflow-hidden rounded-lg">` +
         `<div style="width:` +
         item.score[0].cost * 100 +
         `%" class="bg-[#0D6EFD] h-2">` +
@@ -211,10 +211,10 @@ const DetailInfoScripts = (item) => {
     ) {
       console.log("service 정보 있음");
       scoreInfo.innerHTML +=
-        `<div class="flex flex-flow-row place-items-center gap-x-2"><span class="text-[#837E7E]">서비스</span><span class="text-[#D7CBCB]">` +
+        `<div class="flex flex-flow-row place-items-center gap-2"><span class="text-[#837E7E]">서비스</span><span class="text-[#D7CBCB]">` +
         (item.score[0].service * 100).toFixed(0) +
         `</span>` +
-        `<div class="w-24 h-2 bg-slate-400 overflow-hidden">` +
+        `<div class="w-24 h-2 bg-slate-400 overflow-hidden rounded-lg">` +
         `<div style="width:` +
         item.score[0].service * 100 +
         `%" class="bg-[#0D6EFD] h-2">` +
@@ -233,10 +233,10 @@ const DetailInfoScripts = (item) => {
     ) {
       console.log("taste api 정보 있음");
       scoreInfo.innerHTML +=
-        `<div class="flex flex-flow-row place-items-center gap-x-2"><span class="text-[#837E7E]">맛</span><span class="text-[#D7CBCB]">` +
+        `<div class="flex flex-flow-row place-items-center gap-2"><span class="text-[#837E7E]">맛</span><span class="text-[#D7CBCB]">` +
         (item.score[0].taste * 100).toFixed(0) +
         `</span>` +
-        `<div class="w-24 h-2 bg-slate-400">` +
+        `<div class="w-24 h-2 bg-slate-400 overflow-hidden rounded-lg">` +
         `<div style="width:` +
         item.score[0].taste * 100 +
         `%" class="bg-[#0D6EFD] h-2">` +
@@ -258,10 +258,10 @@ const DetailInfoScripts = (item) => {
     ) {
       console.log("visit 정보 있음");
       scoreInfo.innerHTML +=
-        `<div class="flex flex-flow-row place-items-center gap-x-2"><span class="text-[#837E7E]">재방문의사</span><span class="text-[#D7CBCB]">` +
+        `<div class="flex flex-flow-row place-items-center gap-2"><span class="text-[#837E7E]">재방문의사</span><span class="text-[#D7CBCB]">` +
         (item.score[0].visit * 100).toFixed(0) +
         `</span>` +
-        `<div class="w-24 h-2 bg-slate-400 overflow-hidden">` +
+        `<div class="w-24 h-2 bg-slate-400 overflow-hidden rounded-lg">` +
         `<div style="width:` +
         item.score[0].visit * 100 +
         `%" class="bg-[#0D6EFD] h-2">` +

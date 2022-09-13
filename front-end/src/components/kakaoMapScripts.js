@@ -31,7 +31,7 @@ const KakaoMapScript = (item) => {
     clickable: true, // 커스텀 오버레이 클릭 시 지도에 이벤트를 전파하지 않도록 설정한다
     content:
       '<div id="customOverlay" class="flex flex-col gap-2 bg-white text-slate-800 p-6 rounded-xl shadow-md">' +
-      '<div class="flex flex-row place-content-between">'+
+      '<div class="flex flex-row gap-4 place-content-between">'+
       '<div class="pd-4 flex flex-col">' +
       '<div id="pname" class="text-xs font-semibold">' +
       item.pname +
@@ -56,7 +56,7 @@ const KakaoMapScript = (item) => {
     kakao.maps.event.addListener(marker, "mouseover", function () {
       customOverlay.setMap(map);
       // detail info
-      if (item.score.length !== 0 && customOverlay !== null) {
+      if (item.score.length !== 0 && customOverlay !== null && (document.getElementById('clonedScore')=== null)) {
         var scoreInfo = document.getElementById("scoreInfoList");
         var clone = scoreInfo.cloneNode(true);
         clone.setAttribute("id", "clonedScore");
@@ -70,7 +70,7 @@ const KakaoMapScript = (item) => {
       var qInfoText = document.createElement("div");
       questionInfo.addEventListener("mouseover", (event) => {
         qInfoText.innerHTML =
-          '<div id="qInfoText" class="whitespace-normal rounded-lg w-56 p-4 h-24 shadow-lg bg-white text-[0.5rem] text-slate-800"><p>각 점수는 서비스, 분위기, 가격, 방문, 맛에 해당하는 리뷰들을 자연어 처리 및 분류하여 긍정적, 부정적 리뷰의 비율을 표기한 점수입니다.</p></div>';
+          '<div id="qInfoText" class="whitespace-normal rounded-lg max-w-max p-4 min-h-min shadow-lg bg-white text-[0.5rem] text-slate-800"><p>각 점수는 서비스, 분위기, 가격, 방문, 맛에 해당하는 리뷰들을 자연어 처리 및 분류하여 긍정적, 부정적 리뷰의 비율을 표기한 점수입니다.</p></div>';
         customOverWindow.parentNode.appendChild(qInfoText);
       });
       questionInfo.addEventListener("mouseout", (event) => {

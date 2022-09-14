@@ -5,10 +5,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Region() {
 	let navigate = useNavigate();
-  let location = useLocation();
-  let param = location.pathname.replace("/list/","");
-
-  const region = {
+	let location = useLocation();
+	let param = location.pathname.replace("/list/", "");
+	const region = {
 		광역시: ["전체", "부산", "대구", "인천", "광주", "대전", "울산"],
 		서울: ["서울"],
 		강원: ["전체", "강릉", "원주", "속초", "평창", "양양"],
@@ -34,106 +33,160 @@ export default function Region() {
 		경남: "gyeongnam",
 		서울: "seoul",
 		부산: "busan",
-		대구: "Daegu",
-		인천: "Incheon",
-		광주: "Gwangju",
-		대전: "Daejeon",
-		울산: "Ulsan",
-		제주: "Jeju",
-		강릉: "Gangneung",
-		원주: "Wonju",
-		속초: "Sokcho",
-		평창: "Pyeongchang",
-		양양: "Yangyang",
-		수원: "Suwon",
-		용인: "Yongin",
-		고양: "Goyang",
-		가평: "Gapyeong",
-		양평: "Yangpyeong",
-		대부도: "Daebudo",
-		파주: "Paju",
-		포천: "Pocheon",
+		대구: "daegu",
+		인천: "incheon",
+		광주: "gwangju",
+		대전: "daejeon",
+		울산: "ulsan",
+		제주: "jeju",
+		강릉: "gangneung",
+		원주: "wonju",
+		속초: "sokcho",
+		평창: "pyeongchang",
+		양양: "yangyang",
+		수원: "suwon",
+		용인: "yongin",
+		고양: "goyang",
+		가평: "gapyeong",
+		양평: "yangpyeong",
+		대부도: "daebudo",
+		파주: "paju",
+		포천: "pocheon",
 		청주: "cheongju",
-		충주: "Chungju",
-		제천: "Jecheon",
-		단양: "Danyang",
+		충주: "chungju",
+		제천: "jecheon",
+		단양: "danyang",
 		천안: "cheonan",
 		보령: "boryeong",
 		부여: "buyeo",
-		태안: "Taean",
-		당진: "Dangjin",
-		전주: "Jeonju",
-		군산: "Gunsan",
-		고창: "Gochang",
+		태안: "taean",
+		당진: "dangjin",
+		전주: "jeonju",
+		군산: "gunsan",
+		고창: "gochang",
 		부안: "buan",
-		여수: "Yeosu",
-		해남: "Haenam",
+		여수: "yeosu",
+		해남: "haenam",
 		보성: "boseong",
-		담양: "Damyang",
-		목포: "Mokpo",
-		포항: "Pohang",
-		경주: "Gyeongju",
-		울릉도: "Ulleungdo",
+		담양: "damyang",
+		목포: "mokpo",
+		포항: "pohang",
+		경주: "gyeongju",
+		울릉도: "ulleungdo",
 		안동: "andong",
-		문경: "Mungyeong",
-		진주: "Jinju",
-		통영: "Tongyeong",
-		거제: "Geoje",
-		남해: "Namhae",
+		문경: "mungyeong",
+		진주: "jinju",
+		통영: "tongyeong",
+		거제: "geoje",
+		남해: "namhae",
 	};
 
-  let region1box = useRef();
-  let region2box = useRef();
-  let regionKey = Object.keys(regionValue).find(key => regionValue[key] === param);
+	const [region1Name, setRegion1Name] = useState("광역시");
+	const [region2Name, setRegion2Name] = useState("전체");
 
-	/** 처음 로드될 때 해당 region에 css styling */
-  useEffect(() => {
-    for (let i = 0; i < region1box.current.children.length; i++) {
-    if (region1box.current.children[i].innerHTML === regionKey) {
-      region1box.current.children[i].classList.toggle("clicked");
-      region1box.current.children[i].classList.toggle("text-[#0D6EFD]");
-      region1box.current.children[i].classList.toggle("underline");
-      region1box.current.children[i].classList.toggle("underline-offset-4");
-    }
-  }
-   // 0번째 region2를 클릭되어 있게 함
-		region2box.current.children[0].classList.add("clicked");
-		region2box.current.children[0].classList.add("text-[#ffffff]");		
-		region2box.current.children[0].classList.add("bg-[#0D6EFD]");
-  }, []);
+	let region1box = useRef();
+	let region2box = useRef();
+	let regionKey = Object.keys(regionValue).find(key => regionValue[key] === param);
+
+	useEffect(() => {
+		// setRegion1
+		if (regionKey === "광역시" || region["광역시"].includes(regionKey)) {
+			setRegion1Name("광역시");
+		} else if (regionKey === "서울" || region["서울"].includes(regionKey)) {
+			setRegion1Name("서울");
+		} else if (regionKey === "강원" || region["강원"].includes(regionKey)) {
+			setRegion1Name("강원");
+		} else if (regionKey === "경기" || region["경기"].includes(regionKey)) {
+			setRegion1Name("경기");
+		} else if (regionKey === "충북" || region["충북"].includes(regionKey)) {
+			setRegion1Name("충북");
+		} else if (regionKey === "충남" || region["충남"].includes(regionKey)) {
+			setRegion1Name("충남");
+		} else if (regionKey === "전북" || region["전북"].includes(regionKey)) {
+			setRegion1Name("전북");
+		} else if (regionKey === "전남" || region["전남"].includes(regionKey)) {
+			setRegion1Name("전남");
+		} else if (regionKey === "경북" || region["경북"].includes(regionKey)) {
+			setRegion1Name("경북");
+		} else if (regionKey === "경남" || region["경남"].includes(regionKey)) {
+			setRegion1Name("경남");
+		} else if (regionKey === "제주" || region["제주"].includes(regionKey)) {
+			setRegion1Name("제주");
+		}
+
+		// setRegion2
+		if (region1.includes(regionKey)) {
+			setRegion2Name("전체");
+		} else {
+			setRegion2Name(regionKey);
+		}
+	}, [region1Name, region2Name]);
+
+	/** 처음 로드될 때 해당 region buttion에 css styling */
+	useEffect(() => {
+		// region1 effect
+		for (let i = 0; i < region1box.current.children.length; i++) {
+			if (region1box.current.children[i].innerHTML === region1Name) {
+				region1box.current.children[i].classList.add("clicked");
+				region1box.current.children[i].classList.add("text-[#0D6EFD]");
+				region1box.current.children[i].classList.add("underline");
+				region1box.current.children[i].classList.add("underline-offset-4");
+			} else {
+				region1box.current.children[i].classList.remove("clicked");
+				region1box.current.children[i].classList.remove("text-[#0D6EFD]");
+				region1box.current.children[i].classList.remove("underline");
+				region1box.current.children[i].classList.remove("underline-offset-4");
+			}
+		}
+
+		// region2 effect
+		for (let i = 0; i < region2box.current.children.length; i++) {
+			if (region1.includes(regionKey)) { // "전체"에 해당하는 경우
+				region2box.current.children[0].classList.add("clicked");
+				region2box.current.children[0].classList.add("text-[#ffffff]");
+				region2box.current.children[0].classList.add("bg-[#0D6EFD]");
+			} else if (region2box.current.children[i].innerHTML === region2Name) {
+				region2box.current.children[i].classList.add("clicked");
+				region2box.current.children[i].classList.add("text-[#ffffff]");
+				region2box.current.children[i].classList.add("bg-[#0D6EFD]");
+			} else {
+				region2box.current.children[i].classList.remove("clicked");
+				region2box.current.children[i].classList.remove("text-[#ffffff]");
+				region2box.current.children[i].classList.remove("bg-[#0D6EFD]");
+			}
+		}
+	}, [region1Name, region2Name]);
 
 	const [video, setVideo] = useState([]);
 	/** call ajax, 지역 영상 불러오기 */
 	useEffect(() => {
 		let regionN;
-		if (region1.includes(regionKey)){
+		if (region1.includes(regionKey)) {
 			regionN = "region1"
 		} else {
 			regionN = "region2"
 		}
-    const getVideo = async () => {
-      try {
-        const res = await axios.get("http://13.209.13.176/api/youtube/", {
-          params: {
-            [regionN]: param
-        }
-			});
-        const _video = await res.data.map((item) => ({
-          videoid: item.videoid,
-          title: item.title,
-          thumbnail: item.thumbnail,
-          channelname: item.channelname,
-        }));
-        setVideo(_video);
-      } catch (e) {
-        console.error(e.message);
-      }
-    };
-    getVideo();
-  }, [param]);
+		const getVideo = async () => {
+			try {
+				const res = await axios.get("http://13.209.13.176/api/youtube/", {
+					params: {
+						[regionN]: param
+					}
+				});
+				const _video = await res.data.map((item) => ({
+					videoid: item.videoid,
+					title: item.title,
+					thumbnail: item.thumbnail,
+					channelname: item.channelname,
+				}));
+				setVideo(_video);
+			} catch (e) {
+				console.error(e.message);
+			}
+		};
+		getVideo();
+	}, [param]);
 
-	const [region1Name, setRegion1Name] = useState("광역시");
-	const [region2Name, setRegion2Name] = useState("전체");
 
 	// 토글 리스트가 열려있는지 확인하는 state
 	const [isOpen, setToggle] = useState(true);
@@ -152,7 +205,6 @@ export default function Region() {
 
 	const onClickRegion1 = (e) => {
 		navigate(`/list/${regionValue[e.target.innerHTML]}`);
-		//window.location.reload();
 		setRegion1Name(e.target.innerHTML);
 		setRegion2Name(e.target.innerHTML);
 		let parents = e.target.parentElement;
@@ -170,9 +222,9 @@ export default function Region() {
 
 		// 0번째 region2를 클릭되어 있게 함
 		region2box.current.children[0].classList.add("clicked");
-		region2box.current.children[0].classList.add("text-[#ffffff]");		
+		region2box.current.children[0].classList.add("text-[#ffffff]");
 		region2box.current.children[0].classList.add("bg-[#0D6EFD]");
-		
+
 		// 다른 지역의 region2가 클릭되어 있는 현상 제거
 		for (let i = 1; i < region2box.current.children.length; i++) {
 			region2box.current.children[i].classList.remove("clicked");
@@ -182,14 +234,14 @@ export default function Region() {
 	}
 
 	const onClickRegion2 = (e) => {
-		if (e.target.innerHTML === "전체"){
+		if (e.target.innerHTML === "전체") {
 			navigate(`/list/${regionValue[region1Name]}`)
-		} 
+		}
 		else {
 			navigate(`/list/${regionValue[e.target.innerHTML]}`);
 		}
 		setRegion2Name(e.target.innerHTML);
-		
+
 		let parents = e.target.parentElement;
 		for (const child of parents.children) {
 			child.classList.remove("clicked");
@@ -199,9 +251,6 @@ export default function Region() {
 		e.target.classList.toggle("clicked");
 		e.target.classList.toggle("text-[#ffffff]");
 		e.target.classList.toggle("bg-[#0D6EFD]");
-
-		
-
 	};
 
 	const onClickToggle = (e) => {
@@ -243,58 +292,58 @@ export default function Region() {
 						: "hide transition ease-in-out delay-100 p-4 max-h-max bg-[#120D0B] rounded-lg"
 				}
 			>
-					<div className="flex flex-wrap text-[#525959] w-full px-4 sm:px-6"
-          ref={region1box}>
-						{region1.map((region, idx) => (
-							<button
-								key={idx}
-								className="hover:text-[#0D6EFD] hover:font-bold hover:underline underline-offset-4 mb-2 mr-8 py-0.5 text-base font-medium text-[#525959]"
-								onClick={onClickRegion1}
-							>
-								{region}
-							</button>
-						))}
-					</div>
-					<div className="flex flex-wrap py-2 px-4 rounded-lg bg-[#1A1716] align-middle"
-						ref={region2box}>
-						{region[region1Name].map((region, idx) => (
+				<div className="flex flex-wrap text-[#525959] w-full px-4 sm:px-6"
+					ref={region1box}>
+					{region1.map((region, idx) => (
+						<button
+							key={idx}
+							className="hover:text-[#0D6EFD] hover:font-bold hover:underline underline-offset-4 mb-2 mr-8 py-0.5 text-base font-medium text-[#525959]"
+							onClick={onClickRegion1}
+						>
+							{region}
+						</button>
+					))}
+				</div>
+				<div className="flex flex-wrap py-2 px-4 rounded-lg bg-[#1A1716] align-middle"
+					ref={region2box}>
+					{region[region1Name].map((region, idx) => (
 
-							<button
-								key={idx}
-								className="color-[#0D6EF] font-normal border-[#525959] border-[0.5px] rounded-2xl px-4 py-1 mx-1 my-1 text-xs sm:px-6 sm:text-sm text-[#737A7A] hover:text-[#ffffff] hover:bg-[#0D6EFD] hover:border-[#0D6EFD] transition ease-in-out delay-75"
-								onClick={onClickRegion2}
-							>
-								{region}
-							</button>
+						<button
+							key={idx}
+							className="color-[#0D6EF] font-normal border-[#525959] border-[0.5px] rounded-2xl px-4 py-1 mx-1 my-1 text-xs sm:px-6 sm:text-sm text-[#737A7A] hover:text-[#ffffff] hover:bg-[#0D6EFD] hover:border-[#0D6EFD] transition ease-in-out delay-75"
+							onClick={onClickRegion2}
+						>
+							{region}
+						</button>
 
-						))}
-					</div> 
+					))}
+				</div>
 			</div>
 
 			<div className="flex flex-wrap mt-20">
-			{video.map((item, idx) => (
-            <div className="inline mb-20 mr-4" key={idx}>
-              <Link
-                to={`/detail/${item.videoid}`}
-								state={{
-									thumbnail: item.thumbnail.replace(
-                    "mqdefault.jpg",
-                    "maxresdefault.jpg"
-                  ),
-                  channelname: item.channelname,
-                  title: item.title,
-                }}
-              >
-                <img
-                  className="snap-start"
-                  alt="thumbnail"
-                  src={item.thumbnail}
-                />
-                <p className="mt-4 mb-1 text-base font-bold">{item.channelname}</p>
-                <p className="text-sm w-80">{item.title}</p>
-              </Link>
-            </div>
-          ))}
+				{video.map((item, idx) => (
+					<div className="inline mb-20 mr-4" key={idx}>
+						<Link
+							to={`/detail/${item.videoid}`}
+							state={{
+								thumbnail: item.thumbnail.replace(
+									"mqdefault.jpg",
+									"maxresdefault.jpg"
+								),
+								channelname: item.channelname,
+								title: item.title,
+							}}
+						>
+							<img
+								className="snap-start"
+								alt="thumbnail"
+								src={item.thumbnail}
+							/>
+							<p className="mt-4 mb-1 text-base font-bold">{item.channelname}</p>
+							<p className="text-sm w-80">{item.title}</p>
+						</Link>
+					</div>
+				))}
 			</div>
 		</div>
 	);

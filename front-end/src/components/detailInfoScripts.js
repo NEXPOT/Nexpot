@@ -28,7 +28,7 @@ const DetailInfoScripts = (item) => {
     detailInfo.textContent = "";
   }
   var tourInfo = document.createElement("div");
-  tourInfo.setAttribute("class", "text-sm w-1/2");
+  tourInfo.setAttribute("class", "grid grid-col-2 gap-2 text-sm max-w-max");
   tourInfo.innerHTML = "";
 
   // 장소마다 tourapi 정보가 null인 칸이 있거나 없기 때문에 각각의 if문으로 value를 확인하고 element를 추가합니다.

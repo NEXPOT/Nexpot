@@ -14,7 +14,6 @@ const DetailInfoScripts = (item) => {
     if (placeContent.innerHTML.length > 50) {
       btn.style.display = "block";
     }
-
   } else {
     //console.log("overview api 정보 없음");
     btn.style.display = "none";
@@ -28,12 +27,12 @@ const DetailInfoScripts = (item) => {
     detailInfo.textContent = "";
   }
   var tourInfo = document.createElement("div");
-  tourInfo.setAttribute("class", "w-1/2 text-sm");
+  tourInfo.setAttribute("class", "w-4/5 sm:w-1/2 text-sm");
   tourInfo.innerHTML = "";
 
   // 장소마다 tourapi 정보가 null인 칸이 있거나 없기 때문에 각각의 if문으로 value를 확인하고 element를 추가합니다.
   /**[주소] addr check */
-  if (item.tourapi[0].addr !== null){
+  if (item.tourapi[0].addr !== null) {
     //console.log("addr 정보 있음");
     tourInfo.innerHTML +=
       `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E]">주소 </span><span class="text-[#D7CBCB]">` +
@@ -42,21 +41,23 @@ const DetailInfoScripts = (item) => {
   }
 
   /**[문의 및 안내] tel & infocenter check */
-  if ( // infoCenter 정보가 있는 경우 -> infoCenter
+  if (
+    // infoCenter 정보가 있는 경우 -> infoCenter
     item.tourapi[0].infocenter !== null &&
     item.tourapi[0].infocenter !== undefined &&
     item.tourapi[0].infocenter !== ""
-    ){
+  ) {
     //console.log("infoCenter 정보 있음");
     tourInfo.innerHTML +=
       `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E]">문의 및 안내 </span><span class="text-[#D7CBCB]">` +
       item.tourapi[0].infocenter +
       `</span></div>`;
-  } else if ( // tel 정보가 있는 경우 -> tel
+  } else if (
+    // tel 정보가 있는 경우 -> tel
     item.tourapi[0].tel !== null &&
     item.tourapi[0].tel !== undefined &&
     item.tourapi[0].tel !== ""
-    ){
+  ) {
     //console.log("tel 정보 있음");
     tourInfo.innerHTML +=
       `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E]">문의 및 안내 </span><span class="text-[#D7CBCB]">` +
@@ -154,7 +155,6 @@ const DetailInfoScripts = (item) => {
     tourInfo.remove();
   }
   detailInfo.appendChild(tourInfo);
-  
 
   /** 여기부터 score 점수 렌더링 부분 */
   if (item.score.length !== 0) {
@@ -175,40 +175,40 @@ const DetailInfoScripts = (item) => {
       //console.log("atmosphere 정보 있음");
       if (item.score[0].atmosphere * 100 >= 70) {
         scoreInfo.innerHTML +=
-        `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">분위기 <div class="relative inline left-8">😍</div></li><span class="text-[#D7CBCB] w-6">` +
-        (item.score[0].atmosphere * 100).toFixed(0) +
-        `</span>` +
-        `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
-        `<div style="width:` +
-        item.score[0].atmosphere * 100 +
-        `%" class="bg-[#0D6EFD] h-2">` +
-        `</div>` +
-        `</div>` +
-        `</div>`;
-      } else if(item.score[0].atmosphere * 100 >= 40) {
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">분위기 <div class="relative inline left-8">😍</div></li><span class="text-[#D7CBCB] w-6">` +
+          (item.score[0].atmosphere * 100).toFixed(0) +
+          `</span>` +
+          `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
+          `<div style="width:` +
+          item.score[0].atmosphere * 100 +
+          `%" class="bg-[#0D6EFD] h-2">` +
+          `</div>` +
+          `</div>` +
+          `</div>`;
+      } else if (item.score[0].atmosphere * 100 >= 40) {
         scoreInfo.innerHTML +=
-        `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">분위기 <div class="relative inline left-8">🙂</div></li><span class="text-[#D7CBCB] w-6">` +
-        (item.score[0].atmosphere * 100).toFixed(0) +
-        `</span>` +
-        `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
-        `<div style="width:` +
-        item.score[0].atmosphere * 100 +
-        `%" class="bg-[#E8A455] h-2">` +
-        `</div>` +
-        `</div>` +
-        `</div>`;
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">분위기 <div class="relative inline left-8">🙂</div></li><span class="text-[#D7CBCB] w-6">` +
+          (item.score[0].atmosphere * 100).toFixed(0) +
+          `</span>` +
+          `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
+          `<div style="width:` +
+          item.score[0].atmosphere * 100 +
+          `%" class="bg-[#E8A455] h-2">` +
+          `</div>` +
+          `</div>` +
+          `</div>`;
       } else {
         scoreInfo.innerHTML +=
-        `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">분위기 <div class="relative inline left-8">😥</div></li><span class="text-[#D7CBCB] w-6">` +
-        (item.score[0].atmosphere * 100).toFixed(0) +
-        `</span>` +
-        `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
-        `<div style="width:` +
-        item.score[0].atmosphere * 100 +
-        `%" class="bg-[#E85C55] h-2">` +
-        `</div>` +
-        `</div>` +
-        `</div>`;
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">분위기 <div class="relative inline left-8">😥</div></li><span class="text-[#D7CBCB] w-6">` +
+          (item.score[0].atmosphere * 100).toFixed(0) +
+          `</span>` +
+          `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
+          `<div style="width:` +
+          item.score[0].atmosphere * 100 +
+          `%" class="bg-[#E85C55] h-2">` +
+          `</div>` +
+          `</div>` +
+          `</div>`;
       }
     } else {
       //console.log("atmosphere api 정보 없음");
@@ -221,45 +221,45 @@ const DetailInfoScripts = (item) => {
       item.score[0].cost !== "0.00" &&
       item.score[0].cost !== undefined
     ) {
-      if(item.score[0].cost * 100 >= 70) {
+      if (item.score[0].cost * 100 >= 70) {
         //console.log("cost 정보 있음");
-      scoreInfo.innerHTML +=
-        `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">가성비 <div class="relative inline left-8">😍</div></li><span class="text-[#D7CBCB] w-6">` +
-        (item.score[0].cost * 100).toFixed(0) +
-        `</span>` +
-        `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
-        `<div style="width:` +
-        item.score[0].cost * 100 +
-        `%" class="bg-[#0D6EFD] h-2">` +
-        `</div>` +
-        `</div>` +
-        `</div>`;
-      } else if(item.score[0].cost * 100 >= 40) {
+        scoreInfo.innerHTML +=
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">가성비 <div class="relative inline left-8">😍</div></li><span class="text-[#D7CBCB] w-6">` +
+          (item.score[0].cost * 100).toFixed(0) +
+          `</span>` +
+          `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
+          `<div style="width:` +
+          item.score[0].cost * 100 +
+          `%" class="bg-[#0D6EFD] h-2">` +
+          `</div>` +
+          `</div>` +
+          `</div>`;
+      } else if (item.score[0].cost * 100 >= 40) {
         //console.log("cost 정보 있음");
-      scoreInfo.innerHTML +=
-        `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">가성비 <div class="relative inline left-8">🙂</div></li><span class="text-[#D7CBCB] w-6">` +
-        (item.score[0].cost * 100).toFixed(0) +
-        `</span>` +
-        `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
-        `<div style="width:` +
-        item.score[0].cost * 100 +
-        `%" class="bg-[#E8A455] h-2">` +
-        `</div>` +
-        `</div>` +
-        `</div>`;
+        scoreInfo.innerHTML +=
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">가성비 <div class="relative inline left-8">🙂</div></li><span class="text-[#D7CBCB] w-6">` +
+          (item.score[0].cost * 100).toFixed(0) +
+          `</span>` +
+          `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
+          `<div style="width:` +
+          item.score[0].cost * 100 +
+          `%" class="bg-[#E8A455] h-2">` +
+          `</div>` +
+          `</div>` +
+          `</div>`;
       } else {
         //console.log("cost 정보 있음");
-      scoreInfo.innerHTML +=
-        `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">가성비 <div class="relative inline left-8">😢</div></li><span class="text-[#D7CBCB] w-6">` +
-        (item.score[0].cost * 100).toFixed(0) +
-        `</span>` +
-        `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
-        `<div style="width:` +
-        item.score[0].cost * 100 +
-        `%" class="bg-[#E85C55] h-2">` +
-        `</div>` +
-        `</div>` +
-        `</div>`;
+        scoreInfo.innerHTML +=
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">가성비 <div class="relative inline left-8">😢</div></li><span class="text-[#D7CBCB] w-6">` +
+          (item.score[0].cost * 100).toFixed(0) +
+          `</span>` +
+          `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
+          `<div style="width:` +
+          item.score[0].cost * 100 +
+          `%" class="bg-[#E85C55] h-2">` +
+          `</div>` +
+          `</div>` +
+          `</div>`;
       }
     } else {
       //console.log("cost api 정보 없음");
@@ -285,7 +285,7 @@ const DetailInfoScripts = (item) => {
           `</div>` +
           `</div>` +
           `</div>`;
-      } else if(item.score[0].service * 100 >= 40) {
+      } else if (item.score[0].service * 100 >= 40) {
         //console.log("service 정보 있음");
         scoreInfo.innerHTML +=
           `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">서비스 <div class="relative inline left-8">🙂</div></li><span class="text-[#D7CBCB] w-6">` +
@@ -312,7 +312,6 @@ const DetailInfoScripts = (item) => {
           `</div>` +
           `</div>`;
       }
-      
     } else {
       //console.log("service api 정보 없음");
       scoreInfo.remove();
@@ -324,7 +323,7 @@ const DetailInfoScripts = (item) => {
       item.score[0].taste !== "0.00" &&
       item.score[0].taste !== undefined
     ) {
-      if (item.score[0].taste * 100 >= 70){
+      if (item.score[0].taste * 100 >= 70) {
         //console.log("taste api 정보 있음");
         scoreInfo.innerHTML +=
           `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">맛 <div class="relative inline left-14">😍</div></li><span class="text-[#D7CBCB] w-6">` +
@@ -336,7 +335,7 @@ const DetailInfoScripts = (item) => {
           `%" class="bg-[#0D6EFD] h-2">` +
           `</div>` +
           `</div>`;
-      } else if (item.score[0].taste * 100 >= 40){
+      } else if (item.score[0].taste * 100 >= 40) {
         //console.log("taste api 정보 있음");
         scoreInfo.innerHTML +=
           `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">맛 <div class="relative inline left-14">🙂</div></li><span class="text-[#D7CBCB] w-6">` +
@@ -361,7 +360,6 @@ const DetailInfoScripts = (item) => {
           `</div>` +
           `</div>`;
       }
-     
     } else {
       //console.log("taste api 정보 없음");
       scoreInfo.remove();
@@ -372,7 +370,7 @@ const DetailInfoScripts = (item) => {
       item.score[0].visit !== "0.00" &&
       item.score[0].visit !== undefined
     ) {
-      if(item.score[0].visit * 100 >= 70) {
+      if (item.score[0].visit * 100 >= 70) {
         //console.log("visit 정보 있음");
         scoreInfo.innerHTML +=
           `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">재방문의사 <div class="relative inline left-2">😍</div></li><span class="text-[#D7CBCB] w-6">` +
@@ -412,7 +410,6 @@ const DetailInfoScripts = (item) => {
           `</div>` +
           `</div>`;
       }
-
     } else {
       //console.log("visit api 정보 없음");
       scoreInfo.remove();

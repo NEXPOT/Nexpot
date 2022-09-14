@@ -46,46 +46,52 @@ export default function SearchResult() {
           의 검색 결과입니다.
         </span>
         <div className="">
-        {video.length ? (
-          <div className="flex flex-wrap gap-4">
-            {video.map((item, idx) => (
-              <div className="content- start mx-auto inline mb-4 mt-12" key={idx}>
-                <button className="hover:cursor-default mb-2 px-4 py-0.5 border-[#737A7A] border-[1px] rounded-2xl text-sm font-semibold text-[#737A7A]">
-                  {item.region.length > 2
-                    ? item.region.substr(3, 2)
-                    : item.region}
-                </button>
-                
-                <div onClick={() => {window.location.reload()}}>
-                <Link
-                  to={`/detail/${item.videoid}`}
-                  state={{
-                    thumbnail: item.thumbnail.replace(
-                      "mqdefault.jpg",
-                      "maxresdefault.jpg"
-                    ),
-                    channelname: item.channelname,
-                    title: item.title,
-                  }}
-                >
-                  <img alt="thumbnail" src={item.thumbnail} />
-                  <p className="my-3 text-base font-bold">{item.channelname}</p>
-                  <p className="text-sm w-80">{item.title}</p>
-                </Link>
+          {video.length ? (
+            <div className="flex flex-wrap gap-4">
+              {video.map((item, idx) => (
+                <div className="justify-start ml-2 inline mb-4 mt-12" key={idx}>
+                  <button className="hover:cursor-default mb-2 px-4 py-0.5 border-[#737A7A] border-[1px] rounded-2xl text-sm font-semibold text-[#737A7A]">
+                    {item.region.length > 2
+                      ? item.region.substr(3, 2)
+                      : item.region}
+                  </button>
+
+                  <div
+                    onClick={() => {
+                      window.location.reload();
+                    }}
+                  >
+                    <Link
+                      to={`/detail/${item.videoid}`}
+                      state={{
+                        thumbnail: item.thumbnail.replace(
+                          "mqdefault.jpg",
+                          "maxresdefault.jpg"
+                        ),
+                        channelname: item.channelname,
+                        title: item.title,
+                      }}
+                    >
+                      <img alt="thumbnail" src={item.thumbnail} />
+                      <p className="my-3 text-base font-bold">
+                        {item.channelname}
+                      </p>
+                      <p className="text-sm w-80">{item.title}</p>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div>
-            <p className="mt-20 text-xl sm:text-4xl font-medium text-center text-white">
-              검색 결과가 없어요.
-            </p>
-            <p className="mt-3 text-xl sm:text-4xl font-medium text-center text-white">
-              다른 키워드로 검색해보세요.🕵🏻
-            </p>
-          </div>
-        )}
+              ))}
+            </div>
+          ) : (
+            <div>
+              <p className="mt-20 text-xl sm:text-4xl font-medium text-center text-white">
+                검색 결과가 없어요.
+              </p>
+              <p className="mt-3 text-xl sm:text-4xl font-medium text-center text-white">
+                다른 키워드로 검색해보세요.🕵🏻
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </>

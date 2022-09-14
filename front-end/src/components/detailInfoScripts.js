@@ -28,7 +28,7 @@ const DetailInfoScripts = (item) => {
     detailInfo.textContent = "";
   }
   var tourInfo = document.createElement("div");
-  tourInfo.setAttribute("class", "grid grid-col-2 gap-2 text-sm max-w-max");
+  tourInfo.setAttribute("class", "w-1/2 text-sm");
   tourInfo.innerHTML = "";
 
   // 장소마다 tourapi 정보가 null인 칸이 있거나 없기 때문에 각각의 if문으로 value를 확인하고 element를 추가합니다.
@@ -75,7 +75,7 @@ const DetailInfoScripts = (item) => {
   ) {
     console.log("usetime 정보 있음");
     tourInfo.innerHTML +=
-      `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E]">운영 시간 </span><span class="text-[#D7CBCB]">` +
+      `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E]">운영 시간 </span><span class="text-[#D7CBCB] max-w-lg">` +
       item.tourapi[0].usetime +
       `</span></div>`;
   } else {

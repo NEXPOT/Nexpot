@@ -99,7 +99,6 @@ const DetailInfoScripts = (item) => {
     tourInfo.remove();
   }
 
-
   /**[주차장 여부] parking check */
   if (
     item.tourapi[0].parking !== null &&
@@ -155,7 +154,7 @@ const DetailInfoScripts = (item) => {
     tourInfo.remove();
   }
   detailInfo.appendChild(tourInfo);
-
+  
 
   /** 여기부터 score 점수 렌더링 부분 */
   if (item.score.length !== 0) {

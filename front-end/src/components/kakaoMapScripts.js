@@ -40,7 +40,7 @@ const KakaoMapScript = (item) => {
       item.tourapi[0].addr +
       "</div>" +
       "</div>" +
-      '<button id="question" class="text-[#0D6EFD] self-start">?</button>' +
+      '<button id="question" class="px-[0.3rem] border border-[#0D6EFD] rounded-2xl text-xs text-[#0D6EFD] self-start">?</button>' +
       "</div>"+
       "</div>",
     position: pos, // 커스텀 오버레이를 표시할 좌표
@@ -70,13 +70,13 @@ const KakaoMapScript = (item) => {
       var qInfoText = document.createElement("div"); 
       questionInfo.addEventListener("mouseover", (event) => {
         qInfoText.innerHTML =
-          '<div id="qInfoText" class="absolute bottom-28 left-8 whitespace-normal rounded-sm max-w-max p-2 min-h-min shadow-md bg-white text-[0.5rem] text-slate-600 z-100"><p>각 점수는 서비스, 분위기, 가격, 방문, 맛에 해당하는 리뷰들을 자연어 처리 및 분류하여 긍정적, 부정적 리뷰의 비율을 표기한 점수입니다.</p></div>';
+          '<div id="qInfoText" class="absolute bottom-20 left-8 whitespace-normal rounded-sm max-w-max p-2 min-h-min shadow-md bg-white text-[0.5rem] text-slate-600 z-100"><p>각 점수는 서비스, 분위기, 가격, 방문, 맛에 해당하는 리뷰들을 자연어 처리 및 분류하여 긍정적, 부정적 리뷰의 비율을 표기한 점수입니다.</p></div>';
         customOverWindow.parentNode.appendChild(qInfoText);
       });
-      // questionInfo.addEventListener("mouseout", (event) => {
-      //   qInfoText.textContent = ""; 
-      //   qInfoText.remove();
-      // });
+      questionInfo.addEventListener("mouseout", (event) => {
+        qInfoText.textContent = ""; 
+        qInfoText.remove();
+      });
     });
 
     // mobile touch에 대응하기 위한 "mousedown" action function입니다.
@@ -91,10 +91,10 @@ const KakaoMapScript = (item) => {
           '<div id="qInfoText" class="absolute bottom-16 left-8 whitespace-normal rounded-sm max-w-max p-2 min-h-min shadow-md bg-white text-[0.5rem] text-slate-600 z-10"><p>각 점수는 서비스, 분위기, 가격, 방문, 맛에 해당하는 리뷰들을 자연어 처리 및 분류하여 긍정적, 부정적 리뷰의 비율을 표기한 점수입니다.</p></div>';
         customOverWindow.parentNode.appendChild(qInfoText);
       });
-      // questionInfo.addEventListener("mouseout", (event) => {
-      //   qInfoText.textContent = ""; 
-      //   qInfoText.remove();
-      // });
+      questionInfo.addEventListener("mouseout", (event) => {
+        qInfoText.textContent = ""; 
+        qInfoText.remove();
+      });
     });
     // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
     kakao.maps.event.addListener(map, "mousedown", function () { 

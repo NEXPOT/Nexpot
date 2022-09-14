@@ -220,7 +220,6 @@ export default function Region() {
 
 	return (
 		<div className="mx-4 mt-8 text-white sm:mx-10 sm:mt-20">
-
 			<div className="flex mb-4 sm:mb-8">
 				<TriangleDown
 					className="self-center transition ease-in-out delay-100 hover:cursor-pointer"
@@ -240,24 +239,23 @@ export default function Region() {
 			<div
 				className={
 					isOpen
-						? "show transition ease-in-out delay-100 h-32 bg-[#120D0B] rounded-lg"
-						: "hide transition ease-in-out delay-100 h-32 bg-[#120D0B] rounded-lg"
+						? "show transition ease-in-out delay-100 p-4 max-h-max bg-[#120D0B] rounded-lg"
+						: "hide transition ease-in-out delay-100 p-4 max-h-max bg-[#120D0B] rounded-lg"
 				}
 			>
-				<div>
-					<div className="flex flex-wrap text-[#525959] w-full pt-2 px-4 sm:px-6"
+					<div className="flex flex-wrap text-[#525959] w-full px-4 sm:px-6"
           ref={region1box}>
 						{region1.map((region, idx) => (
 							<button
 								key={idx}
-								className="hover:text-[#0D6EFD] hover:font-bold hover:underline underline-offset-4 mb-2 mr-12 py-0.5 text-base font-medium text-[#525959]"
+								className="hover:text-[#0D6EFD] hover:font-bold hover:underline underline-offset-4 mb-2 mr-8 py-0.5 text-base font-medium text-[#525959]"
 								onClick={onClickRegion1}
 							>
 								{region}
 							</button>
 						))}
 					</div>
-					<div className="flex flex-wrap py-2 px-4 sm:mx-5 rounded-lg bg-[#1A1716] align-middle"
+					<div className="flex flex-wrap py-2 px-4 rounded-lg bg-[#1A1716] align-middle"
 						ref={region2box}>
 						{region[region1Name].map((region, idx) => (
 
@@ -270,8 +268,7 @@ export default function Region() {
 							</button>
 
 						))}
-					</div>
-				</div>
+					</div> 
 			</div>
 
 			<div className="flex flex-wrap mt-20">

@@ -28,7 +28,7 @@ const DetailInfoScripts = (item) => {
     detailInfo.textContent = "";
   }
   var tourInfo = document.createElement("div");
-  tourInfo.setAttribute("class", "grid grid-col-2 gap-2 text-sm w-1/2");
+  tourInfo.setAttribute("class", "grid grid-col-2 gap-2 text-sm max-w-max");
   tourInfo.innerHTML = "";
 
   // 장소마다 tourapi 정보가 null인 칸이 있거나 없기 때문에 각각의 if문으로 value를 확인하고 element를 추가합니다.
@@ -67,22 +67,6 @@ const DetailInfoScripts = (item) => {
     tourInfo.remove();
   }
 
-  /**[운영 시간] usetime check */
-  if (
-    item.tourapi[0].usetime !== null &&
-    item.tourapi[0].usetime !== "" &&
-    item.tourapi[0].usetime !== undefined
-  ) {
-    console.log("usetime 정보 있음");
-    tourInfo.innerHTML +=
-      `<div class="flex flex-flow-row gap-2"><span class="text-[#837E7E]">운영 시간 </span><span class="text-[#D7CBCB]">` +
-      item.tourapi[0].usetime +
-      `</span></div>`;
-  } else {
-    console.log("usetime api 정보 없음");
-    tourInfo.remove();
-  }
-
   /**[쉬는 날] restdate check */
   if (
     item.tourapi[0].restdate !== null &&
@@ -98,7 +82,6 @@ const DetailInfoScripts = (item) => {
     console.log("restdate api 정보 없음");
     tourInfo.remove();
   }
-
 
   /**[주차장 여부] parking check */
   if (
@@ -155,7 +138,7 @@ const DetailInfoScripts = (item) => {
     tourInfo.remove();
   }
   detailInfo.appendChild(tourInfo);
-
+  
 
   /** 여기부터 score 점수 렌더링 부분 */
   if (item.score.length !== 0) {

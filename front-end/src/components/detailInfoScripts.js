@@ -158,7 +158,7 @@ const DetailInfoScripts = (item) => {
 
   /** 여기부터 score 점수 렌더링 부분 */
   if (item.score.length !== 0) {
-    var scoreInfo = item.score[0];
+    //var scoreInfo = item.score[0];
     var scoreInfo = document.createElement("div");
     scoreInfo.setAttribute("id", "scoreInfoList");
     scoreInfo.setAttribute("class", "flex flex-col text-sm");

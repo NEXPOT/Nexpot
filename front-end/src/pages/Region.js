@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { TriangleDown } from "akar-icons";
 import axios from "axios";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Region() {
 	let navigate = useNavigate();
@@ -89,7 +89,7 @@ export default function Region() {
 	/** 처음 로드될 때 해당 region에 css styling */
   useEffect(() => {
     for (let i = 0; i < region1box.current.children.length; i++) {
-    if (region1box.current.children[i].innerHTML == regionKey) {
+    if (region1box.current.children[i].innerHTML === regionKey) {
       region1box.current.children[i].classList.toggle("clicked");
       region1box.current.children[i].classList.toggle("text-[#0D6EFD]");
       region1box.current.children[i].classList.toggle("underline");

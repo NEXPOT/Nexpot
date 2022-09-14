@@ -1,6 +1,4 @@
 //* global kakao */
-import { Question } from "akar-icons";
-import { QuestionFill } from "akar-icons";
 
 const { kakao } = window;
 

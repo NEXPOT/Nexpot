@@ -9,7 +9,7 @@ export default function Detail() {
   const location = useLocation();
   let { videoid } = useParams();
   const [place, setPlaces] = useState([]);
-  const [detail, setDetail] = useState([]);
+  //const [detail, setDetail] = useState([]);
   const thumbnail = useRef();
   const placeBtnList = useRef();
 
@@ -20,20 +20,20 @@ export default function Detail() {
         const res = await axios.get(
           "http://13.209.13.176/api/youtube/" + videoid
         );
-        const _detail = [
-          {
-            videoid: res.data.videoid,
-            title: res.data.title,
-            channelname: res.data.channelname,
-            views: res.data.views,
-            places: res.data.places,
-          },
-        ];
+        // const _detail = [
+        //   {
+        //     videoid: res.data.videoid,
+        //     title: res.data.title,
+        //     channelname: res.data.channelname,
+        //     views: res.data.views,
+        //     places: res.data.places,
+        //   },
+        // ];
 
         res.data.places.sort((a, b) => a.idx - b.idx); // idx순으로 place 정렬
         DetailInfoScripts(res.data.places[0]);
         KakaoMapScript(res.data.places[0]);
-        setDetail(_detail);
+        //setDetail(_detail);
         setPlaces(res.data.places);
       } catch (e) {
         console.error(e.message);

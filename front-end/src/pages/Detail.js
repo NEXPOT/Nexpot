@@ -81,7 +81,7 @@ export default function Detail() {
       </button>
     ));
   };
-  
+
   /**썸네일 고해상도 없을 시 이미지 에러 처리 */
   const [imgSrc, setImgSrc] = useState(location.state.thumbnail);
   const handleImgError = (e) => {
@@ -97,7 +97,7 @@ export default function Detail() {
     const target = document.getElementById("placeContent");
     target.classList.toggle("line-clamp-2");
     target.classList.toggle("max-h-full");
-    
+
     if (e.target.innerHTML === "더보기") {
       e.target.innerHTML = "접기";
     } else {
@@ -164,14 +164,22 @@ export default function Detail() {
             onClick={onClickKakaoMapInfo}
           >
             카카오지도에서 정보를 찾아보세요
-            <ArrowRight className="justify-self-end" strokeWidth={1.5} size={20} />
+            <ArrowRight
+              className="justify-self-end"
+              strokeWidth={1.5}
+              size={20}
+            />
           </button>
           <button
             className="grid grid-flow-col gap-2 text-start border-white border-[0.5px] py-2 px-4"
             onClick={onClickTourInfo}
           >
             대한민국 구석구석에서 정보를 찾아보세요
-            <ArrowRight className="justify-self-end" strokeWidth={1.5} size={20} />
+            <ArrowRight
+              className="justify-self-end"
+              strokeWidth={1.5}
+              size={20}
+            />
           </button>
         </div>
         <div
@@ -185,8 +193,11 @@ export default function Detail() {
         >
           더보기
         </button>
-        <p className="mt-8 text-base font-bold">상세 정보</p> 
-        <div className="flex flex-col gap-8 mt-4 sm:flex-row sm:gap-16" id="detailInfo"></div> 
+        <p className="mt-8 text-base font-bold">상세 정보</p>
+        <div
+          className="flex flex-col gap-8 mt-4 sm:flex-row sm:gap-16"
+          id="detailInfo"
+        ></div>
       </div>
     </div>
   );

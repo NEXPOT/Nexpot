@@ -35,7 +35,7 @@ const DetailInfoScripts = (item) => {
   if (item.tourapi[0].addr !== null) {
     //console.log("addr 정보 있음");
     tourInfo.innerHTML +=
-      `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E]">주소 </span><span class="text-[#D7CBCB]">` +
+      `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E] whitespace-nowrap">주소</span><span class="text-[#D7CBCB]">` +
       item.tourapi[0].addr +
       `</span></div>`;
   }
@@ -76,7 +76,7 @@ const DetailInfoScripts = (item) => {
   ) {
     //console.log("usetime 정보 있음");
     tourInfo.innerHTML +=
-      `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E]">운영 시간 </span><span class="text-[#D7CBCB] max-w-lg">` +
+      `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E] whitespace-nowrap">운영 시간 </span><span class="text-[#D7CBCB] max-w-lg">` +
       item.tourapi[0].usetime +
       `</span></div>`;
   } else {
@@ -92,7 +92,7 @@ const DetailInfoScripts = (item) => {
   ) {
     //console.log("restdate 정보 있음");
     tourInfo.innerHTML +=
-      `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E]">쉬는 날 </span><span class="text-[#D7CBCB]">` +
+      `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E] whitespace-nowrap">쉬는 날 </span><span class="text-[#D7CBCB]">` +
       item.tourapi[0].restdate +
       `</span></div>`;
   } else {
@@ -108,7 +108,7 @@ const DetailInfoScripts = (item) => {
   ) {
     //console.log("parking 정보 있음");
     tourInfo.innerHTML +=
-      `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E]">주차 여부 </span><span class="text-[#D7CBCB]">` +
+      `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E] whitespace-nowrap">주차 여부 </span><span class="text-[#D7CBCB]">` +
       item.tourapi[0].parking +
       `</span></div>`;
   } else {
@@ -119,7 +119,7 @@ const DetailInfoScripts = (item) => {
   if (item.tourapi[0].chkpet !== null && item.tourapi[0].chkpet !== "") {
     //console.log("chkpet 정보 있음");
     tourInfo.innerHTML +=
-      `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E]">애완동물 동반 가능 여부 </span><span class="text-[#D7CBCB]">` +
+      `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E] whitespace-nowrap">애완동물 동반 가능 여부 </span><span class="text-[#D7CBCB]">` +
       item.tourapi[0].chkpet +
       `</span></div>`;
   } else {
@@ -133,7 +133,7 @@ const DetailInfoScripts = (item) => {
   ) {
     //console.log("chkbabycarriage 정보 있음");
     tourInfo.innerHTML +=
-      `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E]">유모차 대여 여부 </span><span class="text-[#D7CBCB]">` +
+      `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E] whitespace-nowrap">유모차 대여 여부 </span><span class="text-[#D7CBCB]">` +
       item.tourapi[0].chkbabycarriage +
       `</span></div>`;
   } else {
@@ -147,7 +147,7 @@ const DetailInfoScripts = (item) => {
   ) {
     //console.log("chkcreditcard 정보 있음");
     tourInfo.innerHTML +=
-      `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E]">신용카드 가능 여부 </span><span class="text-[#D7CBCB]">` +
+      `<div class="flex flex-flow-row gap-2 mb-1.5"><span class="text-[#837E7E] whitespace-nowrap">신용카드 가능 여부 </span><span class="text-[#D7CBCB]">` +
       item.tourapi[0].chkcreditcard +
       `</span></div>`;
   } else {
@@ -175,37 +175,37 @@ const DetailInfoScripts = (item) => {
       //console.log("atmosphere 정보 있음");
       if (item.score[0].atmosphere * 100 >= 70) {
         scoreInfo.innerHTML +=
-          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">분위기 <div class="relative inline left-8">😍</div></li><span class="text-[#D7CBCB] w-6">` +
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28 whitespace-nowrap place-items-center">분위기 <div class="relative inline left-8">😍</div></li><span class="text-[#D7CBCB] w-6">` +
           (item.score[0].atmosphere * 100).toFixed(0) +
           `</span>` +
           `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
           `<div style="width:` +
           item.score[0].atmosphere * 100 +
-          `%" class="bg-[#0D6EFD] h-2">` +
+          `%" class="bg-[#0D6EFD] w-full h-2">` +
           `</div>` +
           `</div>` +
           `</div>`;
       } else if (item.score[0].atmosphere * 100 >= 40) {
         scoreInfo.innerHTML +=
-          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">분위기 <div class="relative inline left-8">🙂</div></li><span class="text-[#D7CBCB] w-6">` +
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28 whitespace-nowrap place-items-center">분위기 <div class="relative inline left-8">🙂</div></li><span class="text-[#D7CBCB] w-6">` +
           (item.score[0].atmosphere * 100).toFixed(0) +
           `</span>` +
           `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
           `<div style="width:` +
           item.score[0].atmosphere * 100 +
-          `%" class="bg-[#E8A455] h-2">` +
+          `%" class="bg-[#E8A455] w-full h-2">` +
           `</div>` +
           `</div>` +
           `</div>`;
       } else {
         scoreInfo.innerHTML +=
-          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">분위기 <div class="relative inline left-8">😥</div></li><span class="text-[#D7CBCB] w-6">` +
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28 whitespace-nowrap place-items-center">분위기 <div class="relative inline left-8">😥</div></li><span class="text-[#D7CBCB]">` +
           (item.score[0].atmosphere * 100).toFixed(0) +
           `</span>` +
           `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
           `<div style="width:` +
           item.score[0].atmosphere * 100 +
-          `%" class="bg-[#E85C55] h-2">` +
+          `%" class="bg-[#E85C55] w-full h-2">` +
           `</div>` +
           `</div>` +
           `</div>`;
@@ -224,39 +224,39 @@ const DetailInfoScripts = (item) => {
       if (item.score[0].cost * 100 >= 70) {
         //console.log("cost 정보 있음");
         scoreInfo.innerHTML +=
-          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">가성비 <div class="relative inline left-8">😍</div></li><span class="text-[#D7CBCB] w-6">` +
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28 whitespace-nowrap place-items-center">가성비 <div class="relative inline left-8">😍</div></li><span class="text-[#D7CBCB] w-6">` +
           (item.score[0].cost * 100).toFixed(0) +
           `</span>` +
           `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
           `<div style="width:` +
           item.score[0].cost * 100 +
-          `%" class="bg-[#0D6EFD] h-2">` +
+          `%" class="bg-[#0D6EFD] w-full h-2">` +
           `</div>` +
           `</div>` +
           `</div>`;
       } else if (item.score[0].cost * 100 >= 40) {
         //console.log("cost 정보 있음");
         scoreInfo.innerHTML +=
-          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">가성비 <div class="relative inline left-8">🙂</div></li><span class="text-[#D7CBCB] w-6">` +
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28 whitespace-nowrap place-items-center">가성비 <div class="relative inline left-8">🙂</div></li><span class="text-[#D7CBCB] w-6">` +
           (item.score[0].cost * 100).toFixed(0) +
           `</span>` +
           `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
           `<div style="width:` +
           item.score[0].cost * 100 +
-          `%" class="bg-[#E8A455] h-2">` +
+          `%" class="bg-[#E8A455] w-full h-2">` +
           `</div>` +
           `</div>` +
           `</div>`;
       } else {
         //console.log("cost 정보 있음");
         scoreInfo.innerHTML +=
-          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">가성비 <div class="relative inline left-8">😢</div></li><span class="text-[#D7CBCB] w-6">` +
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28 whitespace-nowrap place-items-center">가성비 <div class="relative inline left-8">😢</div></li><span class="text-[#D7CBCB] w-6">` +
           (item.score[0].cost * 100).toFixed(0) +
           `</span>` +
           `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
           `<div style="width:` +
           item.score[0].cost * 100 +
-          `%" class="bg-[#E85C55] h-2">` +
+          `%" class="bg-[#E85C55] w-full h-2">` +
           `</div>` +
           `</div>` +
           `</div>`;
@@ -275,39 +275,39 @@ const DetailInfoScripts = (item) => {
       if (item.score[0].service * 100 >= 70) {
         //console.log("service 정보 있음");
         scoreInfo.innerHTML +=
-          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">서비스 <div class="relative inline left-8">😍</div></li><span class="text-[#D7CBCB] w-6">` +
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28 whitespace-nowrap place-items-center">서비스 <div class="relative inline left-8">😍</div></li><span class="text-[#D7CBCB] w-6">` +
           (item.score[0].service * 100).toFixed(0) +
           `</span>` +
           `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
           `<div style="width:` +
           item.score[0].service * 100 +
-          `%" class="bg-[#0D6EFD] h-2">` +
+          `%" class="bg-[#0D6EFD] w-full h-2">` +
           `</div>` +
           `</div>` +
           `</div>`;
       } else if (item.score[0].service * 100 >= 40) {
         //console.log("service 정보 있음");
         scoreInfo.innerHTML +=
-          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">서비스 <div class="relative inline left-8">🙂</div></li><span class="text-[#D7CBCB] w-6">` +
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28 whitespace-nowrap place-items-center">서비스 <div class="relative inline left-8">🙂</div></li><span class="text-[#D7CBCB] w-6">` +
           (item.score[0].service * 100).toFixed(0) +
           `</span>` +
           `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
           `<div style="width:` +
           item.score[0].service * 100 +
-          `%" class="bg-[#E8A455] h-2">` +
+          `%" class="bg-[#E8A455] w-full h-2">` +
           `</div>` +
           `</div>` +
           `</div>`;
       } else {
         //console.log("service 정보 있음");
         scoreInfo.innerHTML +=
-          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">서비스 <div class="relative inline left-8">😢</div></li><span class="text-[#D7CBCB] w-6">` +
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28 whitespace-nowrap place-items-center">서비스 <div class="relative inline left-8">😢</div></li><span class="text-[#D7CBCB] w-6">` +
           (item.score[0].service * 100).toFixed(0) +
           `</span>` +
           `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
           `<div style="width:` +
           item.score[0].service * 100 +
-          `%" class="bg-[#E85C55] h-2">` +
+          `%" class="bg-[#E85C55] w-full h-2">` +
           `</div>` +
           `</div>` +
           `</div>`;
@@ -326,37 +326,37 @@ const DetailInfoScripts = (item) => {
       if (item.score[0].taste * 100 >= 70) {
         //console.log("taste api 정보 있음");
         scoreInfo.innerHTML +=
-          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">맛 <div class="relative inline left-14">😍</div></li><span class="text-[#D7CBCB] w-6">` +
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28 whitespace-nowrap place-items-center">맛 <div class="relative inline left-[3.8rem]">😍</div></li><span class="text-[#D7CBCB] w-6">` +
           (item.score[0].taste * 100).toFixed(0) +
           `</span>` +
           `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
           `<div style="width:` +
           item.score[0].taste * 100 +
-          `%" class="bg-[#0D6EFD] h-2">` +
+          `%" class="bg-[#0D6EFD] w-full h-2">` +
           `</div>` +
           `</div>`;
       } else if (item.score[0].taste * 100 >= 40) {
         //console.log("taste api 정보 있음");
         scoreInfo.innerHTML +=
-          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">맛 <div class="relative inline left-14">🙂</div></li><span class="text-[#D7CBCB] w-6">` +
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28 whitespace-nowrap place-items-center">맛 <div class="relative inline left-[3.8rem]">🙂</div></li><span class="text-[#D7CBCB] w-6">` +
           (item.score[0].taste * 100).toFixed(0) +
           `</span>` +
           `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
           `<div style="width:` +
           item.score[0].taste * 100 +
-          `%" class="bg-[#E8A455] h-2">` +
+          `%" class="bg-[#E8A455] w-full h-2">` +
           `</div>` +
           `</div>`;
       } else {
         //console.log("taste api 정보 있음");
         scoreInfo.innerHTML +=
-          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">맛 <div class="relative inline left-14">😥</div></li><span class="text-[#D7CBCB] w-6">` +
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28 whitespace-nowrap place-items-center">맛 <div class="relative inline left-[3.8rem]">😥</div></li><span class="text-[#D7CBCB] w-6">` +
           (item.score[0].taste * 100).toFixed(0) +
           `</span>` +
           `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
           `<div style="width:` +
           item.score[0].taste * 100 +
-          `%" class="bg-[#E85C55] h-2">` +
+          `%" class="bg-[#E85C55] w-full h-2">` +
           `</div>` +
           `</div>`;
       }
@@ -373,39 +373,39 @@ const DetailInfoScripts = (item) => {
       if (item.score[0].visit * 100 >= 70) {
         //console.log("visit 정보 있음");
         scoreInfo.innerHTML +=
-          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">재방문의사 <div class="relative inline left-2">😍</div></li><span class="text-[#D7CBCB] w-6">` +
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28 whitespace-nowrap place-items-center">재방문의사 <div class="relative inline left-[0.325rem]">😍</div></li><span class="text-[#D7CBCB] w-6">` +
           (item.score[0].visit * 100).toFixed(0) +
           `</span>` +
           `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
           `<div style="width:` +
           item.score[0].visit * 100 +
-          `%" class="bg-[#0D6EFD] h-2">` +
+          `%" class="bg-[#0D6EFD] w-full h-2">` +
           `</div>` +
           `</div>` +
           `</div>`;
       } else if (item.score[0].visit * 100 >= 40) {
         //console.log("visit 정보 있음");
         scoreInfo.innerHTML +=
-          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">재방문의사 <div class="relative inline left-2">🙂</div></li><span class="text-[#D7CBCB] w-6">` +
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28 whitespace-nowrap place-items-center">재방문의사 <div class="relative inline left-[0.325rem]">🙂</div></li><span class="text-[#D7CBCB] w-6">` +
           (item.score[0].visit * 100).toFixed(0) +
           `</span>` +
           `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
           `<div style="width:` +
           item.score[0].visit * 100 +
-          `%" class="bg-[#E8A455] h-2">` +
+          `%" class="bg-[#E8A455] w-full h-2">` +
           `</div>` +
           `</div>` +
           `</div>`;
       } else {
         //console.log("visit 정보 있음");
         scoreInfo.innerHTML +=
-          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28">재방문의사 <div class="relative inline left-2">😢</div></li><span class="text-[#D7CBCB] w-6">` +
+          `<div class="flex flex-flow-row place-items-center gap-2 mb-2"><li class="text-[#837E7E] w-28 whitespace-nowrap place-items-center">재방문의사 <div class="relative inline left-[0.325rem]">😢</div></li><span class="text-[#D7CBCB] w-6">` +
           (item.score[0].visit * 100).toFixed(0) +
           `</span>` +
           `<div class="w-40 h-2 bg-[#dfdfdf] overflow-hidden rounded-lg relative inline">` +
           `<div style="width:` +
           item.score[0].visit * 100 +
-          `%" class="bg-[#E85C55] h-2">` +
+          `%" class="bg-[#E85C55] w-full h-2">` +
           `</div>` +
           `</div>` +
           `</div>`;

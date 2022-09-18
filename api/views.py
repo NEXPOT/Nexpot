@@ -24,4 +24,4 @@ class YoutubeSearchAPIView(generics.ListAPIView):
     queryset = Youtube.objects.all()
     serializer_class = YoutubesSerializer
     filter_backends = [SearchFilter]
-    search_fields = ('title', 'region', 'region1', 'region2', 'channelname', 'thumbnail')
+    search_fields = ('title', 'region', 'region1', 'region2', 'channelname', 'thumbnail', 'places__pname')

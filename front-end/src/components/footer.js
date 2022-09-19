@@ -12,10 +12,6 @@ export default function footer() {
 					<span className='text-sm md:text-base'>Eun Lee</span>
 				</div>
 				<div className='flex-none pt-4 pl-10 font-normal'>
-					<span className='block text-[#525959] text-xs'>Marketing</span>
-					<span className='text-sm md:text-base'>Seoyun Oh</span>
-				</div>
-				<div className='flex-none pt-4 pl-10 font-normal'>
 					<span className='block text-[#525959] text-xs'>DB/NLP</span>
 					<span className='text-sm md:text-base'>Jiseok Kim</span>
 				</div>

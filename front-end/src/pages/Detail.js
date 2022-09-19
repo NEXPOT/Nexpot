@@ -18,17 +18,8 @@ export default function Detail() {
     const getData = async () => {
       try {
         const res = await axios.get(
-          "http://13.209.13.176/api/youtube/" + videoid
+          "http://3.36.99.136/api/youtube/" + videoid
         );
-        // const _detail = [
-        //   {
-        //     videoid: res.data.videoid,
-        //     title: res.data.title,
-        //     channelname: res.data.channelname,
-        //     views: res.data.views,
-        //     places: res.data.places,
-        //   },
-        // ];
 
         res.data.places.sort((a, b) => a.idx - b.idx); // idx순으로 place 정렬
         DetailInfoScripts(res.data.places[0]);

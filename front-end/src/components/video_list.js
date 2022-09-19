@@ -90,7 +90,7 @@ const VideoList = ({ regionName }) => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const res = await axios.get("http://13.209.13.176/api/youtube/", {
+        const res = await axios.get("http://3.36.99.136/api/youtube/", {
           params: {
             region2: region[regionName],
           },

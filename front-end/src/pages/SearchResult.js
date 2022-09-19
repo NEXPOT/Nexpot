@@ -11,7 +11,7 @@ export default function SearchResult() {
     const getData = async () => {
       try {
         const res = await axios.get(
-          "http://13.209.13.176/api/youtube/search/",
+          "http://3.36.99.136/api/youtube/search/",
           {
             params: {
               search: location.state.keyword,
@@ -38,8 +38,8 @@ export default function SearchResult() {
 
   return (
     <>
-      <div className="mx-4 xs:mx-10 mt-20 text-white">
-        <span className="mb-5 text-4xl sm:text-5xl font-bold">
+      <div className="mx-4 mt-20 text-white xs:mx-10">
+        <span className="mb-5 text-4xl font-bold sm:text-5xl">
           ‘{location.state.keyword}’
         </span>
         <span className="font-medium text-[#c4c4c4] text-2xl sm:text-3xl">
@@ -49,7 +49,7 @@ export default function SearchResult() {
           {video.length ? (
             <div className="flex flex-wrap gap-4">
               {video.map((item, idx) => (
-                <div className="justify-start ml-2 inline mb-4 mt-12" key={idx}>
+                <div className="justify-start inline mt-12 mb-4 ml-2" key={idx}>
                   <button className="hover:cursor-default mb-2 px-4 py-0.5 border-[#737A7A] border-[1px] rounded-2xl text-sm font-semibold text-[#737A7A]">
                     {item.region.length > 2
                       ? item.region.substr(3, 2)
@@ -84,10 +84,10 @@ export default function SearchResult() {
             </div>
           ) : (
             <div>
-              <p className="mt-20 text-xl sm:text-4xl font-medium text-center text-white">
+              <p className="mt-20 text-xl font-medium text-center text-white sm:text-4xl">
                 검색 결과가 없어요.
               </p>
-              <p className="mt-3 text-xl sm:text-4xl font-medium text-center text-white">
+              <p className="mt-3 text-xl font-medium text-center text-white sm:text-4xl">
                 다른 키워드로 검색해보세요.🕵🏻
               </p>
             </div>

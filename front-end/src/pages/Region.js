@@ -168,7 +168,7 @@ export default function Region() {
 		}
 		const getVideo = async () => {
 			try {
-				const res = await axios.get("http://13.209.13.176/api/youtube/", {
+				const res = await axios.get("http://3.36.99.136/api/youtube/", {
 					params: {
 						[regionN]: param
 					}

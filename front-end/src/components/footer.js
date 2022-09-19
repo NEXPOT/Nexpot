@@ -12,12 +12,8 @@ export default function footer() {
 					<span className='text-sm md:text-base'>Eun Lee</span>
 				</div>
 				<div className='flex-none pt-4 pl-10 font-normal'>
-					<span className='block text-[#525959] text-xs'>DB/NLP</span>
-					<span className='text-sm md:text-base'>Jiseok Kim</span>
-				</div>
-				<div className='flex-none pt-4 pl-10 font-normal'>
-					<span className='block text-[#525959] text-xs'>Backend</span>
-					<span className='text-sm md:text-base'>Jihoo Kim</span>
+					<span className='block text-[#525959] text-xs'>Design</span>
+					<span className='text-sm md:text-base'>Ahhyun Kim</span>
 				</div>
 				<div className='flex-none pt-4 pl-10 font-normal'>
 					<span className='block text-[#525959] text-xs'>Frontend</span>
@@ -25,8 +21,16 @@ export default function footer() {
 					<span className='text-sm md:text-base'>Ahhyun Kim</span>
 				</div>
 				<div className='flex-none pt-4 pl-10 font-normal'>
-					<span className='block text-[#525959] text-xs'>Design</span>
-					<span className='text-sm md:text-base'>Ahhyun Kim</span>
+					<span className='block text-[#525959] text-xs'>Backend</span>
+					<span className='text-sm md:text-base'>Jihoo Kim</span>
+				</div>
+				<div className='flex-none pt-4 pl-10 font-normal'>
+					<span className='block text-[#525959] text-xs'>DB/NLP</span>
+					<span className='text-sm md:text-base'>Jiseok Kim</span>
+				</div>
+				<div className='flex-none pt-4 pl-10 font-normal'>
+					<span className='block text-[#525959] text-xs'>Marketing</span>
+					<span className='text-sm md:text-base'>Seoyun Oh</span>
 				</div>
 
 				<span className='flex-auto px-10 mb-4 text-sm font-medium text-end pt-7 sm:mb-0 md:text-lg'>2022 TourApi x KaKao</span>

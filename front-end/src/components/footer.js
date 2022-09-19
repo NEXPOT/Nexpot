@@ -17,7 +17,7 @@ export default function footer() {
 				</div>
 				<div className='flex-none pt-4 pl-10 font-normal'>
 					<span className='block text-[#525959] text-xs'>Backend</span>
-					<span className='text-sm md:text-base'>JiHoo Kim</span>
+					<span className='text-sm md:text-base'>Jihoo Kim</span>
 				</div>
 				<div className='flex-none pt-4 pl-10 font-normal'>
 					<span className='block text-[#525959] text-xs'>Frontend</span>

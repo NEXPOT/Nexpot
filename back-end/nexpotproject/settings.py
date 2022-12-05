@@ -11,11 +11,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-from .my_settings import mySECRET_KEY, myDATABASES
+from .my_settings import MY_SECRET_KEY, MY_DATABASES
 
-SECRET_KEY = mySECRET_KEY
+SECRET_KEY = MY_SECRET_KEY
 
-DATABASES = myDATABASES
+DATABASES = MY_DATABASES
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

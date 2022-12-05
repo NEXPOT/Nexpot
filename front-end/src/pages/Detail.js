@@ -13,12 +13,14 @@ export default function Detail() {
   const thumbnail = useRef();
   const placeBtnList = useRef();
 
+  const url = process.env.REACT_APP_BACKEND_URL;
+	const endpoint = "/api/youtube/";
   // 첫 렌더링에 videoid로 상세 정보를 가져옵니다.
   useEffect(() => {
     const getData = async () => {
       try {
         const res = await axios.get(
-          "http://3.36.99.136/api/youtube/" + videoid
+          url + endpoint + videoid
         );
 
         res.data.places.sort((a, b) => a.idx - b.idx); // idx순으로 place 정렬

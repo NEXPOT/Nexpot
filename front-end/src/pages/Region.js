@@ -158,6 +158,8 @@ export default function Region() {
 	}, [region1Name, region2Name]);
 
 	const [video, setVideo] = useState([]);
+	const url = process.env.REACT_APP_BACKEND_URL;
+	const endpoint = "/api/youtube/";
 	/** call ajax, 지역 영상 불러오기 */
 	useEffect(() => {
 		let regionN;
@@ -168,7 +170,7 @@ export default function Region() {
 		}
 		const getVideo = async () => {
 			try {
-				const res = await axios.get("http://3.36.99.136/api/youtube/", {
+				const res = await axios.get(url + endpoint, {
 					params: {
 						[regionN]: param
 					}

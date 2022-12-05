@@ -5,6 +5,12 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,react,django,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,visualstudiocode,react,django,python
 
+### DB/NLP ###
+data/
+DB_NLP/
+myvenv/
+
+
 
 ### Django ###
 *.log

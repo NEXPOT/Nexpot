@@ -6,12 +6,13 @@ export default function SearchResult() {
   const location = useLocation();
 
   const [video, setVideo] = useState([]);
+  const url = process.env.REACT_APP_BACKEND_URL;
+	const endpoint = "/api/youtube/search/";
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const res = await axios.get(
-          "http://3.36.99.136/api/youtube/search/",
+        const res = await axios.get(url + endpoint,
           {
             params: {
               search: location.state.keyword,
